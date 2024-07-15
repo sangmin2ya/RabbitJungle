@@ -15,9 +15,9 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerTransform = player.transform;
-        transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed*Time.deltaTime);
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //playerTransform = player.transform;
+        //transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed*Time.deltaTime);
         
     }
 }
