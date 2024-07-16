@@ -12,6 +12,8 @@ public class Rifle_Skill : MonoBehaviour
 
     private bool skill;
 
+    public bool epicSkill;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,28 +23,32 @@ public class Rifle_Skill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!skill && skillCool > 10)
+        if (epicSkill)
         {
-            if (Input.GetMouseButton(1))
+            if (!skill && skillCool > 10)
             {
-                skill = true;
-                rifle.GetComponent<Gun_Rifle>().skill = skill;
+                if (Input.GetMouseButton(1))
+                {
+                    skill = true;
+                    rifle.GetComponent<Gun_Rifle>().skill = skill;
+                }
             }
-        }
-        else if (skill)
-        {
-            skillTime = skillTime + Time.deltaTime;
-
-            if (skillTime > 3)
+            else if (skill)
             {
-                skill = false;
-                skillTime = 0;
-                rifle.GetComponent<Gun_Rifle>().skill = skill;
-                skillCool = 0;
-            }
-        }
+                skillTime = skillTime + Time.deltaTime;
 
-        skillCool = skillCool + Time.deltaTime;
+                if (skillTime > 3)
+                {
+                    skill = false;
+                    skillTime = 0;
+                    rifle.GetComponent<Gun_Rifle>().skill = skill;
+                    skillCool = 0;
+                }
+            }
+
+            skillCool = skillCool + Time.deltaTime;
+
+        }
 
     }
 

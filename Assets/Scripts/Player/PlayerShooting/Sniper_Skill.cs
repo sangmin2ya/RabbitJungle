@@ -12,6 +12,9 @@ public class Sniper_Skill : MonoBehaviour
 
     public float coolTime;
     public float time;
+
+    public bool epicSkill;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +24,16 @@ public class Sniper_Skill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(1) && time > coolTime)
+        if (epicSkill)
         {
-            Instantiate(bigBullet, spawnPos.position, rotation.transform.rotation);
-            Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
-            time = 0;
+            if (Input.GetMouseButton(1) && time > coolTime)
+            {
+                Instantiate(bigBullet, spawnPos.position, rotation.transform.rotation);
+                Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
+                time = 0;
 
+            }
+            time = time + Time.deltaTime;
         }
-        time = time + Time.deltaTime;
     }
 }

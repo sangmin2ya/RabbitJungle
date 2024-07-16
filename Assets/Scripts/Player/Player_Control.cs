@@ -1,8 +1,11 @@
 using System.Collections;
+using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Player_Control : MonoBehaviour
 {
@@ -11,9 +14,13 @@ public class Player_Control : MonoBehaviour
     public float verticalInput;
     public GameObject map;
     public GameObject player;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        DataManager.Instance.Health = 5.0f;
         StartCoroutine("Flip");
         DataManager.Instance.Speed = 10.0f;
     }
@@ -21,6 +28,7 @@ public class Player_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
         toggleMap();
@@ -31,7 +39,8 @@ public class Player_Control : MonoBehaviour
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * DataManager.Instance.Speed);
         transform.Translate(Vector2.up * verticalInput * Time.deltaTime * DataManager.Instance.Speed);
 
-        //RayTrace2D�� �̿��Ͽ� �̵� ���߱�
+        PlayerDeath();
+
     }
     private void toggleMap()
     {
@@ -62,7 +71,6 @@ public class Player_Control : MonoBehaviour
             {
                 if (hitdown[i].distance < 1 && hitdown[i].collider.CompareTag("Wall"))
                 {
-                    Debug.Log("�Ʒ� �浹!");
                     if (verticalInput < 0)
                     {
                         verticalInput = 0;
@@ -79,7 +87,6 @@ public class Player_Control : MonoBehaviour
             {
                 if (hitup[i].distance < 1 && hitup[i].collider.CompareTag("Wall"))
                 {
-                    Debug.Log("�� �浹!");
                     if (verticalInput > 0)
                     {
                         verticalInput = 0;
@@ -95,7 +102,6 @@ public class Player_Control : MonoBehaviour
             {
                 if (hitleft[i].distance < 0.5 && hitleft[i].collider.CompareTag("Wall"))
                 {
-                    Debug.Log("�� �浹!");
                     if (horizontalInput < 0)
                     {
                         horizontalInput = 0;
@@ -112,7 +118,6 @@ public class Player_Control : MonoBehaviour
             {
                 if (hitright[i].distance < 0.5 && hitright[i].collider.CompareTag("Wall"))
                 {
-                    Debug.Log("������ �浹!");
                     if (horizontalInput > 0)
                     {
                         horizontalInput = 0;
@@ -136,6 +141,23 @@ public class Player_Control : MonoBehaviour
                 transform.localScale = new Vector3(1, 1, 1);
             }
 
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
+
+        }
+    }
+
+    public void PlayerDeath()
+    {
+        if(DataManager.Instance.Health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 

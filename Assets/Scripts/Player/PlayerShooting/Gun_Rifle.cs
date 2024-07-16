@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+
 
 public class Gun_Rifle : MonoBehaviour
 {
@@ -21,11 +24,13 @@ public class Gun_Rifle : MonoBehaviour
     public bool isReloading;
     public bool skill;
 
+    public TextMeshProUGUI ammoText;
 
     // Start is called before the first frame update
     void Start()
     {
         ammo = maxAmmo;
+        AmmoText(ammo);
     }
 
     // Update is called once per frame
@@ -39,7 +44,8 @@ public class Gun_Rifle : MonoBehaviour
                 {
                     Instantiate(bullet, spawnPos.position, rotation.transform.rotation);
                     Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
-                    ammo--;
+                    ammo = ammo - 1;
+                    AmmoText(ammo);
                 }
                 else if (skill)
                 {
@@ -66,12 +72,18 @@ public class Gun_Rifle : MonoBehaviour
         }
     }
 
+    public void AmmoText(int ammo)
+    {
+        ammoText.text = "Ammo : " + ammo;
+    }
+
     IEnumerator ReloadTime()
     {
         isReloading = true;
         yield return new WaitForSeconds(1);
         ammo = maxAmmo;
         isReloading = false;
+        AmmoText(ammo);
     }
 
 }

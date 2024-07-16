@@ -1,8 +1,10 @@
 using System.Collections;
+using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.FilePathAttribute;
+using UnityEngine.UI;
 
 public class Gun_Basic_Shooting : MonoBehaviour
 {
@@ -21,11 +23,15 @@ public class Gun_Basic_Shooting : MonoBehaviour
 
     public bool isReloading;
 
+    //public TextMeshProUGUI ammoText;
+
+    public BulletUIManager bulletUIManager;
 
     // Start is called before the first frame update
     void Start()
     {
         ammo = maxAmmo;
+        bulletUIManager.SetBulletCount(ammo);
     }
 
     // Update is called once per frame
@@ -37,9 +43,10 @@ public class Gun_Basic_Shooting : MonoBehaviour
             {
                 Instantiate(bullet, spawnPos.position, rotation.transform.rotation );
                 Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
-
-                ammo--;
+                ammo = ammo - 1;
                 shotTime = Time.time + timeBetweenShots;
+
+                bulletUIManager.SetBulletCount(ammo);
             }
 
         }
@@ -57,11 +64,17 @@ public class Gun_Basic_Shooting : MonoBehaviour
         }
     }
 
+    //public void AmmoText(int ammo)
+    //{
+    //    ammoText.text = "Ammo : " + ammo;
+    //}
+
     IEnumerator ReloadTime()
     {
         isReloading = true;
         yield return new WaitForSeconds(1);
         ammo = maxAmmo;
+        bulletUIManager.SetBulletCount(ammo);
         isReloading = false;
     }
 
