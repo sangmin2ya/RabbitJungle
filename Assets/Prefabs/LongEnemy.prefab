@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6954924390974538099}
+  - component: {fileID: 5675009964283571631}
   m_Layer: 0
   m_Name: SpawnEnemyBullet
   m_TagString: Untagged
@@ -31,6 +32,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3885698754619578458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5675009964283571631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623442028606598334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ee68024702ad144b5ff0c548849b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2135717481848461117
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +676,8 @@ GameObject:
   - component: {fileID: 3885698754619578458}
   - component: {fileID: 198887236054997801}
   - component: {fileID: 5345169318758662430}
+  - component: {fileID: 8287276028013729903}
+  - component: {fileID: 7987129507855350856}
   m_Layer: 0
   m_Name: LongEnemy
   m_TagString: Enemy
@@ -760,6 +775,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6078032, y: 1.0583866}
   m_EdgeRadius: 0
+--- !u!114 &8287276028013729903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857484277409622652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c361877792a8249ae61fc55f244adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7987129507855350856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857484277409622652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed8018108241e94bb8116fd463a19dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBulletPrefab: {fileID: 8808613486895273275, guid: ebe42feff25e4a641bc18f810f51e71f, type: 3}
+  enemyBulletSpawnPointTransform: {fileID: 6954924390974538099}
 --- !u!1 &8368211600481640928
 GameObject:
   m_ObjectHideFlags: 0
