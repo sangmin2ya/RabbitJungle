@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swingSpeed: 500
   swordObject: {fileID: 1757577849678783635}
-  yeolpacham: {fileID: 3408802039458060981, guid: a960019e6bb1e56468ab24d109632e37, type: 3}
+  yeolpacham: {fileID: 4818846464989482171, guid: 59bf6a19eb4940e42a6b68d7045ede9a, type: 3}
   bClass: 0
 --- !u!1 &1757577849678783635
 GameObject:
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 1829861652474552352}
   m_Layer: 0
   m_Name: Dagger
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -504,7 +504,7 @@ GameObject:
   - component: {fileID: 3524503044742956902}
   m_Layer: 0
   m_Name: LargeSword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -814,7 +814,7 @@ MonoBehaviour:
   swingSpeed: 500
   swordObject: {fileID: 8621491571741686359}
   yeolpacham: {fileID: 2910732252225718160, guid: e626c5a59ecb6b1478b794a5801a79c0, type: 3}
-  bClass: 1
+  bClass: 0
 --- !u!1 &7527813208889520550
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,7 +863,7 @@ MonoBehaviour:
   swingSpeed: 500
   swordObject: {fileID: 8817055568149065895}
   yeolpacham: {fileID: 3408802039458060981, guid: a960019e6bb1e56468ab24d109632e37, type: 3}
-  bClass: 0
+  bClass: 1
 --- !u!1 &8621491571741686359
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +877,7 @@ GameObject:
   - component: {fileID: 5313772297635851575}
   m_Layer: 0
   m_Name: Axe
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -970,7 +970,7 @@ GameObject:
   - component: {fileID: 5369902852315952367}
   m_Layer: 0
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
