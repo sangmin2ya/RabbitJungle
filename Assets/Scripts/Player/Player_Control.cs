@@ -11,15 +11,11 @@ public class Player_Control : MonoBehaviour
     public float verticalInput;
     public GameObject map;
     public GameObject player;
-    //public DataManager dataManager;
-
     // Start is called before the first frame update
     void Start()
     {
-        //dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
-        //dataManager.Speed = 10.0f;
-        DataManager.Instance.Speed = 10.0f;
         StartCoroutine("Flip");
+        DataManager.Instance.Speed = 10.0f;
     }
 
     // Update is called once per frame
@@ -31,8 +27,6 @@ public class Player_Control : MonoBehaviour
         Block();
 
         baseSkill();
-
-
 
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * DataManager.Instance.Speed);
         transform.Translate(Vector2.up * verticalInput * Time.deltaTime * DataManager.Instance.Speed);
