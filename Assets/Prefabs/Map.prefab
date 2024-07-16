@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13214fd04b20fb149ae162672d0c2926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shortEnemy: {fileID: 7857484277409622652, guid: 181482cf21432f5438dc48a04de763f6, type: 3}
+  shortEnemy: {fileID: 7857484277409622652, guid: 5d392d3ac9c39d84ba7cf66439ad8c4a, type: 3}
   LongEnemy: {fileID: 7857484277409622652, guid: 5d392d3ac9c39d84ba7cf66439ad8c4a, type: 3}
 --- !u!1 &6769879033986513511
 GameObject:
