@@ -28,10 +28,10 @@ public class EnemyBullet : MonoBehaviour
 
 
     // 탄막이 다른 콜라이더와 충돌 시 OnTriggerEnter2D 클래스 발생
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnCollisionEnter2D(Collision2D other) {
         // 탄막이 다른 콜라이더(other)와 충돌했을때 플레이어 태그인지 비교
         // and compare with Wall Tag
-        if (other.CompareTag("Player")||other.CompareTag("Wall")) {
+        if (other.gameObject.CompareTag("Player")||other.gameObject.CompareTag("Wall")) {
             Destroy(gameObject); // 탄막 제거
         }
     }
