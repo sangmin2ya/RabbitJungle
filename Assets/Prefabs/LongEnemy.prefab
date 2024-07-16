@@ -678,6 +678,7 @@ GameObject:
   - component: {fileID: 5345169318758662430}
   - component: {fileID: 8287276028013729903}
   - component: {fileID: 7987129507855350856}
+  - component: {fileID: 9169833348093315553}
   m_Layer: 0
   m_Name: LongEnemy
   m_TagString: Enemy
@@ -799,8 +800,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed8018108241e94bb8116fd463a19dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBulletPrefab: {fileID: 8808613486895273275, guid: ebe42feff25e4a641bc18f810f51e71f, type: 3}
-  enemyBulletSpawnPointTransform: {fileID: 6954924390974538099}
+--- !u!114 &9169833348093315553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857484277409622652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc97262e4cd42949a9dd5dbc0056a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8368211600481640928
 GameObject:
   m_ObjectHideFlags: 0

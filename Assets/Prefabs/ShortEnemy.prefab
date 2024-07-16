@@ -516,6 +516,7 @@ GameObject:
   - component: {fileID: 198887236054997801}
   - component: {fileID: 5345169318758662430}
   - component: {fileID: 7114361101520015721}
+  - component: {fileID: -5030354228447340726}
   m_Layer: 0
   m_Name: ShortEnemy
   m_TagString: Enemy
@@ -622,6 +623,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70c361877792a8249ae61fc55f244adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5030354228447340726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857484277409622652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc97262e4cd42949a9dd5dbc0056a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8831180562166487045
