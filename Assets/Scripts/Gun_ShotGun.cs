@@ -20,7 +20,6 @@ public class Gun_ShotHun : MonoBehaviour
 
     public bool isReloading;
 
-    public Quaternion tr;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +30,6 @@ public class Gun_ShotHun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tr = rotation.transform.rotation;
         if (Input.GetMouseButton(0) && ammo > 0 && !isReloading)
         {
             if (Time.time > shotTime)
@@ -39,7 +37,7 @@ public class Gun_ShotHun : MonoBehaviour
                 for (int i = 0; i < ShootBulletCount; i++)
                 {
                     //Instantiate(bullet, spawnPos.position, rotation.transform.rotation * i);
-                    Instantiate(bullet, spawnPos.position, Quaternion.Euler(0,0, Random.Range(tr.z*180 - 50, tr.z*180 + 50)));
+                    Instantiate(bullet, spawnPos.position, rotation.transform.rotation);
                 }
                 Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
 

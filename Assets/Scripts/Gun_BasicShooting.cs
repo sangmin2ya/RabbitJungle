@@ -15,16 +15,20 @@ public class Gun_Basic_Shooting : MonoBehaviour
     public Transform spawnPos;
 
     public GameObject rotation;
+    public int damage;
 
     public float timeBetweenShots;
     public float shotTime;
 
     public bool isReloading;
 
+    public DataManager dataManager;
+
     // Start is called before the first frame update
     void Start()
     {
         ammo = maxAmmo;
+        dataManager.Damage = damage;
     }
 
     // Update is called once per frame
