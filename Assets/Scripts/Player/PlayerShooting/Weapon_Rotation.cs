@@ -21,6 +21,7 @@ public class Weapon_Rotation : MonoBehaviour
 
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = rotation;
+        
     }
 
     IEnumerator Flip()

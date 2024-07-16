@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEditor.FilePathAttribute;
 
-public class Gun_ShotHun : MonoBehaviour
+public class Gun_Basic_Shooting : MonoBehaviour
 {
-
     public int maxAmmo;
     public int ammo;
-    public int ShootBulletCount;
+
 
     public GameObject bullet;
     public GameObject bulletEffect;
@@ -30,15 +31,11 @@ public class Gun_ShotHun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && ammo > 0 && !isReloading)
+        if(Input.GetMouseButton(0) && ammo > 0 && !isReloading)
         {
-            if (Time.time > shotTime)
+            if(Time.time > shotTime)
             {
-                for (int i = 0; i < ShootBulletCount; i++)
-                {
-                    //Instantiate(bullet, spawnPos.position, rotation.transform.rotation * i);
-                    Instantiate(bullet, spawnPos.position, rotation.transform.rotation);
-                }
+                Instantiate(bullet, spawnPos.position, rotation.transform.rotation );
                 Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
 
                 ammo--;
@@ -51,12 +48,11 @@ public class Gun_ShotHun : MonoBehaviour
 
     private void Reload()
     {
-        if (ammo == 0)
+        if(ammo == 0)
         {
             StartCoroutine("ReloadTime");
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
+        if (Input.GetKeyDown(KeyCode.R)) {
             StartCoroutine("ReloadTime");
         }
     }
