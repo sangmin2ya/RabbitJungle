@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwingTheSword : MonoBehaviour
+public class SwingTheAxe : MonoBehaviour
 {
     public float swingSpeed = 500.0f;
     public GameObject swordObject;
@@ -10,10 +10,10 @@ public class SwingTheSword : MonoBehaviour
     GameObject powerSlash;
     float deltaAngle = 0;
     float deltaTime = 0;
-    float coolTime = 5.0f;
+    float coolTime = 2.5f;
     float swingAngle = 90.0f;
     // 플레이어 스탯에서 나중에는 클래스 값 가져와서 쓸 것
-    //int playerClass = 404; // 
+    int playerClass = 404; // 
     public bool bClass = true;
     //
 
@@ -26,7 +26,7 @@ public class SwingTheSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && bClass/*playerClass == 404*/) 
+        if (Input.GetMouseButton(0) && bClass) 
         {
             if(!swordObject.activeSelf)
             {
@@ -41,9 +41,15 @@ public class SwingTheSword : MonoBehaviour
                 deltaAngle = 0;
 
                 StartCoroutine("Swing");
+
+                /*while (deltaAngle < swingAngle)
+                {
+                    float delta = swingSpeed * Time.deltaTime;
+                }
+                Swing();*/
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= 5.0f) && bClass)
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && bClass)
         {
             deltaTime = 0;
 
@@ -74,16 +80,7 @@ public class SwingTheSword : MonoBehaviour
                 swordObject.SetActive(false);
             }
         }
-        /*if (deltaAngle < swingAngle)
-        {
-            
-        }
-        else
-        {
-            swordObject.SetActive(false);
-        }*/
     }
-
     IEnumerator PowerSlash(Quaternion rot)
     {
         while (true)
@@ -93,8 +90,8 @@ public class SwingTheSword : MonoBehaviour
             Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
             powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
             deltaTime += Time.deltaTime;
-
-            if (deltaTime >= 5.0f)
+            powerSlash.transform.Rotate(Vector3.forward * Time.deltaTime * 1000.0f);
+            if (deltaTime >= coolTime)
                 break;
         }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwingTheSword : MonoBehaviour
+public class SwingTheDagger : MonoBehaviour
 {
     public float swingSpeed = 500.0f;
     public GameObject swordObject;
@@ -13,7 +13,7 @@ public class SwingTheSword : MonoBehaviour
     float coolTime = 5.0f;
     float swingAngle = 90.0f;
     // 플레이어 스탯에서 나중에는 클래스 값 가져와서 쓸 것
-    //int playerClass = 404; // 
+    //int playerClass = 404;
     public bool bClass = true;
     //
 
@@ -26,7 +26,7 @@ public class SwingTheSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && bClass/*playerClass == 404*/) 
+        if (Input.GetMouseButton(0) && bClass) 
         {
             if(!swordObject.activeSelf)
             {
@@ -41,6 +41,12 @@ public class SwingTheSword : MonoBehaviour
                 deltaAngle = 0;
 
                 StartCoroutine("Swing");
+
+                /*while (deltaAngle < swingAngle)
+                {
+                    float delta = swingSpeed * Time.deltaTime;
+                }
+                Swing();*/
             }
         }
         if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= 5.0f) && bClass)
@@ -74,16 +80,7 @@ public class SwingTheSword : MonoBehaviour
                 swordObject.SetActive(false);
             }
         }
-        /*if (deltaAngle < swingAngle)
-        {
-            
-        }
-        else
-        {
-            swordObject.SetActive(false);
-        }*/
     }
-
     IEnumerator PowerSlash(Quaternion rot)
     {
         while (true)
