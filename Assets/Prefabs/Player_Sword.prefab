@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1755887381086503328}
   - component: {fileID: 771370138934000585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject_Dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 7719227137774998437}
   - component: {fileID: 7682905090026061953}
   - component: {fileID: 1829861652474552352}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dagger
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.14312553}
@@ -202,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3536830569433444754}
   - component: {fileID: 5782648368069979271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5248575500543557540}
   - component: {fileID: 1743438419210111812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1100899432972945204}
   - component: {fileID: 5560885438240567648}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DirectionTri
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7166520286244538835}
   - component: {fileID: 504522203733495372}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 6485906204805013485}
   - component: {fileID: 5342992778506004751}
   - component: {fileID: 3524503044742956902}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LargeSword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -605,7 +605,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -643,7 +643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6696246472662610421}
   - component: {fileID: 5900384054272604265}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -727,7 +727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3059614126069165137}
   - component: {fileID: 2215637332348983385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject_LargeSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8630755525638364682}
   - component: {fileID: 871707329936181743}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject_Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -825,7 +825,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1694505308059912120}
   - component: {fileID: 2696536759299446703}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject _Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -875,7 +875,7 @@ GameObject:
   - component: {fileID: 3176703415850328753}
   - component: {fileID: 6377036110674717844}
   - component: {fileID: 5313772297635851575}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Axe
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -928,7 +928,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.13920045, y: -0.16983323}
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 2112523192699341091}
   - component: {fileID: 7730175424374983007}
   - component: {fileID: 5369902852315952367}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1111,9 +1111,9 @@ GameObject:
   - component: {fileID: 6729021759368195159}
   - component: {fileID: 3758404850332528060}
   - component: {fileID: 2723725648489594801}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player_Sword
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

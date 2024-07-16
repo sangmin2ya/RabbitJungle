@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private float moveSpeed = 1.0f;
+    private float moveSpeed = 3.0f;
     private Transform playerTransform;
 
     // Start is called before the first frame update

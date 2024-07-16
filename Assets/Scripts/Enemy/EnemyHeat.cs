@@ -15,14 +15,31 @@ public class EnemyHeat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (enemyHP<=0) {
+            Destroy(gameObject);
+        }
     }
 
     // 충돌 시 
     private void OnCollisionEnter2D(Collision2D collision) 
     {
-        if (collision.gameObject.CompareTag("Weapon")) {
-            Destroy(gameObject);
+        
+        if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Skill")) {
+
+            if (DataManager.Instance.Weapon == WeaponType.Gun.ToString()) {
+                Destroy(collision.gameObject);
+                enemyHP -= 1;
+            }
+            else if (DataManager.Instance.Weapon == WeaponType.Sword.ToString()) {
+                Destroy(collision.gameObject);
+                enemyHP -= 3;
+            }
+            else {
+                Destroy(collision.gameObject);
+                enemyHP -= 2;
+            }
+
         }
     }
 }
+

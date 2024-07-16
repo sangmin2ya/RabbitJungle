@@ -9,7 +9,7 @@ public class SpawnController : MonoBehaviour
     private int playerLayerMask;
 
     private Transform playerTransform;
-    private int numberOfEnemy = 10; // 몬스터 생성 개수
+    private int numberOfEnemy = 25; // 몬스터 생성 개수
     
     //맵 상에서 적 생성 반경
     private float minX = -15.0f;
