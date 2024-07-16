@@ -7,18 +7,19 @@ TagManager:
   - Wall
   - Door
   - Enemy
+  - Portal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Room
   - Water
   - UI
+  - Player
+  - Bullet
   - 
   - 
   - 
-  - 
-  - Dash
   - 
   - 
   - 
