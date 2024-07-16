@@ -806,7 +806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2266791487966196803}
   - component: {fileID: 4261729427711914717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 4353856515503379869}
   - component: {fileID: 4353856515503379870}
   - component: {fileID: 4353856515503379871}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -874,7 +874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2928930207291789662}
   - component: {fileID: 1851854266559423388}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -968,7 +968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b22e1cfe9288c42a76c5e9ca1b2b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!1 &4612326904244052197
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,7 +978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 803166710141387926}
   - component: {fileID: 670675194592670246}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
