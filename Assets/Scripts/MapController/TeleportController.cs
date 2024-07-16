@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MapController : MonoBehaviour
 {
+    private GameObject prevRoom;
     //[SerializeField] private GameObject player;
     private void Start()
     {
@@ -28,6 +29,17 @@ public class MapController : MonoBehaviour
             Debug.Log("지정된 오브젝트와 포탈의 충돌 감지!");
             // 보스스테이지로 이동
             SceneManager.LoadScene("BossScene");
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Room"))
+        {
+            Debug.Log("지정된 오브젝트와 방의 충돌 감지!");
+            if (prevRoom != null)
+            {
+                prevRoom.SetActive(false);
+            }
+            prevRoom = collision.transform.GetChild(0).gameObject;
+            prevRoom.SetActive(true);
         }
     }
 }

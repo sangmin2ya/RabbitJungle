@@ -8,12 +8,13 @@ public class DataManager : MonoBehaviour
     private static DataManager instance;
 
     // Private fields for user stats
-    private float speed = 5f;
-    private float attacSpeed = 1f;
-    private float health = 5f;
-    private float damage = 1f;
-    private int dashCount = 3;
-    private string weapon = WeaponType.Sword.ToString();
+    private float speed;
+    private float attacSpeed;
+    private float health;
+    private float damage;
+    private int dashCount;
+    private string weapon;
+    private int bulletCount;
 
     // getset 에 접근하게 해주는 프로퍼티
     public float Speed
@@ -50,6 +51,11 @@ public class DataManager : MonoBehaviour
     {
         get { return weapon; }
         set { weapon = value; }
+    }
+    public int BulletCount
+    {
+        get { return bulletCount; }
+        set { bulletCount = value; }
     }
     // Public property to access the singleton instance
     public static DataManager Instance
