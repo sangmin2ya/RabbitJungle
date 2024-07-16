@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Boss
+  - Wall
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -42,7 +42,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: EnemyHP
-    uniqueID: 4256992741
     locked: 0
