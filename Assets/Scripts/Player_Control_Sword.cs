@@ -60,7 +60,7 @@ public class Player_Control_Sword : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss"))
+        if (collision.gameObject.CompareTag("Enemy")) //|| collision.gameObject.CompareTag("Boss"))
         {
             if (dashState)
             {
@@ -68,24 +68,24 @@ public class Player_Control_Sword : MonoBehaviour
             }
             else
             {
-                Debug.Log("¾Æ¾ß!");
+                Debug.Log("ï¿½Æ¾ï¿½!");
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss"))
+        if (collision.gameObject.CompareTag("Enemy")) //|| collision.gameObject.CompareTag("Boss"))
         {
             if (dashState)
             {
-                // Ã¼·ÂÀ» ±ð°Å³ª Ã¼·ÂÀÌ ÀûÀ¸¸é Á×ÀÎ´Ù.
+                // Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½.
                 //Destroy(collision.gameObject);
             }
             else
             {
                 Vector2 dir = transform.position - collision.gameObject.transform.position;
-                // ¸Â¾ÒÀ¸´Ï ÇÃ·¹ÀÌ¾î¿¡°Ô µ¥¹ÌÁö¸¦ ÁØ´Ù
+                // ï¿½Â¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½
                 //
                 //myRigid.AddForce(dir.normalized * knockback);
             }
