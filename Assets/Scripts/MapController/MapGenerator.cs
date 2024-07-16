@@ -152,10 +152,17 @@ public class StageGenerator : MonoBehaviour
                 GameObject currentMap = null;
                 if (stage[i, j] != -1)
                 {
+                    //보스방일때
                     if (i == farthestRoom.Item1 && j == farthestRoom.Item2)
+                    {
                         currentMap = Instantiate(bossMapPrefab, new Vector3((i - size / 2) * 75, (j - size / 2) * 75, 0), Quaternion.identity);
+                        currentMap.GetComponent<RoomData>().RoomType = RoomType.Boss.ToString();
+                    }
                     else
+                    {
                         currentMap = Instantiate(mapPrefab, new Vector3((i - size / 2) * 75, (j - size / 2) * 75, 0), Quaternion.identity);
+                        currentMap.GetComponent<RoomData>().RoomType = RoomType.Battle.ToString();
+                    }
                 }
                 //문활성화
                 if (currentMap != null)

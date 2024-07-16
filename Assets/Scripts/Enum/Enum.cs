@@ -8,7 +8,7 @@ public enum SpecialWeaponType
 }
 public enum RoomType
 {
-    Battle, Boss, Item
+    Battle, Boss, Item, Cleared
 }
 public enum userState
 {
