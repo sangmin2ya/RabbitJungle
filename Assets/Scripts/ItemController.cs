@@ -24,9 +24,9 @@ public class ItemController : MonoBehaviour
     }
     private void CardSelect()
     {
-        if (DataManager.Instance.justCleard)
+        if (DataManager.Instance.justCleared)
         {
-            DataManager.Instance.justCleard = false;
+            DataManager.Instance.justCleared = false;
             CardSelectUI.gameObject.SetActive(true);
             for (int i = 0; i < 3; i++)
             {
