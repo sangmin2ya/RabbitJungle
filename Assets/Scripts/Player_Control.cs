@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,8 +9,6 @@ public class Player_Control : MonoBehaviour
 
     public float horizontalInput;
     public float verticalInput;
-
-   
 
     public float speed;
 
@@ -28,16 +27,11 @@ public class Player_Control : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        Hit();
+        Block();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            baseSkill();
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            speed = 10.0f;
-        }
+        baseSkill();
+
+        
 
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * speed);
         transform.Translate(Vector2.up * verticalInput * Time.deltaTime * speed);
@@ -47,58 +41,81 @@ public class Player_Control : MonoBehaviour
 
     public void baseSkill()
     {
-        speed = 20f;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            speed = 20f;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            speed = 10.0f;
+        }
     }
 
-    public void Hit()
+    public void Block()
     {
-        RaycastHit2D hitdown = Physics2D.Raycast(player.transform.position, Vector2.down);
-        if (hitdown.transform != null)
-        {
-            if(hitdown.distance < 1 && hitdown.collider.CompareTag("Wall"))
-            {
-                Debug.Log("아래 충돌!");
-                if(verticalInput < 0)
-                {
-                    verticalInput = 0;
-                }
-            }
+        RaycastHit2D[] hitdown = Physics2D.RaycastAll(player.transform.position, Vector2.down);
 
-        }
-        RaycastHit2D hitup = Physics2D.Raycast(player.transform.position, Vector2.up );
-        if (hitup.transform != null)
+        for (int i = 0; i < hitdown.Length; i++)
         {
-            if (hitup.distance < 1 && hitup.collider.CompareTag("Wall"))
+            if (hitdown[i].transform != null)
             {
-                Debug.Log("위 충돌!");
-                if (verticalInput > 0)
+                if (hitdown[i].distance < 1 && hitdown[i].collider.CompareTag("Wall"))
                 {
-                    verticalInput = 0;
+                    Debug.Log("아래 충돌!");
+                    if (verticalInput < 0)
+                    {
+                        verticalInput = 0;
+                    }
                 }
-            }
-        }
-        RaycastHit2D hitleft = Physics2D.Raycast(player.transform.position, Vector2.left);
-        if (hitleft.transform != null)
-        {
-            if (hitleft.distance < 0.5 && hitleft.collider.CompareTag("Wall"))
-            {
-                Debug.Log("옆 충돌!");
-                if (horizontalInput < 0)
-                {
-                    horizontalInput = 0;
-                }
-            }
 
+            }
         }
-        RaycastHit2D hitright = Physics2D.Raycast(player.transform.position, Vector2.right);
-        if (hitright.transform != null)
+
+        RaycastHit2D[] hitup = Physics2D.RaycastAll (player.transform.position, Vector2.up );
+        for(int i = 0;i < hitup.Length; i++)
         {
-            if (hitright.distance < 0.5 && hitright.collider.CompareTag("Wall"))
+            if (hitup[i].transform != null)
             {
-                Debug.Log("오른쪽 충돌!");
-                if (horizontalInput > 0)
+                if (hitup[i].distance < 1 && hitup[i].collider.CompareTag("Wall"))
                 {
-                    horizontalInput = 0;
+                    Debug.Log("위 충돌!");
+                    if (verticalInput > 0)
+                    {
+                        verticalInput = 0;
+                    }
+                }
+            }
+        }
+
+        RaycastHit2D[] hitleft = Physics2D.RaycastAll(player.transform.position, Vector2.left);
+        for(int i = 0; i < hitleft.Length; i++)
+        {
+            if (hitleft[i].transform != null)
+            {
+                if (hitleft[i].distance < 0.5 && hitleft[i].collider.CompareTag("Wall"))
+                {
+                    Debug.Log("옆 충돌!");
+                    if (horizontalInput < 0)
+                    {
+                        horizontalInput = 0;
+                    }
+                }
+
+            }
+        }
+
+        RaycastHit2D[] hitright = Physics2D.RaycastAll(player.transform.position, Vector2.right);
+        for(int i = 0; i< hitright.Length; i++)
+        {
+            if (hitright[i].transform != null)
+            {
+                if (hitright[i].distance < 0.5 && hitright[i].collider.CompareTag("Wall"))
+                {
+                    Debug.Log("오른쪽 충돌!");
+                    if (horizontalInput > 0)
+                    {
+                        horizontalInput = 0;
+                    }
                 }
             }
         }
