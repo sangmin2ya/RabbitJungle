@@ -13,14 +13,12 @@ public class Player_Control : MonoBehaviour
 
     public GameObject player;
 
-    public DataManager dataManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
-        dataManager.Speed = 10.0f;
         StartCoroutine("Flip");
+        DataManager.Instance.Speed = 10.0f;
     }
 
     // Update is called once per frame
@@ -35,8 +33,8 @@ public class Player_Control : MonoBehaviour
 
         
 
-        transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * dataManager.Speed);
-        transform.Translate(Vector2.up * verticalInput * Time.deltaTime * dataManager.Speed);
+        transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * DataManager.Instance.Speed);
+        transform.Translate(Vector2.up * verticalInput * Time.deltaTime * DataManager.Instance.Speed);
 
         //RayTrace2D를 이용하여 이동 멈추기
     }
@@ -45,11 +43,11 @@ public class Player_Control : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            dataManager.Speed =  20f;
+            DataManager.Instance.Speed =  20f;
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            dataManager.Speed = 10.0f;
+            DataManager.Instance.Speed = 10.0f;
         }
     }
 
