@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon_Rotation : MonoBehaviour
+public class Weapon_Rotation_Sword : MonoBehaviour
 {
     public float horizontalInput;
 
@@ -10,7 +10,7 @@ public class Weapon_Rotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("Flip");
+        
     }
 
     // Update is called once per frame
@@ -23,24 +23,4 @@ public class Weapon_Rotation : MonoBehaviour
         transform.rotation = rotation;
         
     }
-
-    IEnumerator Flip()
-    {
-        while (true)
-        {
-            horizontalInput = Input.GetAxis("Horizontal");
-
-            yield return null;
-            if (horizontalInput < 0)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
-            else if (horizontalInput > 0)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-
-        }
-    }
-
 }
