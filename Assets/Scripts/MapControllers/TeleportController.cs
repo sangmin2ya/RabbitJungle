@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MapController : MonoBehaviour
+public class TeleportController : MonoBehaviour
 {
     private GameObject prevRoom;
     //[SerializeField] private GameObject player;
