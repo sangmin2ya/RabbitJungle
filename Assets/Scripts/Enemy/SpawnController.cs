@@ -6,7 +6,6 @@ public class SpawnController : MonoBehaviour
 {
     public GameObject shortEnemy;
     public GameObject LongEnemy;
-    public RoomData roomData; // 현재 룸 데이터 컴포넌트 참조
     private int playerLayerMask;
 
     private Transform playerTransform;
@@ -22,16 +21,6 @@ public class SpawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        roomData = GetComponent<RoomData>();
-        if (roomData != null)
-        {
-            roomData.RoomType = "Battle"; // 방의 초기 상태 설정
-        }
-        else
-        {
-            Debug.LogError("RoomData 컴포넌트를 찾을 수 없습니다.");
-        }
-        roomData.RoomType = "Battle";
     }
 
     //임의의 SpawnEnemy 메소드 선언
@@ -72,15 +61,12 @@ public class SpawnController : MonoBehaviour
     // create layer mask 
     playerLayerMask = LayerMask.NameToLayer("Player");
 
-    if (other.gameObject.layer == playerLayerMask && roomData.RoomType != "Cleared") {
+    if (other.gameObject.layer == playerLayerMask && gameObject.transform.parent.GetComponent<RoomData>().RoomType.ToString() == RoomType.Battle.ToString()) {
         // spawnEnemies
         SpawnEnemies();
         //set currentMap cleared
-        if (roomData != null) {
-            // 방의 상태 변경
-            roomData.RoomType = "Cleared";
-            Debug.LogError("RoomData 컴포넌트를 찾을 수 없습니다.");
-        }
+        gameObject.transform.parent.GetComponent<RoomData>().RoomType = RoomType.Cleared.ToString();
+ 
     }
     }
 }
