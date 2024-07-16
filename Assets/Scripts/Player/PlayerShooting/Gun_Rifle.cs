@@ -24,13 +24,13 @@ public class Gun_Rifle : MonoBehaviour
     public bool isReloading;
     public bool skill;
 
-    public TextMeshProUGUI ammoText;
+    public BulletUIManager bulletUIManager;
 
     // Start is called before the first frame update
     void Start()
     {
         ammo = maxAmmo;
-        AmmoText(ammo);
+        bulletUIManager.SetBulletCount(ammo);
     }
 
     // Update is called once per frame
@@ -45,7 +45,7 @@ public class Gun_Rifle : MonoBehaviour
                     Instantiate(bullet, spawnPos.position, rotation.transform.rotation);
                     Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
                     ammo = ammo - 1;
-                    AmmoText(ammo);
+                    bulletUIManager.SetBulletCount(ammo);
                 }
                 else if (skill)
                 {
@@ -72,18 +72,13 @@ public class Gun_Rifle : MonoBehaviour
         }
     }
 
-    public void AmmoText(int ammo)
-    {
-        ammoText.text = "Ammo : " + ammo;
-    }
-
     IEnumerator ReloadTime()
     {
         isReloading = true;
         yield return new WaitForSeconds(1);
         ammo = maxAmmo;
+        bulletUIManager.SetBulletCount(ammo);
         isReloading = false;
-        AmmoText(ammo);
     }
 
 }

@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthManager : MonoBehaviour
+public class HealthUIManager : MonoBehaviour
 {
     public GameObject healthIconPrefeb;
+
+
     public Transform healthUiContainer;
     public float healthCount;
 
@@ -26,13 +28,22 @@ public class HealthManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < healthCount; i++)
         {
-            GameObject bulletIcon = Instantiate(healthIconPrefeb, healthUiContainer);
+            if(healthCount - i >= 1)
+            {
+                GameObject bulletIcon = Instantiate(healthIconPrefeb, healthUiContainer);
+            }
+            else
+            {
+                GameObject bulletIcon = Instantiate(healthIconPrefeb, healthUiContainer);
+                bulletIcon.transform.localScale = new Vector3(0.7f,0.7f,0.7f);
+            }
         }
+
     }
 
-    public void SethealthCount(int count)
+    public void SethealthCount(float count)
     {
         healthCount = count;
         UpdateHealthUI(healthCount);

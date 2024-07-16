@@ -14,16 +14,21 @@ public class Player_Control : MonoBehaviour
     public float verticalInput;
     public GameObject map;
     public GameObject keyGuide;
+    private bool dashState = false;
     public GameObject player;
+
+    public HealthUIManager healthUIManager;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        DataManager.Instance.Health = 5.0f;
+        DataManager.Instance.Health = 4.0f;
         StartCoroutine("Flip");
         DataManager.Instance.Speed = 10.0f;
+        DataManager.Instance.DashCount = 2;
+        healthUIManager.SethealthCount(DataManager.Instance.Health);
     }
 
     // Update is called once per frame
@@ -53,9 +58,10 @@ public class Player_Control : MonoBehaviour
     }
     public void baseSkill()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && dashState == false)
         {
-            DataManager.Instance.Speed = 20f;
+            BaseSkill();
+            DataManager.Instance.DashCount--;
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -129,6 +135,21 @@ public class Player_Control : MonoBehaviour
         }
     }
 
+  
+
+    public void PlayerDeath()
+    {
+        if (DataManager.Instance.Health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void BaseSkill()
+    {
+        DataManager.Instance.Speed = 40;
+        StartCoroutine("DashCutter");
+    }
+
     IEnumerator Flip()
     {
         while (true)
@@ -145,22 +166,24 @@ public class Player_Control : MonoBehaviour
 
         }
     }
+ 
+    IEnumerator DashCutter()
+    {
+        dashState = true;
+        this.gameObject.layer = 10;
+        yield return new WaitForSeconds(0.25f);
+        dashState = false;
+        this.gameObject.layer = 0;
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Enemy"))
         {
             DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
+            healthUIManager.SethealthCount(DataManager.Instance.Health);
 
         }
     }
-
-    public void PlayerDeath()
-    {
-        if(DataManager.Instance.Health <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
 }
