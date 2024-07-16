@@ -10,7 +10,7 @@ public class SwingTheSword : MonoBehaviour
     GameObject powerSlash;
     float deltaAngle = 0;
     float deltaTime = 0;
-    float coolTime = 5.0f;
+    float coolTime = 10.0f;
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
     // you must get class identification number from player status

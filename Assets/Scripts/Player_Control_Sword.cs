@@ -1,22 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Player_Control_Sword : MonoBehaviour
 {
-
     public float horizontalInput;
     public float verticalInput;
     public float speed;
     bool dashState = false;
     Rigidbody2D myRigid;
     float knockback = 100.0f;
+    int dashCount = 2;
+    float dashCoolTime = 0f;
+
+    GameObject DashManager;
     // Start is called before the first frame update
     void Start()
     {
         speed = 10f;
-        //StartCoroutine("Flip");
+
+        //int n = GameObject.Find("Canvas").transform.childCount;
+        //for(int i=0;i<n;i++)
+        //{
+        //    DashManager = GameObject.Find("Canvas").transform.GetChild(i).gameObject;
+        //    if (DashManager.name == "DASH")
+        //        return;
+        //}
+
         myRigid = GetComponent<Rigidbody2D>();
+        StartCoroutine("ChargeDash");
     }
 
     // Update is called once per frame
@@ -45,8 +59,14 @@ public class Player_Control_Sword : MonoBehaviour
 
     public void baseSkill()
     {
-        speed = 20f;
-        StartCoroutine("DashCutter");
+        if(dashCount > 0)
+        {
+            GameObject.Find("Canvas").transform.GetChild(dashCount).gameObject.SetActive(false);
+            //DashManager.transform.GetChild(dashCount).gameObject.SetActive(false);
+            dashCount--;
+            speed = 20f;
+            StartCoroutine("DashCutter");
+        }
     }
 
     IEnumerator DashCutter()
@@ -56,6 +76,29 @@ public class Player_Control_Sword : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         dashState = false;
         this.gameObject.layer = 0;
+    }
+
+    IEnumerator ChargeDash()
+    {
+        while(true)
+        {
+            yield return null;
+
+            if (dashCount < 2)
+            {
+                dashCoolTime += Time.deltaTime;
+                if (dashCoolTime >= 3)
+                {
+                    dashCount++;
+                    GameObject.Find("Canvas").transform.GetChild(dashCount).gameObject.SetActive(true);
+                    //DashManager.transform.GetChild(dashCount).gameObject.SetActive(true);
+                    dashCoolTime = 0;
+                }
+            }
+            else
+                continue;
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
