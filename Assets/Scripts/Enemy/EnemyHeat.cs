@@ -88,29 +88,49 @@ public class EnemyHeat : MonoBehaviour
 
                 case 1 :
                 Debug.Log("적피 1");
-                Destroy(hp2Transform.gameObject);
-                Destroy(hp3Transform.gameObject);
-                Destroy(hp4Transform.gameObject);
-                Destroy(hp5Transform.gameObject);
+                if (hp2Transform != null ) {
+                    Destroy(hp2Transform.gameObject);
+                }
+                if (hp3Transform != null ) {
+                    Destroy(hp3Transform.gameObject);
+                }
+                if (hp4Transform != null ) {
+                    Destroy(hp4Transform.gameObject);
+                }
+                if (hp5Transform != null ) {
+                    Destroy(hp5Transform.gameObject);
+                }
                 //Destroy(enemyHPTransform.gameObject.transform.Find("HP_2"));
                 break;
 
                 case 2 :
                 Debug.Log("적피 2");
-                Destroy(hp3Transform.gameObject);
-                Destroy(hp4Transform.gameObject);
-                Destroy(hp5Transform.gameObject);
+                if (hp3Transform != null ) {
+                    Destroy(hp3Transform.gameObject);
+                }
+                if (hp4Transform != null ) {
+                    Destroy(hp4Transform.gameObject);
+                }
+                if (hp5Transform != null ) {
+                    Destroy(hp5Transform.gameObject);
+                }
                 break;
 
                 case 3 :
                 Debug.Log("적피 3");
-                Destroy(hp4Transform.gameObject);
-                Destroy(hp5Transform.gameObject);
+                if (hp4Transform != null ) {
+                    Destroy(hp4Transform.gameObject);
+                }
+                if (hp5Transform != null ) {
+                    Destroy(hp5Transform.gameObject);
+                }
                 break;
 
                 case 4 :
                 Debug.Log("적피 4");
-                Destroy(hp5Transform.gameObject);
+                if (hp5Transform != null ) {
+                    Destroy(hp5Transform.gameObject);
+                }
                 break;
 
                 default :
