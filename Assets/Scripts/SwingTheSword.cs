@@ -75,14 +75,6 @@ public class SwingTheSword : MonoBehaviour
                 swordObject.SetActive(false);
             }
         }
-        /*if (deltaAngle < swingAngle)
-        {
-            
-        }
-        else
-        {
-            swordObject.SetActive(false);
-        }*/
     }
 
     IEnumerator PowerSlash(Quaternion rot)
