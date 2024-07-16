@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LongEnemyShoot : MonoBehaviour
 {
+    /*
     public GameObject enemyBulletPrefab;
     public Transform enemyBulletSpawnPointTransform;
     private float fireRate = 1.0f; 
@@ -17,4 +18,5 @@ public class LongEnemyShoot : MonoBehaviour
     void EnemyShoot() {
         Instantiate(enemyBulletPrefab, enemyBulletSpawnPointTransform.position, enemyBulletSpawnPointTransform.rotation); // 적 탄막 스폰 위치에서 적 탄막 생성
     }
+    */
 }

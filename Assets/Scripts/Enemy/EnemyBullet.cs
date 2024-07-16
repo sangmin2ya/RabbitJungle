@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float bulletSpeed = 10.0f;
+    /*private float bulletSpeed = 10.0f;
     private Transform playerTransform;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,4 +28,5 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject); // 탄막 제거
         }
     }
+    */
 }
