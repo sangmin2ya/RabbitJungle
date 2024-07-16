@@ -14,8 +14,14 @@ public class DataManager : MonoBehaviour
     private float damage;
     private int dashCount;
     private string weapon;
+    private string specialWeapon;
     private int bulletCount;
-
+    private float skillDamage;
+    private float swordLength;
+    private float shurikenDamage;
+    private float axeDamage;
+    public bool justCleared = false;
+    public bool epicSkill = false;
     // getset 에 접근하게 해주는 프로퍼티
     public float Speed
     {
@@ -52,10 +58,35 @@ public class DataManager : MonoBehaviour
         get { return weapon; }
         set { weapon = value; }
     }
+    public string SpecialWeapon
+    {
+        get { return specialWeapon; }
+        set { specialWeapon = value; }
+    }
     public int BulletCount
     {
         get { return bulletCount; }
         set { bulletCount = value; }
+    }
+    public float SkillDamage
+    {
+        get { return skillDamage; }
+        set { skillDamage = value; }
+    }
+    public float SwordLength
+    {
+        get { return swordLength; }
+        set { swordLength = value; }
+    }
+    public float ShurikenDamage
+    {
+        get { return shurikenDamage; }
+        set { shurikenDamage = value; }
+    }
+    public float AxeDamage
+    {
+        get { return axeDamage; }
+        set { axeDamage = value; }
     }
     // Public property to access the singleton instance
     public static DataManager Instance

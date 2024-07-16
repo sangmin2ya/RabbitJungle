@@ -13,6 +13,7 @@ public class Player_Control : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
     public GameObject map;
+    public GameObject keyGuide;
     public GameObject player;
 
 
@@ -47,6 +48,7 @@ public class Player_Control : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             map.SetActive(!map.activeSelf);
+            keyGuide.SetActive(!keyGuide.activeSelf);
         }
     }
     public void baseSkill()
