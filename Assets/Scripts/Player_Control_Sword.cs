@@ -9,11 +9,14 @@ public class Player_Control_Sword : MonoBehaviour
     public float verticalInput;
     public float speed;
     bool dashState = false;
+    Rigidbody2D myRigid;
+    float knockback = 100.0f;
     // Start is called before the first frame update
     void Start()
     {
         speed = 10f;
         //StartCoroutine("Flip");
+        myRigid = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -49,8 +52,10 @@ public class Player_Control_Sword : MonoBehaviour
     IEnumerator DashCutter()
     {
         dashState = true;
-        yield return new WaitForSeconds(0.5f);
+        this.gameObject.layer = 10;
+        yield return new WaitForSeconds(0.25f);
         dashState = false;
+        this.gameObject.layer = 0;
     }
 
     /*IEnumerator Flip()
@@ -76,11 +81,30 @@ public class Player_Control_Sword : MonoBehaviour
         {
             if (dashState)
             {
-                Destroy(collision.gameObject);
+                //Destroy(collision.gameObject);
             }
             else
             {
                 Debug.Log("아야!");
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss"))
+        {
+            if (dashState)
+            {
+                // 체력을 깎거나 체력이 적으면 죽인다.
+                //Destroy(collision.gameObject);
+            }
+            else
+            {
+                Vector2 dir = transform.position - collision.gameObject.transform.position;
+                // 맞았으니 플레이어에게 데미지를 준다
+                //
+                //myRigid.AddForce(dir.normalized * knockback);
             }
         }
     }
