@@ -16,7 +16,7 @@ public class SpawnController : MonoBehaviour
     private float maxX = 15.0f;
     private float minY = -15.0f;
     private float maxY = 15.0f;
-    private float minDistanceFromPlayer = 2.0f; // 플레이어와 최소 거리
+    private float minDistanceFromPlayer = 10.0f; // 플레이어와 최소 거리
     
     // Start is called before the first frame update
     void Start()
