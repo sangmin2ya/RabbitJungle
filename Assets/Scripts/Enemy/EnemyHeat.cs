@@ -27,15 +27,12 @@ public class EnemyHeat : MonoBehaviour
         if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Skill")) {
 
             if (DataManager.Instance.Weapon == WeaponType.Gun.ToString()) {
-                Destroy(collision.gameObject);
                 enemyHP -= 1;
             }
             else if (DataManager.Instance.Weapon == WeaponType.Sword.ToString()) {
-                Destroy(collision.gameObject);
                 enemyHP -= 3;
             }
             else {
-                Destroy(collision.gameObject);
                 enemyHP -= 2;
             }
 
