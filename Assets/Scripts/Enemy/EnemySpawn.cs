@@ -24,12 +24,13 @@ public class EnemySpawn : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         playerTransform = player.transform;
         SpawnEnemys();
+        Debug.Log("스폰 에너미");
         
         
     }
 
     //임의의 SpawnEnemy 메소드 선언
-    void SpawnEnemys() {
+    public void SpawnEnemys() {
         int spawnedEnemys = 0;
         while (spawnedEnemys < numberOfEnemy) {
             // 몹 스폰 위치 생성
