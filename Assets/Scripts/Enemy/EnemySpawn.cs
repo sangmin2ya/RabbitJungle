@@ -11,11 +11,11 @@ public class EnemySpawn : MonoBehaviour
     private int numberOfEnemy = 10; // 몬스터 생성 개수
     
     //맵 상에서 적 생성 반경
-    private float minX = -20.0f;
-    private float maxX = 20.0f;
-    private float minY = -20.0f;
-    private float maxY = 20.0f;
-    private float minDistanceFromPlayer = 3.0f; // 플레이어와 최소 거리
+    private float minX = -10.0f;
+    private float maxX = 10.0f;
+    private float minY = -10.0f;
+    private float maxY = 10.0f;
+    private float minDistanceFromPlayer = 1.0f; // 플레이어와 최소 거리
     
     // Start is called before the first frame update
     void Start()
@@ -23,6 +23,7 @@ public class EnemySpawn : MonoBehaviour
         // 스테이지 시작 시 플레이어 위치 찾기
         GameObject player = GameObject.FindWithTag("Player");
         playerTransform = player.transform;
+        SpawnEnemys();
         
         
     }
