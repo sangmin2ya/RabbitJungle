@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.FilePathAttribute;
 
-public class Gun_Basic_Shooting : MonoBehaviour
+public class Gun_ShotHun : MonoBehaviour
 {
+
     public int maxAmmo;
     public int ammo;
-
+    public int ShootBulletCount;
 
     public GameObject bullet;
     public GameObject bulletEffect;
@@ -21,23 +20,26 @@ public class Gun_Basic_Shooting : MonoBehaviour
 
     public bool isReloading;
 
-    public DataManager dataManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
         ammo = maxAmmo;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButton(0) && ammo > 0 && !isReloading)
+        if (Input.GetMouseButton(0) && ammo > 0 && !isReloading)
         {
-            if(Time.time > shotTime)
+            if (Time.time > shotTime)
             {
-                Instantiate(bullet, spawnPos.position, rotation.transform.rotation );
+                for (int i = -1; i < ShootBulletCount-1; i++)
+                {
+                    Quaternion rotate = Quaternion.Euler(0, 0, i);
+                    Instantiate(bullet, spawnPos.position, rotation.transform.rotation * rotate);
+                    
+                }
                 Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
 
                 ammo--;
@@ -50,11 +52,12 @@ public class Gun_Basic_Shooting : MonoBehaviour
 
     private void Reload()
     {
-        if(ammo == 0)
+        if (ammo == 0)
         {
             StartCoroutine("ReloadTime");
         }
-        if (Input.GetKeyDown(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             StartCoroutine("ReloadTime");
         }
     }

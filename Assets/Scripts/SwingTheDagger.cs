@@ -44,12 +44,6 @@ public class SwingTheDagger : MonoBehaviour
                 deltaAngle = 0;
 
                 StartCoroutine("Swing");
-
-                /*while (deltaAngle < swingAngle)
-                {
-                    float delta = swingSpeed * Time.deltaTime;
-                }
-                Swing();*/
             }
         }
         if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && bClass)
@@ -91,7 +85,11 @@ public class SwingTheDagger : MonoBehaviour
         {
             yield return null;
             if (powerSlash.IsDestroyed())
+            {
+                q.Dequeue();
+                deltaTime = 0;
                 break;
+            }
             Vector3 dir3 = rotation.eulerAngles;
             Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
             powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
@@ -104,16 +102,5 @@ public class SwingTheDagger : MonoBehaviour
                 break;
             }
         }
-
-        //Vector3 _dir3 = rot.eulerAngles;
-        //Vector3 _dir = new Vector3(Mathf.Cos(_dir3.z * Mathf.Deg2Rad), Mathf.Sin(_dir3.z * Mathf.Deg2Rad), 0);
-        //deltaTime = t;
-        //while(deltaTime < lifespan)
-        //{
-        //    powerSlash.transform.position += _dir.normalized * Time.deltaTime * 50;
-        //    deltaTime += Time.deltaTime;
-        //}
-        //
-        //Destroy(q.Dequeue());
     }
 }

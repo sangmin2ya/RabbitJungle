@@ -42,12 +42,6 @@ public class SwingTheLargeSword : MonoBehaviour
                 deltaAngle = 0;
 
                 StartCoroutine("Swing");
-
-                /*while (deltaAngle < swingAngle)
-                {
-                    float delta = swingSpeed * Time.deltaTime;
-                }
-                Swing();*/
             }
         }
         if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= 5.0f) && bClass)
