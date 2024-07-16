@@ -35,6 +35,10 @@ public class SpawnController : MonoBehaviour
         Debug.Log("스폰 에너미");
         int spawnedEnemys = 0;
         while (spawnedEnemys < numberOfEnemy) {
+
+            // Select Enemy type Random
+            GameObject enemyToSpawn = Random.Range(0,2) == 0 ? shortEnemy : LongEnemy;
+
             // 몹 스폰 위치 선언
             Vector2 spawnPosition = new Vector2(transform.position.x + Random.Range(minX, maxX),
                                                 transform.position.y + Random.Range(minY, maxY));
@@ -45,7 +49,7 @@ public class SpawnController : MonoBehaviour
 
             // 플레이어와의 최소 거리보다 길다면 몹 생성. 지금은 단거리 몹만 생성하지만 나중에 중거리 몹과 섞는 로직 짜야할듯
             if (distanceFromPlayer > minDistanceFromPlayer) {
-                Instantiate(shortEnemy, spawnPosition, Quaternion.identity); // 기본 회전값으로 생성
+                Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity); // 기본 회전값으로 생성
                 spawnedEnemys++;
             }
         }
