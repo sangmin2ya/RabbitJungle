@@ -31,10 +31,10 @@ public class SettingJobController : MonoBehaviour
         DataManager.Instance.Health = 4f;
         DataManager.Instance.Speed = 10f;
         DataManager.Instance.Damage = 2f;
+        DataManager.Instance.DashCount = 2;
         DataManager.Instance.AttacSpeed = 0.25f;
         DataManager.Instance.Weapon = WeaponType.Gun.ToString();
         DataManager.Instance.BulletCount = 20;
-
         SceneManager.LoadScene("Game");
     }
     public void SelectSword()
@@ -42,9 +42,12 @@ public class SettingJobController : MonoBehaviour
         DataManager.Instance.Health = 5f;
         DataManager.Instance.Speed = 10f;
         DataManager.Instance.Damage = 2f;
+        DataManager.Instance.DashCount = 2;
         DataManager.Instance.AttacSpeed = 0.25f;
         DataManager.Instance.Weapon = WeaponType.Sword.ToString();
-
+        DataManager.Instance.SwordLength = 2f;
+        DataManager.Instance.AxeDamage = 5f;
+        DataManager.Instance.ShurikenDamage = 2f;
         SceneManager.LoadScene("Game");
     }
 }
