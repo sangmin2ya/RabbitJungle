@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon_Rotation : MonoBehaviour
 {
     public float horizontalInput;
-
+    public float angle;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,7 @@ public class Weapon_Rotation : MonoBehaviour
     void Update()
     {
         Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = rotation;
