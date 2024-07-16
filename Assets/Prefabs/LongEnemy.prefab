@@ -700,7 +700,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4572785475520809525}
+  - {fileID: 384405929919704628}
   - {fileID: 2816095546278123447}
   - {fileID: 6954924390974538099}
   m_Father: {fileID: 0}
@@ -801,8 +801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed8018108241e94bb8116fd463a19dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBulletPrefab: {fileID: 0}
-  enemyBulletSpawnPointTransform: {fileID: 0}
+  enemyBulletPrefab: {fileID: 8808613486895273275, guid: ebe42feff25e4a641bc18f810f51e71f, type: 3}
+  enemyBulletSpawnPointTransform: {fileID: 6954924390974538099}
 --- !u!114 &9169833348093315553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +982,7 @@ Transform:
   - {fileID: 8518627990461446218}
   m_Father: {fileID: 3885698754619578458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2121764502560483080
+--- !u!1001 &2833439898327286537
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1039,8 +1039,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95fdf043badca104a9315d9f4167f881, type: 3}
---- !u!4 &4572785475520809525 stripped
+--- !u!4 &384405929919704628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2452150328705772861, guid: 95fdf043badca104a9315d9f4167f881, type: 3}
-  m_PrefabInstance: {fileID: 2121764502560483080}
+  m_PrefabInstance: {fileID: 2833439898327286537}
   m_PrefabAsset: {fileID: 0}
