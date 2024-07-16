@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwingTheDagger : MonoBehaviour
@@ -7,12 +8,14 @@ public class SwingTheDagger : MonoBehaviour
     public float swingSpeed = 500.0f;
     public GameObject swordObject;
     public GameObject yeolpacham;
-    GameObject powerSlash;
+    //GameObject powerSlash;
     float deltaAngle = 0;
     float deltaTime = 0;
-    float coolTime = 5.0f;
+    float coolTime = 0.5f;
+    float lifespan = 2.0f;
     float swingAngle = 90.0f;
-    // 플레이어 스탯에서 나중에는 클래스 값 가져와서 쓸 것
+    Queue<GameObject> q = new Queue<GameObject>();
+    // you must get class identification number from player status
     //int playerClass = 404;
     public bool bClass = true;
     //
@@ -49,18 +52,11 @@ public class SwingTheDagger : MonoBehaviour
                 Swing();*/
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= 5.0f) && bClass)
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && bClass)
         {
             deltaTime = 0;
 
-            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-            powerSlash = Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation);
-
-            StartCoroutine(PowerSlash(rotation));
+            StartCoroutine(PowerSlash(0f));
         }
     }
 
@@ -81,21 +77,43 @@ public class SwingTheDagger : MonoBehaviour
             }
         }
     }
-    IEnumerator PowerSlash(Quaternion rot)
+    IEnumerator PowerSlash(float t)
     {
+        Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        GameObject powerSlash = Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation);
+        q.Enqueue(powerSlash);
+
         while (true)
         {
             yield return null;
-            Vector3 dir3 = rot.eulerAngles;
+            if (powerSlash.IsDestroyed())
+                break;
+            Vector3 dir3 = rotation.eulerAngles;
             Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
             powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
             deltaTime += Time.deltaTime;
+            t += Time.deltaTime;
 
-            if (deltaTime >= 5.0f)
+            if (t >= lifespan)
+            {
+                Destroy(q.Dequeue());
                 break;
+            }
         }
 
-        deltaTime = 0;
-        Destroy(powerSlash);
+        //Vector3 _dir3 = rot.eulerAngles;
+        //Vector3 _dir = new Vector3(Mathf.Cos(_dir3.z * Mathf.Deg2Rad), Mathf.Sin(_dir3.z * Mathf.Deg2Rad), 0);
+        //deltaTime = t;
+        //while(deltaTime < lifespan)
+        //{
+        //    powerSlash.transform.position += _dir.normalized * Time.deltaTime * 50;
+        //    deltaTime += Time.deltaTime;
+        //}
+        //
+        //Destroy(q.Dequeue());
     }
 }

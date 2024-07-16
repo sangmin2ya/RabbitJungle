@@ -11,8 +11,9 @@ public class SwingTheSword : MonoBehaviour
     float deltaAngle = 0;
     float deltaTime = 0;
     float coolTime = 5.0f;
+    float lifespan = 2.0f;
     float swingAngle = 90.0f;
-    // 플레이어 스탯에서 나중에는 클래스 값 가져와서 쓸 것
+    // you must get class identification number from player status
     //int playerClass = 404; // 
     public bool bClass = true;
     //
@@ -94,7 +95,7 @@ public class SwingTheSword : MonoBehaviour
             powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
             deltaTime += Time.deltaTime;
 
-            if (deltaTime >= 5.0f)
+            if (deltaTime >= lifespan)
                 break;
         }
 

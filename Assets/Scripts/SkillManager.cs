@@ -22,6 +22,9 @@ public class SkillManager : MonoBehaviour
         {
             // reduce collision owner's hp
             Destroy(collision.gameObject);
+            // if your class is assassin, shuriken will be disappeared after collision
+            // if ( ) 
+            Destroy(this.gameObject);
         }
     }
 }

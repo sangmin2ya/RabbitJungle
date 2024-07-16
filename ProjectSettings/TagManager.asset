@@ -8,6 +8,8 @@ TagManager:
   - Door
   - Enemy
   - Portal
+  - Weapon
+  - Skill
   layers:
   - Default
   - TransparentFX
