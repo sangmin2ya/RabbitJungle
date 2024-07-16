@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4989152608952016013}
   - component: {fileID: 4391784760665389582}
   m_Layer: 0
-  m_Name: HP (4)
+  m_Name: HP_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3964668688642444593}
   - component: {fileID: 5740636790021198353}
   m_Layer: 0
-  m_Name: HP (1)
+  m_Name: HP_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 2452150328705772861}
   m_Layer: 0
   m_Name: EnemyHP
-  m_TagString: Untagged
+  m_TagString: EnemyNumber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,11 +197,11 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4989152608952016013}
+  - {fileID: 495343658712543804}
   - {fileID: 4723241550887002149}
   - {fileID: 3964668688642444593}
-  - {fileID: 495343658712543804}
   - {fileID: 6990873283407622564}
-  - {fileID: 4989152608952016013}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3966503439570875009
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 4723241550887002149}
   - component: {fileID: 383036174332986318}
   m_Layer: 0
-  m_Name: HP
+  m_Name: HP_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,8 +274,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -37974555
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 6990873283407622564}
   - component: {fileID: 8960644263182317028}
   m_Layer: 0
-  m_Name: HP (3)
+  m_Name: HP_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 495343658712543804}
   - component: {fileID: 1559300890393862361}
   m_Layer: 0
-  m_Name: HP (2)
+  m_Name: HP_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
