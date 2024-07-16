@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6954924390974538099}
   - component: {fileID: 5675009964283571631}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpawnEnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3798223170136983738}
   - component: {fileID: 8084831574652953855}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GunLow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7589084901189641305}
   - component: {fileID: 6792207617141550428}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7273493832919838645}
   - component: {fileID: 1963998400755392954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ear1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8518627990461446218}
   - component: {fileID: 1913700228756810148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ear2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 630777846840106396}
   - component: {fileID: 8363921711967594513}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8595173512396324985}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3560875669071956146}
   - component: {fileID: 4959553905467458733}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,7 +591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6599981528999215240}
   - component: {fileID: 3696473352021634663}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 7987129507855350856}
   - component: {fileID: 9169833348093315553}
   - component: {fileID: 3299770449794901941}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LongEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -802,7 +802,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBulletPrefab: {fileID: 8808613486895273275, guid: ebe42feff25e4a641bc18f810f51e71f, type: 3}
-  enemyBulletSpawnPointTransform: {fileID: 6954924390974538099}
 --- !u!114 &9169833348093315553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,7 +869,7 @@ GameObject:
   m_Component:
   - component: {fileID: 59573232235090660}
   - component: {fileID: 8918648858527106203}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GunHigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,7 +952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2816095546278123447}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player Outfit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -990,6 +989,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3885698754619578458}
     m_Modifications:
+    - target: {fileID: 315352096271866169, guid: 95fdf043badca104a9315d9f4167f881, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317447197891190271, guid: 95fdf043badca104a9315d9f4167f881, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2452150328705772861, guid: 95fdf043badca104a9315d9f4167f881, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.05
@@ -1033,6 +1040,22 @@ PrefabInstance:
     - target: {fileID: 3406550016285046014, guid: 95fdf043badca104a9315d9f4167f881, type: 3}
       propertyPath: m_Name
       value: EnemyHP
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406550016285046014, guid: 95fdf043badca104a9315d9f4167f881, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3966503439570875009, guid: 95fdf043badca104a9315d9f4167f881, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5156504140727607508, guid: 95fdf043badca104a9315d9f4167f881, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976027249267498598, guid: 95fdf043badca104a9315d9f4167f881, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

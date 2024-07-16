@@ -6,10 +6,14 @@ public class SpawnController : MonoBehaviour
 {
     public GameObject shortEnemy;
     public GameObject LongEnemy;
+
+    private DataManager DataManager;
     private int playerLayerMask;
+    private bool visited = false;
+
 
     private Transform playerTransform;
-    private int numberOfEnemy = 25; // 몬스터 생성 개수
+    private int numberOfEnemy = 10; // 몬스터 생성 개수
     
     //맵 상에서 적 생성 반경
     private float minX = -15.0f;
@@ -21,6 +25,9 @@ public class SpawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
+
     }
 
     //임의의 SpawnEnemy 메소드 선언
@@ -56,21 +63,27 @@ public class SpawnController : MonoBehaviour
     }
     private void Update()
     {
-
+        if(visited){
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("EnemyNumber");
+        gameObject.transform.parent.GetComponent<RoomData>().RemainedEnemy = enemies.Length;
+        
+        if (gameObject.transform.parent.GetComponent<RoomData>().RemainedEnemy <= 0 && gameObject.transform.parent.GetComponent<RoomData>().RoomType == RoomType.Battle.ToString()) {
+            //set currentMap cleared
+            Debug.Log("클리어!");
+            gameObject.transform.parent.GetComponent<RoomData>().RoomType = RoomType.Cleared.ToString();
+            DataManager.Instance.justCleared = true;
+        }
+        }
     }
     
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnCollisionEnter2D(Collision2D other) {
     Debug.Log("콜리션 발동");
-    
-    // create layer mask 
-    playerLayerMask = LayerMask.NameToLayer("Player");
-
-    if (other.gameObject.layer == playerLayerMask && gameObject.transform.parent.GetComponent<RoomData>().RoomType.ToString() == RoomType.Battle.ToString()) {
+    if (other.gameObject.CompareTag("Player") && gameObject.transform.parent.GetComponent<RoomData>().RoomType.ToString() == RoomType.Battle.ToString()) {
         // spawnEnemies
         SpawnEnemies();
-        //set currentMap cleared
-        gameObject.transform.parent.GetComponent<RoomData>().RoomType = RoomType.Cleared.ToString();
- 
+        visited = true;
+        //Invoke("SpawnEnemies",3.0f);// spawn once more
+
     }
     }
 }
