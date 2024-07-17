@@ -82,6 +82,7 @@ public class ItemController : MonoBehaviour
             case "card3":
                 Debug.Log("체력추가!");
                 DataManager.Instance.MaxHealth += 1;
+                DataManager.Instance.Health += 1;
                 break;
             case "card4":
                 Debug.Log("공격속도증가!");
