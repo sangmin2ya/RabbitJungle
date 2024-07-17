@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class SwingTheSword : MonoBehaviour
@@ -27,7 +29,7 @@ public class SwingTheSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && bClass/*playerClass == 404*/) 
+        if (Input.GetMouseButton(0) && !DataManager.Instance.epicSkill) 
         {
             if(!swordObject.activeSelf)
             {
@@ -44,7 +46,7 @@ public class SwingTheSword : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= 5.0f) && bClass)
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && !DataManager.Instance.epicSkill)
         {
             deltaTime = 0;
 
@@ -82,16 +84,24 @@ public class SwingTheSword : MonoBehaviour
         while (true)
         {
             yield return null;
-            Vector3 dir3 = rot.eulerAngles;
-            Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
-            powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
+
             deltaTime += Time.deltaTime;
 
-            if (deltaTime >= lifespan)
+            if (!powerSlash.IsDestroyed())
+            {
+                Vector3 dir3 = rot.eulerAngles;
+                Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
+                powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
+
+                if(deltaTime >= lifespan)
+                    Destroy(powerSlash);
+            }
+            
+            if (deltaTime >= coolTime)
                 break;
         }
 
         deltaTime = 0;
-        Destroy(powerSlash);
+        
     }
 }

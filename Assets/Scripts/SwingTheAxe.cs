@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwingTheAxe : MonoBehaviour
@@ -27,7 +28,7 @@ public class SwingTheAxe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && bClass) 
+        if (Input.GetMouseButton(0) && DataManager.Instance.epicSkill && DataManager.Instance.SpecialWeapon == "Axe") 
         {
             if(!swordObject.activeSelf)
             {
@@ -44,7 +45,7 @@ public class SwingTheAxe : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && bClass)
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.epicSkill && DataManager.Instance.SpecialWeapon == "Axe")
         {
             deltaTime = 0;
 
@@ -78,19 +79,44 @@ public class SwingTheAxe : MonoBehaviour
     }
     IEnumerator PowerSlash(Quaternion rot)
     {
+        //while (true)
+        //{
+        //    yield return null;
+        //    Vector3 dir3 = rot.eulerAngles;
+        //    Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
+        //    powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
+        //    deltaTime += Time.deltaTime;
+        //    powerSlash.transform.Rotate(Vector3.forward * Time.deltaTime * 1000.0f);
+        //    if (deltaTime >= lifespan)
+        //        break;
+        //}
+        //
+        //while (deltaTime < coolTime)
+        //    deltaTime += Time.deltaTime;
+        //
+        //deltaTime = 0;
+        //Destroy(powerSlash);
+
         while (true)
         {
             yield return null;
-            Vector3 dir3 = rot.eulerAngles;
-            Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
-            powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
+
             deltaTime += Time.deltaTime;
-            powerSlash.transform.Rotate(Vector3.forward * Time.deltaTime * 1000.0f);
-            if (deltaTime >= lifespan)
+
+            if (!powerSlash.IsDestroyed())
+            {
+                Vector3 dir3 = rot.eulerAngles;
+                Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
+                powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
+
+                if (deltaTime >= lifespan)
+                    Destroy(powerSlash);
+            }
+
+            if (deltaTime >= coolTime)
                 break;
         }
 
         deltaTime = 0;
-        Destroy(powerSlash);
     }
 }
