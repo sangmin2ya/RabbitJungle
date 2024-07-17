@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4062488527719444642}
   - component: {fileID: 6586540465178895591}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7222191745527637982}
   - component: {fileID: 1044198201722949432}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5614259171061672068}
   - component: {fileID: 3629465574008687088}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 9123540546303102523}
   - component: {fileID: 6027659652732916628}
   - component: {fileID: 7409416245266559689}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shuriken
   m_TagString: Skill
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7508119715562547049}
   - component: {fileID: 7245189357348205359}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8693974730641245783}
   - component: {fileID: 7875902275092167745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1993829016332748607}
   - component: {fileID: 5164299749448398332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8686511929857536167}
   - component: {fileID: 5375733705547975199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triangle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 6028810432882673687}
   - component: {fileID: -2141980692845028959}
   - component: {fileID: 7006427600155846091}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Yeolpacham
   m_TagString: Skill
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5369067493951644553}
   - component: {fileID: 6339881002229733099}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
