@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Player_Control : MonoBehaviour
@@ -302,7 +303,8 @@ public class Player_Control : MonoBehaviour
         {
             DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
             healthUIManager.SethealthCount(DataManager.Instance.Health);
-
+            if (DataManager.Instance.Health <= 0)
+                DataManager.Instance.isDead = true;
         }
     }
 }

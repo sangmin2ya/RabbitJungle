@@ -14,9 +14,10 @@ public class GameOverManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        if(DataManager.Instance.isDead)
         {
-            SceneManager.LoadScene("Lobby");
+            DataManager.Instance.isDead = false;
+            SceneManager.LoadScene("GameOver");
         }
     }
 }
