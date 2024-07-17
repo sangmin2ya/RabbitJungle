@@ -10,12 +10,14 @@ using UnityEngine.UI;
 public class BossHeat : MonoBehaviour
 {
     public Slider HpBarSlider;
-    public float bossHP = 50.0f * DataManager.Instance.StageLevel;
-    private float maxHP = 50.0f * DataManager.Instance.StageLevel;
+    public float bossHP;
+    private float maxHP;
 
     // Start is called before the first frame update
     void Start()
     {
+        bossHP = 50.0f * DataManager.Instance.StageLevel;
+        maxHP = 50.0f * DataManager.Instance.StageLevel;
     }
 
     // Update is called once per frame

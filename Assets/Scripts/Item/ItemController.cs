@@ -71,7 +71,7 @@ public class ItemController : MonoBehaviour
                 if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
                     DataManager.Instance.ShurikenDamage += 2;
                 if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.LongSword.ToString())
-                    DataManager.Instance.SwordLength += 1;
+                    DataManager.Instance.SwordLength += 0.5f;
                 if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Axe.ToString())
                     DataManager.Instance.AxeDamage += 5;
                 break;
