@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwingTheLargeSword : MonoBehaviour
@@ -13,10 +14,6 @@ public class SwingTheLargeSword : MonoBehaviour
     float coolTime = 5.0f;
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
-    // you must get class identification number from player status
-    int playerClass = 404;
-    public bool bClass = true;
-    //
 
     // Start is called before the first frame update
     void Start()
@@ -27,10 +24,11 @@ public class SwingTheLargeSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && bClass) 
+        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "LongSword") 
         {
             if(!swordObject.activeSelf)
             {
+                swordObject.transform.localScale = new Vector3(swordObject.transform.localScale.x, DataManager.Instance.SwordLength, swordObject.transform.localScale.z);
                 swordObject.SetActive(true);
 
                 Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -44,7 +42,7 @@ public class SwingTheLargeSword : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= 5.0f) && bClass)
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "LongSword")
         {
             deltaTime = 0;
 
@@ -81,16 +79,23 @@ public class SwingTheLargeSword : MonoBehaviour
         while (true)
         {
             yield return null;
-            Vector3 dir3 = rot.eulerAngles;
-            Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
-            powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
+
             deltaTime += Time.deltaTime;
 
-            if (deltaTime >= lifespan)
+            if (!powerSlash.IsDestroyed())
+            {
+                Vector3 dir3 = rot.eulerAngles;
+                Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
+                powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
+
+                if (deltaTime >= lifespan)
+                    Destroy(powerSlash);
+            }
+
+            if (deltaTime >= coolTime)
                 break;
         }
 
         deltaTime = 0;
-        Destroy(powerSlash);
     }
 }
