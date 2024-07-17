@@ -33,6 +33,7 @@ public class DataManager : MonoBehaviour
     public bool epicSkill = false;
     public bool isDead = false;
     public bool firstClassChage = true;
+    public bool beHit = false;
 
     // getset 에 접근하게 해주는 프로퍼티
     public int StageLevel

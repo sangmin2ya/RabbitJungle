@@ -26,7 +26,14 @@ public class Sniper_Skill : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CoolDownUI = new GameObject[10];
 
+        for (int i = 0; i < GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
+        {
+            CoolDownUI[i] = GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.GetChild(i).gameObject;
+            if (CoolDownUI[i].name.Contains("Text"))
+                skillCoolDownText = CoolDownUI[i].transform.GetComponent<TextMeshProUGUI>();
+        }
     }
 
     // Update is called once per frame

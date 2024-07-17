@@ -25,8 +25,8 @@ public class Player_Control_Sword : MonoBehaviour
     {
         speed = DataManager.Instance.Speed;
         StartCoroutine("Flip");
-        //myRigid = GetComponent<Rigidbody2D>();
         StartCoroutine("ChargeDash");
+        StartCoroutine("HitDelay");
         dashCount = DataManager.Instance.DashCount;
         healthUIManager.SethealthCount(DataManager.Instance.Health);
     }
@@ -125,7 +125,7 @@ public class Player_Control_Sword : MonoBehaviour
     //}
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) //|| collision.gameObject.CompareTag("Boss"))
         {
@@ -136,12 +136,16 @@ public class Player_Control_Sword : MonoBehaviour
             }
             else
             {
-                //Vector2 dir = transform.position - collision.gameObject.transform.position;
-                DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
-                healthUIManager.SethealthCount(DataManager.Instance.Health);
-                if (DataManager.Instance.Health <= 0)
+                if (!DataManager.Instance.beHit)
                 {
-                    DataManager.Instance.isDead = true;
+                    DataManager.Instance.beHit = true;
+                    DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
+                    healthUIManager.SethealthCount(DataManager.Instance.Health);
+                    if (DataManager.Instance.Health <= 0)
+                    {
+                        DataManager.Instance.beHit = false;
+                        DataManager.Instance.isDead = true;
+                    }
                 }
             }
         }
@@ -165,6 +169,26 @@ public class Player_Control_Sword : MonoBehaviour
 
         }
     }
+
+    IEnumerator HitDelay()
+    {
+        float hitDelay = 0f;
+
+        while (true)
+        {
+            yield return null;
+
+            if (DataManager.Instance.beHit)
+            {
+                hitDelay += Time.deltaTime;
+                if (hitDelay >= 0.5f)
+                {
+                    hitDelay = 0f;
+                    DataManager.Instance.beHit = false;
+                }
+            }
+        }
+}
 
     public void Block()
     {
