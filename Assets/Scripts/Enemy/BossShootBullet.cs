@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public class BossShootBullet : MonoBehaviour
 {
     private float bulletSpeed = 10.0f;
     private Transform playerTransform;

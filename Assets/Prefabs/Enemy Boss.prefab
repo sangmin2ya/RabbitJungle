@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7589084901189641305}
   - component: {fileID: 6792207617141550428}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7273493832919838645}
   - component: {fileID: 1963998400755392954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ear1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8518627990461446218}
   - component: {fileID: 1913700228756810148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ear2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 630777846840106396}
   - component: {fileID: 8363921711967594513}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3560875669071956146}
   - component: {fileID: 4959553905467458733}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6599981528999215240}
   - component: {fileID: 3696473352021634663}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +515,10 @@ GameObject:
   - component: {fileID: 3885698754619578458}
   - component: {fileID: 198887236054997801}
   - component: {fileID: 5345169318758662430}
-  m_Layer: 0
+  - component: {fileID: 3627824073227561940}
+  - component: {fileID: -9097160197525333415}
+  - component: {fileID: 3696749345053803533}
+  m_Layer: 7
   m_Name: Enemy Boss
   m_TagString: BOSS
   m_Icon: {fileID: 0}
@@ -610,6 +613,77 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5135751, y: 2.9207878}
   m_EdgeRadius: 0
+--- !u!61 &3627824073227561940
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857484277409622652}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.24879253, y: 0.5762322}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5135751, y: 2.9207878}
+  m_EdgeRadius: 0
+--- !u!114 &-9097160197525333415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857484277409622652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e2317492cf88e43ad24193c29d93cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossShootBulletPrefab: {fileID: 8808613486895273275, guid: f91a019db03c0bf4fab1a7d9062677a3, type: 3}
+  bossAroundBulletPrefab: {fileID: 8808613486895273275, guid: 69b5d1306845b3d4090159fcf0f243fc, type: 3}
+--- !u!114 &3696749345053803533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857484277409622652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fc2d136ec82594a8b23842ecd02f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8831180562166487045
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2816095546278123447}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player Outfit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
