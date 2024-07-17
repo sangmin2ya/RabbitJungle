@@ -126,32 +126,34 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator BossShootControl()
     {
-        CancelInvoke();
-        BossShootState newState = (BossShootState)Random.Range(0, System.Enum.GetValues(typeof(BossShootState)).Length);
-        currentShootState = newState;
-        Debug.Log("슛 상태 변경!");
-        switch (newState)
+        while (true)
         {
-            case BossShootState.Shoot:
-                InvokeRepeating("ShootBullet", 0f, bossShootFireRate);
-                break;
-            case BossShootState.Around:
-                InvokeRepeating("ShootBullet", 0f, bossShootFireRate);
-                //InvokeRepeating("AroundBullet", 0f, bossAroundFireRate);
-                break;
-            case BossShootState.Stop:
-                break;
+            yield return new WaitForSeconds(3f);
+            CancelInvoke();
+            BossShootState newState = (BossShootState)Random.Range(0, System.Enum.GetValues(typeof(BossShootState)).Length);
+            currentShootState = newState;
+            Debug.Log("슛 상태 변경!");
+            switch (newState)
+            {
+                case BossShootState.Shoot:
+                    InvokeRepeating("ShootBullet", 0f, bossShootFireRate);
+                    break;
+                case BossShootState.Around:
+                    InvokeRepeating("ShootBullet", 0f, bossShootFireRate);
+                    //InvokeRepeating("AroundBullet", 0f, bossAroundFireRate);
+                    break;
+                case BossShootState.Stop:
+                    break;
+            }
         }
-
-        yield return new WaitForSeconds(3f);
-
     }
 
     IEnumerator StateControl()
     {
-        yield return new WaitForSeconds(3f); // Initial 3-second delay
+        //yield return new WaitForSeconds(3f); // Initial 3-second delay
         while (true)
         {
+            yield return new WaitForSeconds(3f);
             // Randomly select a new state
             BossState newState = (BossState)Random.Range(0, System.Enum.GetValues(typeof(BossState)).Length);
             // Set the current state to the new random state
@@ -159,7 +161,6 @@ public class BossMovement : MonoBehaviour
 
             // Cancel any ongoing invokes when changing state
 
-            yield return new WaitForSeconds(3f);
         }
     }
 
