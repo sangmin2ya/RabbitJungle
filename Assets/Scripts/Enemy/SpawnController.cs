@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SpawnController : MonoBehaviour
 {
-    private int SpawnCount = 0;
+    public int SpawnCount = 0;
     public GameObject shortEnemy;
     public GameObject LongEnemy;
 
@@ -63,8 +63,8 @@ public class SpawnController : MonoBehaviour
             {
                 Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity); // 기본 회전값으로 생성
                 spawnedEnemys++;
+                SpawnCount++;
             }
-            SpawnCount++;
         }
     }
     private void Update()
