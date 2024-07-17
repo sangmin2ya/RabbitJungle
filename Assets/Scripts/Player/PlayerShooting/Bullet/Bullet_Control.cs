@@ -19,13 +19,13 @@ public class Bullet_Control : MonoBehaviour
 
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!other.gameObject.CompareTag("Weapon") && !other.gameObject.CompareTag("Skill"))
+        if (!collision.collider.CompareTag("Weapon") && !collision.collider.gameObject.CompareTag("Skill"))
         {
             Destroy(gameObject);
         }
     }
-    
+
     
 }

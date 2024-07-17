@@ -39,15 +39,15 @@ public class SwingTheDagger : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword") 
         {
-            if(DataManager.Instance.firstClassChage)
+            //if(DataManager.Instance.firstClassChage)
             {
-                DataManager.Instance.Health--;
-                DataManager.Instance.Speed += 3f;
-                DataManager.Instance.Damage -= 0.5f;
-                DataManager.Instance.DashCount++;
-                DataManager.Instance.AttacSpeed += 300f;
+                DataManager.Instance.firstMaxHealth = 4;
+                DataManager.Instance.firstSpeed = 13f;
+                DataManager.Instance.firstDamage = 1.5f;
+                DataManager.Instance.firstDashCount = 3;
+                DataManager.Instance.firstAttackSpeed = 800f;
 
-                DataManager.Instance.firstClassChage = false;
+                //DataManager.Instance.firstClassChage = false;
             }
 
             if(!swordObject.activeSelf)
