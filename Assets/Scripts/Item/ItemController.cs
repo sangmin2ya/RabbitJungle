@@ -88,17 +88,17 @@ public class ItemController : MonoBehaviour
                 break;
             case "card4":
                 Debug.Log("공격속도증가!");
-                DataManager.Instance.additionalAttackSpeed -= 0.01f;
+                DataManager.Instance.additionalAttackSpeed -= 0.02f;
 
                 break;
             case "card5":
                 Debug.Log("이동속도증가!");
-                DataManager.Instance.additionalSpeed += 1;
+                DataManager.Instance.additionalSpeed += 1.5f;
 
                 break;
             case "card6":
                 Debug.Log("공격력증가!");
-                DataManager.Instance.additionalDamage += 0.2f;
+                DataManager.Instance.additionalDamage += 0.4f;
 
                 break;
             case "card7":
