@@ -65,7 +65,7 @@ public class Player_Control : MonoBehaviour
     //Toogle Map 
     private void toggleMap()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             map.SetActive(!map.activeSelf);
             keyGuide.SetActive(!keyGuide.activeSelf);

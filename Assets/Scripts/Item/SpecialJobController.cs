@@ -21,18 +21,20 @@ public class SpecialJobController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Show 3 selectable card prefabs on screen
-            specialJobsUI.SetActive(true);
-            // Change timescale to 0
-            foreach (var button in jobButtons)
-            {
-                button.gameObject.SetActive(true);
-                button.onClick.AddListener(() => OnJobSelected(button));
-            }
-
-            Time.timeScale = 0;
-            // Handle card selection
-            // Resume the game and destroy self when a card is selected
+            StartCoroutine("JobSelect");
+        }
+    }
+    IEnumerator JobSelect()
+    {
+        // Show 3 selectable card prefabs on screen
+        specialJobsUI.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 0;
+        // Change timescale to 0
+        foreach (var button in jobButtons)
+        {
+            button.gameObject.SetActive(true);
+            button.onClick.AddListener(() => OnJobSelected(button));
         }
     }
     private void OnJobSelected(UnityEngine.UI.Button selectedButton)
