@@ -13,6 +13,7 @@ public class DataManager : MonoBehaviour
     private float health;
     private float damage;
     private int dashCount;
+    private bool dashState;
     private string weapon;
     private string specialWeapon;
     private int bulletCount;
@@ -23,7 +24,7 @@ public class DataManager : MonoBehaviour
     public bool justCleared = false;
     public bool specialWeaponGet = false;   
     public bool epicSkill = false;
-    
+    public bool isDead = false;
     // getset 에 접근하게 해주는 프로퍼티
     public float Speed
     {
@@ -53,6 +54,12 @@ public class DataManager : MonoBehaviour
     {
         get { return dashCount; }
         set { dashCount = value; }
+    }
+
+    public bool DashState
+    {
+        get { return dashState; }
+        set { dashState = value; }
     }
 
     public string Weapon

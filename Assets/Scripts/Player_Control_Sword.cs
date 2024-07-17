@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Player_Control_Sword : MonoBehaviour
 {
@@ -8,15 +10,23 @@ public class Player_Control_Sword : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
     public float speed;
-    bool dashState = false;
-    Rigidbody2D myRigid;
-    float knockback = 100.0f;
+    //bool dashState = false;
+    //Rigidbody2D myRigid;
+    //float knockback = 100.0f;
+    int dashCount = 2;
+    float dashCoolTime = 0f;
+    public GameObject map;
+    public GameObject keyGuide;
+
+    GameObject DashManager;
     // Start is called before the first frame update
     void Start()
     {
-        speed = 10f;
-        //StartCoroutine("Flip");
-        myRigid = GetComponent<Rigidbody2D>();
+        speed = DataManager.Instance.Speed;
+        StartCoroutine("Flip");
+        //myRigid = GetComponent<Rigidbody2D>();
+        StartCoroutine("ChargeDash");
+        dashCount = DataManager.Instance.DashCount;
     }
 
     // Update is called once per frame
@@ -24,14 +34,15 @@ public class Player_Control_Sword : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-
+        Block();
+        toggleMap();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             baseSkill();
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        //else if (Input.GetKeyUp(KeyCode.Space))
         {
-            speed = 10.0f;
+            speed = DataManager.Instance.Speed;
         }
 
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * speed);
@@ -43,51 +54,174 @@ public class Player_Control_Sword : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
+    private void toggleMap()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            map.SetActive(!map.activeSelf);
+            keyGuide.SetActive(!keyGuide.activeSelf);
+        }
+    }
+
     public void baseSkill()
     {
-        speed = 20f;
-        StartCoroutine("DashCutter");
+        if(dashCount > 0)
+        {
+            GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(false);
+            dashCount--;
+            speed *= 3;
+            StartCoroutine("DashCutter");
+        }
     }
 
     IEnumerator DashCutter()
     {
-        dashState = true;
+        //dashState = true;
+        DataManager.Instance.DashState = true;
         this.gameObject.layer = 10;
         yield return new WaitForSeconds(0.25f);
-        dashState = false;
+        //dashState = false;
+        DataManager.Instance.DashState = false;
         this.gameObject.layer = 0;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    IEnumerator ChargeDash()
     {
-        if (collision.gameObject.CompareTag("Enemy")) //|| collision.gameObject.CompareTag("Boss"))
+        while(true)
         {
-            if (dashState)
+            yield return null;
+
+            if (dashCount < DataManager.Instance.DashCount)
             {
-                //Destroy(collision.gameObject);
+                dashCoolTime += Time.deltaTime;
+                if (dashCoolTime >= 3)
+                {
+                    dashCount++;
+                    GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(true);
+                    dashCoolTime = 0;
+                }
             }
             else
-            {
-                Debug.Log("�ƾ�!");
-            }
+                continue;
         }
+        
     }
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Enemy")) //|| collision.gameObject.CompareTag("Boss"))
+    //    {
+    //        if (dashState)
+    //        {
+    //            //Destroy(collision.gameObject);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("�ƾ�!");
+    //        }
+    //    }
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) //|| collision.gameObject.CompareTag("Boss"))
         {
-            if (dashState)
+            if (DataManager.Instance.DashState)
             {
-                // ü���� ��ų� ü���� ������ ���δ�.
-                //Destroy(collision.gameObject);
+                // attack damage to enemy based on character damage
+                // this will be managed by enemymanager
             }
             else
             {
-                Vector2 dir = transform.position - collision.gameObject.transform.position;
-                // �¾����� �÷��̾�� �������� �ش�
-                //
-                //myRigid.AddForce(dir.normalized * knockback);
+                //Vector2 dir = transform.position - collision.gameObject.transform.position;
+                DataManager.Instance.Health--;
+                if(DataManager.Instance.Health <= 0)
+                    DataManager.Instance.isDead = true;
+            }
+        }
+    }
+
+    IEnumerator Flip()
+    {
+        while (true)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+
+            yield return null;
+            if (horizontalInput < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else if (horizontalInput > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+
+        }
+    }
+
+    public void Block()
+    {
+        RaycastHit2D[] hitdown = Physics2D.RaycastAll(transform.position, Vector2.down);
+
+        for (int i = 0; i < hitdown.Length; i++)
+        {
+            if (hitdown[i].transform != null)
+            {
+                if (hitdown[i].distance < 1 && hitdown[i].collider.CompareTag("Wall"))
+                {
+                    if (verticalInput < 0)
+                    {
+                        verticalInput = 0;
+                    }
+                }
+
+            }
+        }
+
+        RaycastHit2D[] hitup = Physics2D.RaycastAll(transform.position, Vector2.up);
+        for (int i = 0; i < hitup.Length; i++)
+        {
+            if (hitup[i].transform != null)
+            {
+                if (hitup[i].distance < 1 && hitup[i].collider.CompareTag("Wall"))
+                {
+                    if (verticalInput > 0)
+                    {
+                        verticalInput = 0;
+                    }
+                }
+            }
+        }
+
+        RaycastHit2D[] hitleft = Physics2D.RaycastAll(transform.position, Vector2.left);
+        for (int i = 0; i < hitleft.Length; i++)
+        {
+            if (hitleft[i].transform != null)
+            {
+                if (hitleft[i].distance < 0.5 && hitleft[i].collider.CompareTag("Wall"))
+                {
+                    if (horizontalInput < 0)
+                    {
+                        horizontalInput = 0;
+                    }
+                }
+
+            }
+        }
+
+        RaycastHit2D[] hitright = Physics2D.RaycastAll(transform.position, Vector2.right);
+        for (int i = 0; i < hitright.Length; i++)
+        {
+            if (hitright[i].transform != null)
+            {
+                if (hitright[i].distance < 0.5 && hitright[i].collider.CompareTag("Wall"))
+                {
+                    if (horizontalInput > 0)
+                    {
+                        horizontalInput = 0;
+                    }
+                }
             }
         }
     }

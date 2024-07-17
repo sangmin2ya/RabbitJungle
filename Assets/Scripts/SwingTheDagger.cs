@@ -15,10 +15,6 @@ public class SwingTheDagger : MonoBehaviour
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
     Queue<GameObject> q = new Queue<GameObject>();
-    // you must get class identification number from player status
-    //int playerClass = 404;
-    public bool bClass = true;
-    //
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +25,7 @@ public class SwingTheDagger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && bClass) 
+        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword") 
         {
             if(!swordObject.activeSelf)
             {
@@ -46,7 +42,7 @@ public class SwingTheDagger : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && bClass)
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword")
         {
             deltaTime = 0;
 
