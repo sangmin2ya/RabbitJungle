@@ -76,25 +76,30 @@ public class ItemController : MonoBehaviour
                     DataManager.Instance.AxeDamage += 5;
                 break;
             case "card2":
-                DataManager.Instance.DashCount += 1;
+                DataManager.Instance.additionalDashCount += 1;
+                DataManager.Instance.DashCount = DataManager.Instance.firstDashCount + DataManager.Instance.additionalDashCount;
                 Debug.Log("대시추가!");
                 break;
             case "card3":
                 Debug.Log("체력추가!");
-                DataManager.Instance.MaxHealth += 1;
+                DataManager.Instance.additionalMaxHealth += 1;
+                DataManager.Instance.MaxHealth = DataManager.Instance.firstMaxHealth + DataManager.Instance.additionalMaxHealth;
                 DataManager.Instance.Health += 1;
                 break;
             case "card4":
                 Debug.Log("공격속도증가!");
-                DataManager.Instance.AttacSpeed -= 0.01f;
+                DataManager.Instance.additionalAttackSpeed -= 0.01f;
+                DataManager.Instance.AttacSpeed = DataManager.Instance.firstAttackSpeed + DataManager.Instance.additionalAttackSpeed;
                 break;
             case "card5":
                 Debug.Log("이동속도증가!");
-                DataManager.Instance.Speed += 1;
+                DataManager.Instance.additionalSpeed += 1;
+                DataManager.Instance.Speed = DataManager.Instance.firstSpeed + DataManager.Instance.additionalSpeed;
                 break;
             case "card6":
                 Debug.Log("공격력증가!");
-                DataManager.Instance.Damage += 0.2f;
+                DataManager.Instance.additionalDamage += 0.2f;
+                DataManager.Instance.Damage = DataManager.Instance.firstDamage + DataManager.Instance.additionalDamage;
                 break;
             case "card7":
                 Debug.Log("체력회복!");
