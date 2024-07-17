@@ -37,17 +37,27 @@ public class Player_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Player Movement
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        toggleMap();
-        Block();
-
-        baseSkill();
 
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * DataManager.Instance.Speed);
         transform.Translate(Vector2.up * verticalInput * Time.deltaTime * DataManager.Instance.Speed);
+        Block();
 
+        // Basic Movement Skill
+        baseSkill();
+
+        // Toogle Map
+        toggleMap();
+
+        // Special Weapon
+        if (DataManager.Instance.specialWeaponGet)
+        {
+            SpecialWeaponGet();
+        }
+
+        // Check Player Life
         PlayerDeath();
 
     }
@@ -160,28 +170,22 @@ public class Player_Control : MonoBehaviour
     }
 
     // player gun switch case
-    public void SpecialWeaponGet(int all)
+    public void SpecialWeaponGet()
     {
-        switch (all)
+        if(DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
         {
-            case 0:
-                playerGun[0].SetActive(true);
-                break;
-
-            case 1:
-                playerGun[1].SetActive(true);
-                playerGun[0].SetActive(false);
-                break;
-
-            case 2:
-                playerGun[2].SetActive(true);
-                playerGun[0].SetActive(false);
-                break;
-
-            case 3:
-                playerGun[3].SetActive(true);
-                playerGun[0].SetActive(false);
-                break;
+            playerGun[1].SetActive(true);
+            playerGun[0].SetActive(false);
+        }
+        else if(DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
+        {
+            playerGun[2].SetActive(true);
+            playerGun[0].SetActive(false);
+        }
+        else if(DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
+        {
+            playerGun[3].SetActive(true);
+            playerGun[0].SetActive(false);
         }
     }    
 
