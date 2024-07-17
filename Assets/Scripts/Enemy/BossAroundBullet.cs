@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BossAroundBullet : MonoBehaviour
 {
+    /*
     private float bulletSpeed = 10f;
     private Vector2 bulletDirection;
 
@@ -38,5 +39,5 @@ public class BossAroundBullet : MonoBehaviour
             Destroy(gameObject); // 탄막 제거
         }
     }
-
+*/
 }

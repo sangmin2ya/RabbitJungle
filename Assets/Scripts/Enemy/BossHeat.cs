@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class BossHeat : MonoBehaviour
 {
-    private float bossHP = 50.0f;
+    public float bossHP = 50.0f;
 
     // Start is called before the first frame update
     void Start()

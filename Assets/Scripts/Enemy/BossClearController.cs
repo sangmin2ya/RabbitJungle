@@ -42,7 +42,9 @@ public class BossClearController : MonoBehaviour
     {
         if (Cleared == false && Fighting == true)
         {
-            if (spawnedBoss <= 0)
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("BOSS");
+            gameObject.transform.parent.GetComponent<RoomData>().RemainedEnemy = enemies.Length;
+            if (enemies.Length <= 0)
             {
                 Cleared = true;
                 portalObject.SetActive(true);
@@ -72,6 +74,7 @@ public class BossClearController : MonoBehaviour
             {
                 Instantiate(Boss, spawnPosition, Quaternion.identity); // 기본 회전값으로 생성
                 spawnedBoss++;
+                Debug.Log("보스 변수 추가");
             }
         }
 
@@ -83,6 +86,7 @@ public class BossClearController : MonoBehaviour
         {
             SpawnBoss();
             Fighting = true;
+            Debug.Log("파이팅 트루");
         }
     }
 }

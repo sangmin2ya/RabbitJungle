@@ -92,7 +92,7 @@ public class BossMovement : MonoBehaviour
     {
         Instantiate(bossShootBulletPrefab, gameObject.transform.position, gameObject.transform.rotation); // 적 탄막 스폰 위치에서 적 탄막 생성
     }
-    void AroundBullet()
+    /*void AroundBullet()
     {
         int bulletCount = 10;
         float angleStep = 360f / bulletCount;
@@ -112,6 +112,7 @@ public class BossMovement : MonoBehaviour
             angle += angleStep;
         }
     }
+    */
 
     IEnumerator BossShootControl()
     {
@@ -125,8 +126,8 @@ public class BossMovement : MonoBehaviour
                 InvokeRepeating("ShootBullet", 0f, bossShootFireRate);
                 break;
             case BossShootState.Around:
-                //InvokeRepeating("ShootBullet", 0f, bossShootFireRate);
-                InvokeRepeating("AroundBullet", 0f, bossAroundFireRate);
+                InvokeRepeating("ShootBullet", 0f, bossShootFireRate);
+                //InvokeRepeating("AroundBullet", 0f, bossAroundFireRate);
                 break;
             case BossShootState.Stop:
                 break;
