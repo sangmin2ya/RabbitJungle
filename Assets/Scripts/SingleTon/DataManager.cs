@@ -5,7 +5,7 @@ using UnityEngine;
 public class DataManager : MonoBehaviour
 {
     // 싱글턴 인스턴스
-    private static DataManager instance;
+    public static DataManager Instance { get; private set; }
 
     // Private fields for user stats
     private int stageLevel;
@@ -121,36 +121,20 @@ public class DataManager : MonoBehaviour
         get { return axeDamage; }
         set { axeDamage = value; }
     }
-    // Public property to access the singleton instance
-    public static DataManager Instance
-    {
-        get
-        {
-            // If the instance is null, find or create the DataManager object
-            if (instance == null)
-            {
-                instance = FindObjectOfType<DataManager>();
-
-                // 없다면 새로제작
-                if (instance == null)
-                {
-                    GameObject obj = new GameObject("DataManager");
-                    instance = obj.AddComponent<DataManager>();
-                }
-                DontDestroyOnLoad(instance.gameObject);
-            }
-            return instance;
-        }
-    }
 
     // Optional: Add any additional methods or functionality here
 
-    private void Awake()
+    void Awake()
     {
-        // Ensure that only one instance of DataManager exists
-        if (instance != null && instance != this)
+        // 싱글톤 패턴 구현
+        if (Instance == null)
         {
-            Destroy(this.gameObject);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }

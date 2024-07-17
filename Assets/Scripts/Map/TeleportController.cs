@@ -35,12 +35,14 @@ public class TeleportController : MonoBehaviour
         {
             Debug.Log("지정된 오브젝트와 방의 충돌 감지!");
             if (collision.transform.parent.GetComponent<RoomData>().RoomType != RoomType.Boss.ToString())
+            {
                 if (prevRoom != null)
                 {
                     prevRoom.SetActive(false);
                 }
-            prevRoom = collision.transform.GetChild(0).gameObject;
-            prevRoom.SetActive(true);
+                prevRoom = collision.transform.GetChild(0).gameObject;
+                prevRoom.SetActive(true);
+            }
         }
     }
 }
