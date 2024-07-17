@@ -56,6 +56,7 @@ public class SpecialJobController : MonoBehaviour
     private void ApplyJobEffect(string jobName)
     {
         DataManager.Instance.specialWeaponGet = true;
+        DataManager.Instance.firstClassChage = true;
         DataManager.Instance.epicSkill = false;
         switch (jobName)
         {
