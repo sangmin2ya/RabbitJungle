@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6949863205462767701}
   - component: {fileID: 8217788600299625634}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Bullit_Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

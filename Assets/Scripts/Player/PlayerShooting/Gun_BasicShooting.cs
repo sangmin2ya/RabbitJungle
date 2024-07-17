@@ -23,7 +23,6 @@ public class Gun_Basic_Shooting : MonoBehaviour
 
     public bool isReloading;
 
-    //public TextMeshProUGUI ammoText;
 
     public BulletUIManager bulletUIManager;
 

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TMPro;
+using UnityEngine.UI;
+
 public class ShotGun_Skill : MonoBehaviour
 {
     public GameObject bigBullet;
@@ -11,10 +14,15 @@ public class ShotGun_Skill : MonoBehaviour
     public GameObject rotation;
     public int ShootBulletCount;
 
-    public float coolTime;
-    public float time;
+    public float skillCoolTime;
+    public float skillCool;
+    private float coolTIme;
 
     public bool epicSkill;
+
+    public GameObject[] CoolDownUI;
+    public TextMeshProUGUI skillCoolDownText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +35,7 @@ public class ShotGun_Skill : MonoBehaviour
     {
         if (epicSkill)
         {
-            if (Input.GetMouseButton(1) && time > coolTime)
+            if (Input.GetMouseButton(1) && skillCool > skillCoolTime)
             {
                 for (int i = 0; i < 2; i++)
                 {
@@ -42,10 +50,33 @@ public class ShotGun_Skill : MonoBehaviour
                 }
 
                 Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
-                time = 0;
+                skillCool = 0;
+                for (int i = 0; i < CoolDownUI.Length; i++)
+                {
+                    CoolDownUI[i].SetActive(true);
+                }
             }
-            time = time + Time.deltaTime;
+
+            skillCool = skillCool + Time.deltaTime;
+
+
+            if (skillCoolTime - skillCool > 0)
+            {
+                coolTIme = skillCoolTime - skillCool;
+            }
+            else if (skillCoolTime - skillCool < 0)
+            {
+                for (int i = 0; i < CoolDownUI.Length; i++)
+                {
+                    CoolDownUI[i].SetActive(false);
+                }
+            }
+
+            skillCool = skillCool + Time.deltaTime;
+            skillCoolDownText.text = coolTIme.ToString("0.0");
+
+
         }
-            
+
     }
 }

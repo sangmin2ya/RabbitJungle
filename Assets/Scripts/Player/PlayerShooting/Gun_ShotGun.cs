@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 
 
-public class Gun_ShotHun : MonoBehaviour
+public class Gun_ShotGun : MonoBehaviour
 {
 
     public int maxAmmo;
@@ -23,12 +23,13 @@ public class Gun_ShotHun : MonoBehaviour
 
     public bool isReloading;
 
+    public BulletUIManager bulletUIManager;
 
     // Start is called before the first frame update
     void Start()
     {
         ammo = maxAmmo;
-
+        bulletUIManager.SetBulletCount(ammo);
     }
 
     // Update is called once per frame
@@ -47,6 +48,7 @@ public class Gun_ShotHun : MonoBehaviour
                 Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
 
                 ammo = ammo-1;
+                bulletUIManager.SetBulletCount(ammo);
                 shotTime = Time.time + timeBetweenShots;
             }
 
@@ -72,6 +74,7 @@ public class Gun_ShotHun : MonoBehaviour
         isReloading = true;
         yield return new WaitForSeconds(1);
         ammo = maxAmmo;
+        bulletUIManager.SetBulletCount(ammo);
         isReloading = false;
     }
 

@@ -9,17 +9,20 @@ using UnityEngine.UI;
 
 public class Player_Control : MonoBehaviour
 {
-
+    // Player Movement
     public float horizontalInput;
     public float verticalInput;
+    
+    // Player UI
     public GameObject map;
     public GameObject keyGuide;
-    private bool dashState = false;
-    public GameObject player;
-
     public HealthUIManager healthUIManager;
 
+    // Dash
+    private bool dashState = false;
 
+    // Player Gun
+    public GameObject[] playerGun;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +51,8 @@ public class Player_Control : MonoBehaviour
         PlayerDeath();
 
     }
+
+    //Toogle Map 
     private void toggleMap()
     {
         if (Input.GetKeyDown(KeyCode.M))
@@ -56,22 +61,11 @@ public class Player_Control : MonoBehaviour
             keyGuide.SetActive(!keyGuide.activeSelf);
         }
     }
-    public void baseSkill()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && dashState == false)
-        {
-            BaseSkill();
-            DataManager.Instance.DashCount--;
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            DataManager.Instance.Speed = 10.0f;
-        }
-    }
 
-    public void Block()
+    // player move block 
+    private void Block()
     {
-        RaycastHit2D[] hitdown = Physics2D.RaycastAll(player.transform.position, Vector2.down);
+        RaycastHit2D[] hitdown = Physics2D.RaycastAll(transform.position, Vector2.down);
 
         for (int i = 0; i < hitdown.Length; i++)
         {
@@ -88,7 +82,7 @@ public class Player_Control : MonoBehaviour
             }
         }
 
-        RaycastHit2D[] hitup = Physics2D.RaycastAll(player.transform.position, Vector2.up);
+        RaycastHit2D[] hitup = Physics2D.RaycastAll(transform.position, Vector2.up);
         for (int i = 0; i < hitup.Length; i++)
         {
             if (hitup[i].transform != null)
@@ -103,7 +97,7 @@ public class Player_Control : MonoBehaviour
             }
         }
 
-        RaycastHit2D[] hitleft = Physics2D.RaycastAll(player.transform.position, Vector2.left);
+        RaycastHit2D[] hitleft = Physics2D.RaycastAll(transform.position, Vector2.left);
         for (int i = 0; i < hitleft.Length; i++)
         {
             if (hitleft[i].transform != null)
@@ -119,7 +113,7 @@ public class Player_Control : MonoBehaviour
             }
         }
 
-        RaycastHit2D[] hitright = Physics2D.RaycastAll(player.transform.position, Vector2.right);
+        RaycastHit2D[] hitright = Physics2D.RaycastAll(transform.position, Vector2.right);
         for (int i = 0; i < hitright.Length; i++)
         {
             if (hitright[i].transform != null)
@@ -135,20 +129,61 @@ public class Player_Control : MonoBehaviour
         }
     }
 
-  
-
-    public void PlayerDeath()
+    // player Death
+    private void PlayerDeath()
     {
         if (DataManager.Instance.Health <= 0)
         {
             Destroy(gameObject);
         }
     }
-    public void BaseSkill()
+
+    // player movement skill
+    public void baseSkill()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && dashState == false)
+        {
+            BaseSkill();
+            DataManager.Instance.DashCount--;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            DataManager.Instance.Speed = 10.0f;
+        }
+    }
+
+    // player movement skill
+    private void BaseSkill()
     {
         DataManager.Instance.Speed = 40;
         StartCoroutine("DashCutter");
     }
+
+    // player gun switch case
+    public void SpecialWeaponGet(int all)
+    {
+        switch (all)
+        {
+            case 0:
+                playerGun[0].SetActive(true);
+                break;
+
+            case 1:
+                playerGun[1].SetActive(true);
+                playerGun[0].SetActive(false);
+                break;
+
+            case 2:
+                playerGun[2].SetActive(true);
+                playerGun[0].SetActive(false);
+                break;
+
+            case 3:
+                playerGun[3].SetActive(true);
+                playerGun[0].SetActive(false);
+                break;
+        }
+    }    
 
     IEnumerator Flip()
     {
@@ -176,7 +211,7 @@ public class Player_Control : MonoBehaviour
         this.gameObject.layer = 0;
     }
 
-
+    // oncollision update
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Enemy"))
