@@ -60,7 +60,14 @@ public class ShotGun_Skill : MonoBehaviour
                 skillCool = 0;
                 for (int i = 0; i < CoolDownUI.Length; i++)
                 {
-                    CoolDownUI[i].SetActive(true);
+                    if (CoolDownUI[i] != null)
+                    {
+                        CoolDownUI[i].SetActive(true);
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
 
@@ -75,7 +82,14 @@ public class ShotGun_Skill : MonoBehaviour
             {
                 for (int i = 0; i < CoolDownUI.Length; i++)
                 {
-                    CoolDownUI[i].SetActive(false);
+                    if (CoolDownUI[i] != null)
+                    {
+                        CoolDownUI[i].SetActive(false);
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
 

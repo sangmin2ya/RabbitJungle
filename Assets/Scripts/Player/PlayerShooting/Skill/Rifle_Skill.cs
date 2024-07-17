@@ -66,7 +66,14 @@ public class Rifle_Skill : MonoBehaviour
 
                     for (int i = 0; i < CoolDownUI.Length; i++)
                     {
-                        CoolDownUI[i].SetActive(true);
+                        if (CoolDownUI[i] != null)
+                        {
+                            CoolDownUI[i].SetActive(true);
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -79,7 +86,14 @@ public class Rifle_Skill : MonoBehaviour
             {
                 for (int i = 0; i < CoolDownUI.Length; i++)
                 {
-                    CoolDownUI[i].SetActive(false);
+                    if (CoolDownUI[i] != null)
+                    {
+                        CoolDownUI[i].SetActive(false);
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
 

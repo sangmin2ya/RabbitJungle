@@ -24,6 +24,9 @@ public class PlayerSpawnController : MonoBehaviour
             go.GetComponent<Player_Control>().healthUIManager = GameObject.Find("Battle_Ui").transform.GetComponentInChildren<HealthUIManager>();
 
             go.transform.Find("GameObject").transform.Find("Basic Gun").gameObject.GetComponent<Gun_Basic_Shooting>().bulletUIManager = GameObject.Find("Battle_Ui").transform.GetComponentInChildren<BulletUIManager>();
+            go.transform.Find("GameObject").transform.Find("Rifle").gameObject.GetComponent<Gun_Rifle>().bulletUIManager = GameObject.Find("Battle_Ui").transform.GetComponentInChildren<BulletUIManager>();
+            go.transform.Find("GameObject").transform.Find("ShotGun").gameObject.GetComponent<Gun_ShotGun>().bulletUIManager = GameObject.Find("Battle_Ui").transform.GetComponentInChildren<BulletUIManager>();
+            go.transform.Find("GameObject").transform.Find("Sniper").gameObject.GetComponent<Gun_Basic_Shooting>().bulletUIManager = GameObject.Find("Battle_Ui").transform.GetComponentInChildren<BulletUIManager>();
 
         }
         else

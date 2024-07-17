@@ -26,7 +26,6 @@ public class Player_Control : MonoBehaviour
     private float dashTimer = 0f;
     private int dashCount;
     public float dashCoolTime = 0f;
-    //private Rigidbody2D rb;
 
     // Player Gun
     public GameObject[] playerGun;
@@ -59,9 +58,10 @@ public class Player_Control : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
+        Block();
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * DataManager.Instance.Speed);
         transform.Translate(Vector2.up * verticalInput * Time.deltaTime * DataManager.Instance.Speed);
-        Block();
+
 
         // Basic Movement Skill
         baseSkill();
@@ -77,7 +77,7 @@ public class Player_Control : MonoBehaviour
 
         // Check Player Life
         PlayerDeath();
-
+        healthUIManager.SethealthCount(DataManager.Instance.Health);
     }
 
     //Toogle Map 
@@ -181,7 +181,7 @@ public class Player_Control : MonoBehaviour
 
         if (isDashing)
         {
-            //Dash();
+            Dash();
         }
     }
 
@@ -199,7 +199,7 @@ public class Player_Control : MonoBehaviour
             StartCoroutine("DashCutter");
         }
     }
-    /*
+    
     void Dash()
     {
         dashTimer -= Time.deltaTime;
@@ -215,7 +215,7 @@ public class Player_Control : MonoBehaviour
             //DataManager.Instance.Speed = DataManager.Instance.Speed;
         }
     }
-    */
+    
 
     // player gun switch case
     public void SpecialWeaponGet()
@@ -296,17 +296,6 @@ public class Player_Control : MonoBehaviour
         }
 
     }
-    // oncollision update
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.collider.CompareTag("Enemy"))
-    //    {
-    //        DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
-    //        healthUIManager.SethealthCount(DataManager.Instance.Health);
-    //        if (DataManager.Instance.Health <= 0)
-    //            DataManager.Instance.isDead = true;
-    //    }
-    //}
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -316,7 +305,7 @@ public class Player_Control : MonoBehaviour
             {
                 DataManager.Instance.beHit = true;
                 DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
-                healthUIManager.SethealthCount(DataManager.Instance.Health);
+
                 if (DataManager.Instance.Health <= 0)
                 {
                     DataManager.Instance.beHit = false;
