@@ -206,7 +206,7 @@ public class BossHeat : MonoBehaviour
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.LongSword.ToString())
                 {
                     Debug.Log("대검 스킬 맞음!");
-                    bossHP -= DataManager.Instance.SkillDamage;
+                    bossHP -= DataManager.Instance.Damage * 5f;
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
                 {
@@ -231,7 +231,7 @@ public class BossHeat : MonoBehaviour
                 else
                 {
                     Debug.Log("모르는 스킬 맞음!");
-                    bossHP -= DataManager.Instance.SkillDamage;
+                    bossHP -= DataManager.Instance.Damage * 2.5f;
                 }
             }
             else
