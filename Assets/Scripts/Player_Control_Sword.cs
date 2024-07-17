@@ -10,7 +10,7 @@ public class Player_Control_Sword : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
     public float speed;
-    bool dashState = false;
+    //bool dashState = false;
     Rigidbody2D myRigid;
     float knockback = 100.0f;
     int dashCount = 2;
@@ -63,10 +63,12 @@ public class Player_Control_Sword : MonoBehaviour
 
     IEnumerator DashCutter()
     {
-        dashState = true;
+        //dashState = true;
+        DataManager.Instance.DashState = true;
         this.gameObject.layer = 10;
         yield return new WaitForSeconds(0.25f);
-        dashState = false;
+        //dashState = false;
+        DataManager.Instance.DashState = false;
         this.gameObject.layer = 0;
     }
 

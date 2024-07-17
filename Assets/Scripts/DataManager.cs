@@ -13,6 +13,7 @@ public class DataManager : MonoBehaviour
     private float health;
     private float damage;
     private int dashCount;
+    private bool dashState;
     private string weapon;
     private string specialWeapon;
     private int bulletCount;
@@ -52,6 +53,12 @@ public class DataManager : MonoBehaviour
     {
         get { return dashCount; }
         set { dashCount = value; }
+    }
+
+    public bool DashState
+    {
+        get { return dashState; }
+        set { dashState = value; }
     }
 
     public string Weapon
