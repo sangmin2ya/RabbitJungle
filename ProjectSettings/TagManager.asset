@@ -12,6 +12,7 @@ TagManager:
   - Skill
   - BOSS
   - EnemyNumber
+  - ITEM
   layers:
   - Default
   - TransparentFX
