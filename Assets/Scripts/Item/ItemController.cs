@@ -66,6 +66,7 @@ public class ItemController : MonoBehaviour
         {
             case "card1":
                 Debug.Log("에픽스킬!");
+                DataManager.Instance.epicSkill = true;
                 if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
                     DataManager.Instance.ShurikenDamage += 2;
                 if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.LongSword.ToString())
@@ -111,8 +112,8 @@ public class ItemController : MonoBehaviour
     private GameObject RandcomCard()
     {
         GameObject card = null;
-        int rand = DataManager.Instance.epicSkill ? Random.Range(1, 18) : Random.Range(2, 18);
-        if (rand == 1)
+        int rand = DataManager.Instance.specialWeaponGet ? Random.Range(1, 22) : Random.Range(6, 22);
+        if (rand <= 5 && !DataManager.Instance.epicSkill)
         {
             string effect = "";
             if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
@@ -133,10 +134,10 @@ public class ItemController : MonoBehaviour
             card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Now, you can kill them all....";
             card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = effect;
         }
-        else if (rand <= 3)
+        else if (rand <= 7)
         {
             card = Instantiate(epicCard, CardSelectUI.transform);
-            if (rand == 2)
+            if (rand == 6)
             {
                 card.gameObject.name = "card2";
                 card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "DASH COUNT + 1";
