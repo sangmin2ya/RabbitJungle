@@ -11,10 +11,12 @@ public class Player_Control_Sword : MonoBehaviour
     public float verticalInput;
     public float speed;
     //bool dashState = false;
-    Rigidbody2D myRigid;
-    float knockback = 100.0f;
-    int dashCount = 2;
+    //Rigidbody2D myRigid;
+    //float knockback = 100.0f;
+    //int dashCount = 2;
     float dashCoolTime = 0f;
+    public GameObject map;
+    public GameObject keyGuide;
 
     GameObject DashManager;
     // Start is called before the first frame update
@@ -22,7 +24,7 @@ public class Player_Control_Sword : MonoBehaviour
     {
         speed = DataManager.Instance.Speed;
         StartCoroutine("Flip");
-        myRigid = GetComponent<Rigidbody2D>();
+        //myRigid = GetComponent<Rigidbody2D>();
         StartCoroutine("ChargeDash");
     }
 
@@ -32,6 +34,7 @@ public class Player_Control_Sword : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
         Block();
+        toggleMap();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             baseSkill();
@@ -48,6 +51,15 @@ public class Player_Control_Sword : MonoBehaviour
     private void FixedUpdate()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
+
+    private void toggleMap()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            map.SetActive(!map.activeSelf);
+            keyGuide.SetActive(!keyGuide.activeSelf);
+        }
     }
 
     public void baseSkill()

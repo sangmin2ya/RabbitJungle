@@ -14,10 +14,6 @@ public class SwingTheAxe : MonoBehaviour
     float coolTime = 2.5f;
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
-    // you must get class identification number from player status
-    int playerClass = 404; // 
-    public bool bClass = true;
-    //
 
     // Start is called before the first frame update
     void Start()

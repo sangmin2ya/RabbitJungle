@@ -13,15 +13,24 @@ public class PlayerSpawnController : MonoBehaviour
     void Start()
     {
         GameObject go;
+        GameObject map = GameObject.Find("Canvas").transform.Find("Map").gameObject;
+        GameObject keyGuide = GameObject.Find("Canvas").transform.Find("KeyGuide").gameObject;
         if (DataManager.Instance.Weapon == WeaponType.Gun.ToString())
         {
             go = Instantiate(Player_Gun, new Vector3(0, 0, 0), Player_Gun.transform.rotation);
+            go.GetComponent<Player_Control>().map = map;
+            go.GetComponent<Player_Control>().keyGuide = keyGuide;
         }
         else
         {
             go = Instantiate(Player_Sword, new Vector3(0, 0, 0), Player_Sword.transform.rotation);
+            go.GetComponent<Player_Control_Sword>().map = map;
+            go.GetComponent<Player_Control_Sword>().keyGuide = keyGuide;
         }
         characterCamera.GetComponent<CinemachineVirtualCamera>().Follow = go.transform;
+
+        
+        
     }
 
     // Update is called once per frame

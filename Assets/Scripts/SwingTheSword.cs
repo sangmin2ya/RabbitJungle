@@ -15,10 +15,6 @@ public class SwingTheSword : MonoBehaviour
     float coolTime = 10.0f;
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
-    // you must get class identification number from player status
-    //int playerClass = 404; // 
-    public bool bClass = true;
-    //
 
     // Start is called before the first frame update
     void Start()
