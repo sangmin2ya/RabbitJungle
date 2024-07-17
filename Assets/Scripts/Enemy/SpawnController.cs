@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SpawnController : MonoBehaviour
 {
+    private int SpawnCount = 0;
     public GameObject shortEnemy;
     public GameObject LongEnemy;
 
@@ -72,7 +73,7 @@ public class SpawnController : MonoBehaviour
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("EnemyNumber");
             gameObject.transform.parent.GetComponent<RoomData>().RemainedEnemy = enemies.Length;
 
-            if (gameObject.transform.parent.GetComponent<RoomData>().RemainedEnemy <= 0 && gameObject.transform.parent.GetComponent<RoomData>().RoomType == RoomType.Battle.ToString())
+            if (SpawnCount >= 3 && gameObject.transform.parent.GetComponent<RoomData>().RemainedEnemy <= 0 && gameObject.transform.parent.GetComponent<RoomData>().RoomType == RoomType.Battle.ToString())
             {
                 //set currentMap cleared
                 Debug.Log("클리어!");
@@ -89,9 +90,12 @@ public class SpawnController : MonoBehaviour
         {
             // spawnEnemies
             SpawnEnemies();
+            SpawnCount++;
             visited = true;
             Invoke("SpawnEnemies", 3.0f);// spawn once more
+            SpawnCount++;
             Invoke("SpawnEnemies", 6.0f);// spawn twice more
+            SpawnCount++;
 
         }
     }

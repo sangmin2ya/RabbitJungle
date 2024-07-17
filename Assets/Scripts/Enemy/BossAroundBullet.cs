@@ -12,17 +12,14 @@ public class BossAroundBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //플레이어 위치 인식
-        playerTransform = GameObject.FindWithTag("Player").transform;
-        //플레이어 위치와 몬스터 위치 기반으로 방향 설정
+
+        //몬스터 위치 기반으로 방향 설정
         bulletDirection = (playerTransform.position - transform.position).normalized;
 
     }
 
     void Update()
     {
-        // update bullet transform position by delta time
-        transform.position += (Vector3)(bulletDirection * bulletSpeed * Time.deltaTime);
 
     }
 

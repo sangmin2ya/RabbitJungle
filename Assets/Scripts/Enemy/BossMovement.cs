@@ -94,6 +94,24 @@ public class BossMovement : MonoBehaviour
     }
     void AroundBullet()
     {
+        int bulletCount = 10;
+        float angleStep = 360f / bulletCount;
+        float angle = 0f;
+
+        for (int i = 0; i < bulletCount; i++)
+        {
+            float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
+            float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
+
+            Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+            Vector2 bulDir = (bulMoveVector - transform.position).normalized;
+
+            GameObject bullet = Instantiate(bossAroundBulletPrefab, transform.position, Quaternion.identity);
+            bullet.GetComponent<Rigidbody2D>().velocity = bulDir * 10f;
+
+            angle += angleStep;
+        }
+
         Instantiate(bossAroundBulletPrefab, gameObject.transform.position, gameObject.transform.rotation); // 적 탄막 스폰 위치에서 적 탄막 생성
     }
 
@@ -109,7 +127,8 @@ public class BossMovement : MonoBehaviour
                 InvokeRepeating("ShootBullet", 0f, bossShootFireRate);
                 break;
             case BossShootState.Around:
-                InvokeRepeating("AroundBullet", 0f, bossAroundFireRate);
+                InvokeRepeating("ShootBullet", 0f, bossShootFireRate);
+                //InvokeRepeating("AroundBullet", 0f, bossAroundFireRate);
                 break;
             case BossShootState.Stop:
                 break;
