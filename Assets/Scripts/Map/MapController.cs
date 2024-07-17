@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,13 +14,13 @@ public class MapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.parent.GetComponent<RoomData>().RoomType == RoomType.Cleared.ToString())
+        if (transform.parent.GetComponent<RoomData>().RoomType == RoomType.Cleared.ToString() || transform.parent.GetComponent<RoomData>().RoomType == RoomType.Item.ToString())
+        {
+            for (int i = 1; i < 5; i++)
             {
-                for(int i = 1; i < 5; i++)
-                {
-                    transform.parent.GetChild(i).GetChild(0).GetChild(0).gameObject.SetActive(true);
-                }
+                transform.parent.GetChild(i).GetChild(0).GetChild(0).gameObject.SetActive(true);
             }
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
