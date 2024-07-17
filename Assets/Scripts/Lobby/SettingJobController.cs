@@ -45,7 +45,7 @@ public class SettingJobController : MonoBehaviour
         DataManager.Instance.Damage = 2f;
         DataManager.Instance.DashCount = 2;
         DataManager.Instance.DashState = false;
-        DataManager.Instance.AttacSpeed = 0.25f;
+        DataManager.Instance.AttacSpeed = 500f;
         DataManager.Instance.Weapon = WeaponType.Sword.ToString();
         DataManager.Instance.SwordLength = 2f;
         DataManager.Instance.AxeDamage = 5f;

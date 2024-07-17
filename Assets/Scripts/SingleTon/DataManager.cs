@@ -25,6 +25,7 @@ public class DataManager : MonoBehaviour
     public bool specialWeaponGet = false;   
     public bool epicSkill = false;
     public bool isDead = false;
+
     // getset 에 접근하게 해주는 프로퍼티
     public float Speed
     {

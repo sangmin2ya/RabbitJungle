@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,12 +15,24 @@ public class SwingTheDagger : MonoBehaviour
     float coolTime = 0.5f;
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
+    bool firstClassChange = true;
+
     Queue<GameObject> q = new Queue<GameObject>();
+
+    public GameObject[] CoolDownUI;
+    public TextMeshProUGUI skillCoolDownText;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        CoolDownUI = new GameObject[10];
+
+        for (int i = 0; i < GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
+        {
+            CoolDownUI[i] = GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.GetChild(i).gameObject;
+            if (CoolDownUI[i].name.Contains("Text"))
+                skillCoolDownText = CoolDownUI[i].transform.GetComponent<TextMeshProUGUI>();
+        }
     }
 
     // Update is called once per frame
@@ -27,6 +40,17 @@ public class SwingTheDagger : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword") 
         {
+            if(firstClassChange)
+            {
+                DataManager.Instance.Health--;
+                DataManager.Instance.Speed += 3f;
+                DataManager.Instance.Damage -= 0.5f;
+                DataManager.Instance.DashCount++;
+                DataManager.Instance.AttacSpeed += 300f;
+
+                firstClassChange = false;
+            }
+
             if(!swordObject.activeSelf)
             {
                 swordObject.SetActive(true);
@@ -45,6 +69,13 @@ public class SwingTheDagger : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword")
         {
             deltaTime = 0;
+
+            for (int i = 0; i < CoolDownUI.Length; i++)
+            {
+                if (CoolDownUI[i] == null)
+                    break;
+                CoolDownUI[i].SetActive(true);
+            }
 
             StartCoroutine(PowerSlash(0f));
         }
@@ -91,6 +122,18 @@ public class SwingTheDagger : MonoBehaviour
             powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
             deltaTime += Time.deltaTime;
             t += Time.deltaTime;
+
+            skillCoolDownText.text = (coolTime - deltaTime).ToString("0.0");
+
+            if(deltaTime >= coolTime && CoolDownUI[0].activeSelf)
+            {
+                for (int i = 0; i < CoolDownUI.Length; i++)
+                {
+                    if (CoolDownUI[i] == null)
+                        break;
+                    CoolDownUI[i].SetActive(false);
+                }
+            }
 
             if (t >= lifespan)
             {
