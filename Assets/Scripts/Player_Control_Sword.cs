@@ -10,23 +10,25 @@ public class Player_Control_Sword : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
     public float speed;
-    //bool dashState = false;
-    //Rigidbody2D myRigid;
-    //float knockback = 100.0f;
     int dashCount = 2;
     float dashCoolTime = 0f;
+
+    // UI
     public GameObject map;
     public GameObject keyGuide;
-
+    public HealthUIManager healthUIManager;
     GameObject DashManager;
+    //
+
     // Start is called before the first frame update
     void Start()
     {
         speed = DataManager.Instance.Speed;
         StartCoroutine("Flip");
-        //myRigid = GetComponent<Rigidbody2D>();
         StartCoroutine("ChargeDash");
+        StartCoroutine("HitDelay");
         dashCount = DataManager.Instance.DashCount;
+        healthUIManager.SethealthCount(DataManager.Instance.Health);
     }
 
     // Update is called once per frame
@@ -40,7 +42,7 @@ public class Player_Control_Sword : MonoBehaviour
         {
             baseSkill();
         }
-        //else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.Space))
         {
             speed = DataManager.Instance.Speed;
         }
@@ -56,7 +58,7 @@ public class Player_Control_Sword : MonoBehaviour
 
     private void toggleMap()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             map.SetActive(!map.activeSelf);
             keyGuide.SetActive(!keyGuide.activeSelf);
@@ -122,7 +124,8 @@ public class Player_Control_Sword : MonoBehaviour
     //    }
     //}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) //|| collision.gameObject.CompareTag("Boss"))
         {
@@ -133,10 +136,17 @@ public class Player_Control_Sword : MonoBehaviour
             }
             else
             {
-                //Vector2 dir = transform.position - collision.gameObject.transform.position;
-                DataManager.Instance.Health--;
-                if(DataManager.Instance.Health <= 0)
-                    DataManager.Instance.isDead = true;
+                if (!DataManager.Instance.beHit)
+                {
+                    DataManager.Instance.beHit = true;
+                    DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
+                    healthUIManager.SethealthCount(DataManager.Instance.Health);
+                    if (DataManager.Instance.Health <= 0)
+                    {
+                        DataManager.Instance.beHit = false;
+                        DataManager.Instance.isDead = true;
+                    }
+                }
             }
         }
     }
@@ -159,6 +169,26 @@ public class Player_Control_Sword : MonoBehaviour
 
         }
     }
+
+    IEnumerator HitDelay()
+    {
+        float hitDelay = 0f;
+
+        while (true)
+        {
+            yield return null;
+
+            if (DataManager.Instance.beHit)
+            {
+                hitDelay += Time.deltaTime;
+                if (hitDelay >= 0.5f)
+                {
+                    hitDelay = 0f;
+                    DataManager.Instance.beHit = false;
+                }
+            }
+        }
+}
 
     public void Block()
     {

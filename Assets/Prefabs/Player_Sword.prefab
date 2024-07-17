@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1755887381086503328}
   - component: {fileID: 771370138934000585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject_Dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,8 @@ MonoBehaviour:
   swingSpeed: 500
   swordObject: {fileID: 1757577849678783635}
   yeolpacham: {fileID: 4818846464989482171, guid: 59bf6a19eb4940e42a6b68d7045ede9a, type: 3}
-  bClass: 0
+  CoolDownUI: []
+  skillCoolDownText: {fileID: 0}
 --- !u!1 &1337120756163938214
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6293414699479823312}
   - component: {fileID: 2529101185172690642}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ear1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +146,7 @@ GameObject:
   - component: {fileID: 7719227137774998437}
   - component: {fileID: 7682905090026061953}
   - component: {fileID: 1829861652474552352}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dagger
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -286,7 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3536830569433444754}
   - component: {fileID: 5782648368069979271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5248575500543557540}
   - component: {fileID: 1743438419210111812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4490292616498475526}
   - component: {fileID: 3107308875047542477}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ear2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1100899432972945204}
   - component: {fileID: 5560885438240567648}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DirectionTri
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,7 +592,7 @@ GameObject:
   - component: {fileID: 6485906204805013485}
   - component: {fileID: 5342992778506004751}
   - component: {fileID: 3524503044742956902}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LargeSword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -732,7 +733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9086856635831075427}
   - component: {fileID: 1169274197422022049}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6696246472662610421}
   - component: {fileID: 5900384054272604265}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -900,7 +901,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2302907038766221696}
   - component: {fileID: 5213616335384643159}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3059614126069165137}
   - component: {fileID: 2215637332348983385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject_LargeSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1022,7 +1023,8 @@ MonoBehaviour:
   swingSpeed: 500
   swordObject: {fileID: 3766983912841039124}
   yeolpacham: {fileID: 3408802039458060981, guid: a960019e6bb1e56468ab24d109632e37, type: 3}
-  bClass: 0
+  CoolDownUI: []
+  skillCoolDownText: {fileID: 0}
 --- !u!1 &6274113355820334977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,7 +1035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4506976814718176877}
   - component: {fileID: 8277682915529559403}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1117,7 +1119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8630755525638364682}
   - component: {fileID: 871707329936181743}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject_Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1155,7 +1157,8 @@ MonoBehaviour:
   swingSpeed: 500
   swordObject: {fileID: 8621491571741686359}
   yeolpacham: {fileID: 2910732252225718160, guid: e626c5a59ecb6b1478b794a5801a79c0, type: 3}
-  bClass: 0
+  CoolDownUI: []
+  skillCoolDownText: {fileID: 0}
 --- !u!1 &7527813208889520550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,7 +1169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1694505308059912120}
   - component: {fileID: 2696536759299446703}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject _Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1204,7 +1207,8 @@ MonoBehaviour:
   swingSpeed: 500
   swordObject: {fileID: 8817055568149065895}
   yeolpacham: {fileID: 3408802039458060981, guid: a960019e6bb1e56468ab24d109632e37, type: 3}
-  bClass: 1
+  CoolDownUI: []
+  skillCoolDownText: {fileID: 0}
 --- !u!1 &8621491571741686359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1220,7 @@ GameObject:
   - component: {fileID: 3176703415850328753}
   - component: {fileID: 6377036110674717844}
   - component: {fileID: 5313772297635851575}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Axe
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1309,7 +1313,7 @@ GameObject:
   - component: {fileID: 2112523192699341091}
   - component: {fileID: 7730175424374983007}
   - component: {fileID: 5369902852315952367}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1450,7 +1454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 731978246865189542}
   - component: {fileID: 7762319596813096402}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1534,10 +1538,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7775275265329483853}
   - component: {fileID: 6729021759368195159}
-  - component: {fileID: 3758404850332528060}
   - component: {fileID: 2723725648489594801}
   - component: {fileID: -8938209003175932058}
-  m_Layer: 0
+  - component: {fileID: 3758404850332528060}
+  m_Layer: 6
   m_Name: Player_Sword
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1588,21 +1592,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &3758404850332528060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185040333067558719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26504411de411d4468698c57e82c4735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalInput: 0
-  verticalInput: 0
-  speed: 0
 --- !u!70 &2723725648489594801
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1650,6 +1639,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b22e1cfe9288c42a76c5e9ca1b2b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3758404850332528060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185040333067558719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26504411de411d4468698c57e82c4735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalInput: 0
+  verticalInput: 0
+  speed: 0
+  map: {fileID: 0}
+  keyGuide: {fileID: 0}
+  healthUIManager: {fileID: 0}
 --- !u!1 &9201572315853517780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,7 +1667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3929554605961944859}
   - component: {fileID: 5075538404175457923}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player_Outfit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

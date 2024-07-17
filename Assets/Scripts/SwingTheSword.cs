@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
@@ -16,10 +17,20 @@ public class SwingTheSword : MonoBehaviour
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
 
+    public GameObject[] CoolDownUI;
+    public TextMeshProUGUI skillCoolDownText;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        CoolDownUI = new GameObject[10];
+
+        for (int i=0;i<GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
+        {
+            CoolDownUI[i] = GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.GetChild(i).gameObject;
+            if (CoolDownUI[i].name.Contains("Text"))
+                skillCoolDownText = CoolDownUI[i].transform.GetComponent<TextMeshProUGUI>();
+        }
     }
 
     // Update is called once per frame
@@ -46,6 +57,13 @@ public class SwingTheSword : MonoBehaviour
         {
             deltaTime = 0;
 
+            for (int i = 0; i < CoolDownUI.Length; i++)
+            {
+                if (CoolDownUI[i] == null)
+                    break;
+                CoolDownUI[i].SetActive(true);
+            }
+
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
@@ -63,7 +81,7 @@ public class SwingTheSword : MonoBehaviour
         {
             yield return null;
         
-            float delta = swingSpeed * Time.deltaTime;
+            float delta = DataManager.Instance.AttacSpeed * Time.deltaTime;
 
             transform.Rotate(-Vector3.forward * delta);
             deltaAngle += delta;
@@ -83,6 +101,8 @@ public class SwingTheSword : MonoBehaviour
 
             deltaTime += Time.deltaTime;
 
+            skillCoolDownText.text = (coolTime - deltaTime).ToString("0.0");
+
             if (!powerSlash.IsDestroyed())
             {
                 Vector3 dir3 = rot.eulerAngles;
@@ -94,7 +114,15 @@ public class SwingTheSword : MonoBehaviour
             }
             
             if (deltaTime >= coolTime)
+            {
+                for (int i = 0; i < CoolDownUI.Length; i++)
+                {
+                    if (CoolDownUI[i] == null)
+                        break;
+                    CoolDownUI[i].SetActive(false);
+                }
                 break;
+            }
         }
 
         deltaTime = 0;

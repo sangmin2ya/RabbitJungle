@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class Gun_ShotGun : MonoBehaviour
 {
-
-    public int maxAmmo;
     public int ammo;
     public int ShootBulletCount;
 
@@ -28,7 +26,7 @@ public class Gun_ShotGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ammo = maxAmmo;
+        ammo = DataManager.Instance.BulletCount;
         bulletUIManager.SetBulletCount(ammo);
     }
 
@@ -73,7 +71,7 @@ public class Gun_ShotGun : MonoBehaviour
     {
         isReloading = true;
         yield return new WaitForSeconds(1);
-        ammo = maxAmmo;
+        ammo = DataManager.Instance.BulletCount;
         bulletUIManager.SetBulletCount(ammo);
         isReloading = false;
     }
