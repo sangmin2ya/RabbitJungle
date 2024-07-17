@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class EnemyHeat : MonoBehaviour
 {
     private int enemyHP = 5;
+    private DataManager dataManager;
 
     public ParticleSystem deathEffectPrefab;
 

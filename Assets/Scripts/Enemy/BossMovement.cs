@@ -4,20 +4,134 @@ using UnityEngine;
 
 public class BossMovement : MonoBehaviour
 {
+    public GameObject bossShootBulletPrefab;
+    public GameObject bossAroundBulletPrefab;
     private float moveSpeed = 4.0f;
+    private float runspeed = 10.0f;
     private Transform playerTransform;
+
+    private float bossShootFireRate = 0.5f;
+    private float bossAroundFireRate = 1.0f;
+
+    private enum BossState
+    {
+        Move,
+        Rest,
+        Run,
+    }
+    private enum BossShootState
+    {
+        Shoot,
+        Stop,
+        Around,
+    }
+
+    private BossState currentState;
+    private BossShootState currentShootState;
 
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(StateControl());
+        StartCoroutine(BossShootControl());
     }
 
     // Update is called once per frame
+    /*void Update()
+    {
+        switch (currentState)
+        {
+            case BossState.Basic:
+                break;
+            case BossState.Shoot:
+                BossShoot();
+                break;
+            case BossState.Move:
+                BossMove();
+                break;
+            case BossState.Run:
+                BossRun();
+                break;
+            case BossState.AroundShoot:
+                BossAroundShoot();
+                break;
+        }
+    }*/
+
     void Update()
+    {
+        switch (currentState)
+        {
+            case BossState.Move:
+                BossMove();
+                break;
+            case BossState.Run:
+                BossRun();
+                break;
+            case BossState.Rest:
+                break;
+        }
+    }
+
+    void BossMove()
     {
         // player 태그를 향해서 Enemy 오브젝트가 이동
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerTransform = player.transform;
         transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
     }
+    void BossRun()
+    {
+        // player 태그를 향해서 Enemy 오브젝트가 이동
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = player.transform;
+        transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, runspeed * Time.deltaTime);
+    }
+
+    void ShootBullet()
+    {
+        Instantiate(bossShootBulletPrefab, gameObject.transform.position, gameObject.transform.rotation); // 적 탄막 스폰 위치에서 적 탄막 생성
+    }
+    void AroundBullet()
+    {
+        Instantiate(bossAroundBulletPrefab, gameObject.transform.position, gameObject.transform.rotation); // 적 탄막 스폰 위치에서 적 탄막 생성
+    }
+
+    IEnumerator BossShootControl()
+    {
+        CancelInvoke();
+        BossShootState newState = (BossShootState)Random.Range(0, System.Enum.GetValues(typeof(BossShootState)).Length);
+        currentShootState = newState;
+        Debug.Log("슛 상태 변경!");
+        switch (newState)
+        {
+            case BossShootState.Shoot:
+                InvokeRepeating("ShootBullet", 0f, bossShootFireRate);
+                break;
+            case BossShootState.Around:
+                InvokeRepeating("AroundBullet", 0f, bossAroundFireRate);
+                break;
+            case BossShootState.Stop:
+                break;
+        }
+
+        yield return new WaitForSeconds(3f);
+
+    }
+
+    IEnumerator StateControl()
+    {
+        while (true)
+        {
+            // Randomly select a new state
+            BossState newState = (BossState)Random.Range(0, System.Enum.GetValues(typeof(BossState)).Length);
+            // Set the current state to the new random state
+            currentState = newState;
+
+            // Cancel any ongoing invokes when changing state
+
+            yield return new WaitForSeconds(3f);
+        }
+    }
+
 }

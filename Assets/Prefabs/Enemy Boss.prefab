@@ -517,6 +517,7 @@ GameObject:
   - component: {fileID: 5345169318758662430}
   - component: {fileID: 3627824073227561940}
   - component: {fileID: -9097160197525333415}
+  - component: {fileID: 3696749345053803533}
   m_Layer: 0
   m_Name: Enemy Boss
   m_TagString: BOSS
@@ -667,6 +668,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9e2317492cf88e43ad24193c29d93cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossShootBulletPrefab: {fileID: 8808613486895273275, guid: f91a019db03c0bf4fab1a7d9062677a3, type: 3}
+  bossAroundBulletPrefab: {fileID: 8808613486895273275, guid: 69b5d1306845b3d4090159fcf0f243fc, type: 3}
+--- !u!114 &3696749345053803533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857484277409622652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fc2d136ec82594a8b23842ecd02f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8831180562166487045
