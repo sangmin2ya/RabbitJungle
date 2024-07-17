@@ -143,7 +143,7 @@ public class EnemyHeat : MonoBehaviour
 
                 break;
 
-            case 1:
+            case <= 1:
                 Debug.Log("적피 1");
                 if (hp2Transform != null)
                 {
@@ -164,7 +164,7 @@ public class EnemyHeat : MonoBehaviour
                 //Destroy(enemyHPTransform.gameObject.transform.Find("HP_2"));
                 break;
 
-            case 2:
+            case <= 2:
                 Debug.Log("적피 2");
                 if (hp3Transform != null)
                 {
@@ -180,7 +180,7 @@ public class EnemyHeat : MonoBehaviour
                 }
                 break;
 
-            case 3:
+            case <= 3:
                 Debug.Log("적피 3");
                 if (hp4Transform != null)
                 {
@@ -192,7 +192,7 @@ public class EnemyHeat : MonoBehaviour
                 }
                 break;
 
-            case 4:
+            case <= 4:
                 Debug.Log("적피 4");
                 if (hp5Transform != null)
                 {
