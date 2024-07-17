@@ -127,7 +127,7 @@ public class Player_Control_Sword : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")) //|| collision.gameObject.CompareTag("Boss"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("BOSS"))
         {
             if (DataManager.Instance.DashState)
             {

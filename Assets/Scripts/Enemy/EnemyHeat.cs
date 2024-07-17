@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class EnemyHeat : MonoBehaviour
 {
-    private float enemyHP = 5.0f;
+    private float enemyHP = 5.0f * DataManager.Instance.StageLevel;
 
     public ParticleSystem deathEffectPrefab;
 
@@ -89,7 +89,7 @@ public class EnemyHeat : MonoBehaviour
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.LongSword.ToString())
                 {
                     Debug.Log("대검 스킬 맞음!");
-                    enemyHP -= DataManager.Instance.SkillDamage;
+                    enemyHP -= (DataManager.Instance.Damage * 5f);
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
                 {
@@ -98,23 +98,23 @@ public class EnemyHeat : MonoBehaviour
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
                 {
-                    Debug.Log("단검 스킬 맞음!");
+                    Debug.Log("저격 스킬 맞음!");
                     enemyHP -= DataManager.Instance.SkillDamage;
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
                 {
-                    Debug.Log("단검 스킬 맞음!");
+                    Debug.Log("샷건 스킬 맞음!");
                     enemyHP -= DataManager.Instance.SkillDamage;
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
                 {
-                    Debug.Log("단검 스킬 맞음!");
+                    Debug.Log("라이플 스킬 맞음!");
                     enemyHP -= DataManager.Instance.SkillDamage;
                 }
                 else
                 {
-                    Debug.Log("모르는 스킬 맞음!");
-                    enemyHP -= DataManager.Instance.SkillDamage;
+                    Debug.Log("칼 기본 스킬 맞음!");
+                    enemyHP -= (DataManager.Instance.Damage * 2.5f);
                 }
             }
             else
