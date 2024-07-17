@@ -7,11 +7,14 @@ public class StageGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject mapPrefab;
     [SerializeField] private GameObject bossMapPrefab;
+    [SerializeField] private GameObject itemMapPrefab;
+    [SerializeField] private GameObject specialJobUI;
     private int size = 20; // 그리드 크기
     private int roomCount = 15; // 생성할 방의 개수
     private int[,] stage;
     private System.Random rand = new System.Random();
     private Tuple<int, int> farthestRoom;
+    private Tuple<int, int> itemRoom;
     private int[] dx = { 0, 1, 0, -1 }; // 오른쪽, 아래, 왼쪽, 위쪽
     private int[] dy = { 1, 0, -1, 0 };
 
@@ -21,6 +24,7 @@ public class StageGenerator : MonoBehaviour
         PrintStage();
         farthestRoom = FindFarthestRoom();
         Debug.Log($"가장 먼 방: ({farthestRoom.Item1}, {farthestRoom.Item2})");
+        Debug.Log($"아이템 방: ({itemRoom.Item1}, {itemRoom.Item2})");
         CreateStage();
     }
     /// <summary>
@@ -81,6 +85,10 @@ public class StageGenerator : MonoBehaviour
                     rooms.Add(new Tuple<int, int>(nx, ny));
                     currentRoom++;
                     createdChild = true;
+                    if (currentRoom == 11)
+                    {
+                        itemRoom = new Tuple<int, int>(nx, ny);
+                    }
                     break;
                 }
             }
@@ -158,6 +166,27 @@ public class StageGenerator : MonoBehaviour
                         currentMap = Instantiate(bossMapPrefab, new Vector3((i - size / 2) * 75, (j - size / 2) * 75, 0), Quaternion.identity);
                         currentMap.GetComponent<RoomData>().RoomType = RoomType.Boss.ToString();
                     }
+                    else if (i == itemRoom.Item1 && j == itemRoom.Item2)
+                    {
+                        currentMap = Instantiate(itemMapPrefab, new Vector3((i - size / 2) * 75, (j - size / 2) * 75, 0), Quaternion.identity);
+                        currentMap.GetComponent<RoomData>().RoomType = RoomType.Item.ToString();
+                        currentMap.transform.Find("Item").GetComponent<SpecialJobController>().specialJobsUI = specialJobUI;
+                        if (DataManager.Instance.Weapon == WeaponType.Gun.ToString())
+                        {
+                            Transform item = currentMap.transform.Find("Item");
+                            item.GetComponent<SpecialJobController>().jobButtons.Add(specialJobUI.transform.Find("Shotgun").GetComponent<UnityEngine.UI.Button>());
+                            item.GetComponent<SpecialJobController>().jobButtons.Add(specialJobUI.transform.Find("Rifle").GetComponent<UnityEngine.UI.Button>());
+                            item.GetComponent<SpecialJobController>().jobButtons.Add(specialJobUI.transform.Find("Sniper").GetComponent<UnityEngine.UI.Button>());
+
+                        }
+                        else if (DataManager.Instance.Weapon == WeaponType.Sword.ToString())
+                        {
+                            Transform item = currentMap.transform.Find("Item");
+                            item.GetComponent<SpecialJobController>().jobButtons.Add(specialJobUI.transform.Find("LongSword").GetComponent<UnityEngine.UI.Button>());
+                            item.GetComponent<SpecialJobController>().jobButtons.Add(specialJobUI.transform.Find("ShortSword").GetComponent<UnityEngine.UI.Button>());
+                            item.GetComponent<SpecialJobController>().jobButtons.Add(specialJobUI.transform.Find("Axe").GetComponent<UnityEngine.UI.Button>());
+                        }
+                    }
                     else
                     {
                         currentMap = Instantiate(mapPrefab, new Vector3((i - size / 2) * 75, (j - size / 2) * 75, 0), Quaternion.identity);
@@ -182,11 +211,11 @@ public class StageGenerator : MonoBehaviour
                                     if (doorTransform != null)
                                     {
                                         doorTransform.gameObject.SetActive(true);
-                                        Debug.Log("오른쪽 문 활성화");
+                                        //Debug.Log("오른쪽 문 활성화");
                                     }
                                     else
                                     {
-                                        Debug.LogWarning("오른쪽 문을 찾을 수 없습니다.");
+                                        //Debug.LogWarning("오른쪽 문을 찾을 수 없습니다.");
                                     }
                                     break;
                                 // 아래 - 오른쪽
@@ -195,11 +224,11 @@ public class StageGenerator : MonoBehaviour
                                     if (doorTransform != null)
                                     {
                                         doorTransform.gameObject.SetActive(true);
-                                        Debug.Log("아래 문 활성화");
+                                        //Debug.Log("아래 문 활성화");
                                     }
                                     else
                                     {
-                                        Debug.LogWarning("아래 문을 찾을 수 없습니다.");
+                                        //Debug.LogWarning("아래 문을 찾을 수 없습니다.");
                                     }
                                     break;
                                 // 왼쪽 - 아래쪽
@@ -208,11 +237,11 @@ public class StageGenerator : MonoBehaviour
                                     if (doorTransform != null)
                                     {
                                         doorTransform.gameObject.SetActive(true);
-                                        Debug.Log("왼쪽 문 활성화");
+                                        //Debug.Log("왼쪽 문 활성화");
                                     }
                                     else
                                     {
-                                        Debug.LogWarning("왼쪽 문을 찾을 수 없습니다.");
+                                        //Debug.LogWarning("왼쪽 문을 찾을 수 없습니다.");
                                     }
                                     break;
                                 // 위쪽 - 왼쪽
@@ -221,11 +250,11 @@ public class StageGenerator : MonoBehaviour
                                     if (doorTransform != null)
                                     {
                                         doorTransform.gameObject.SetActive(true);
-                                        Debug.Log("위쪽 문 활성화");
+                                        //Debug.Log("위쪽 문 활성화");
                                     }
                                     else
                                     {
-                                        Debug.LogWarning("위쪽 문을 찾을 수 없습니다.");
+                                        //Debug.LogWarning("위쪽 문을 찾을 수 없습니다.");
                                     }
                                     break;
                                 default:
@@ -288,4 +317,5 @@ public class StageGenerator : MonoBehaviour
         }
         return farthestRoom;
     }
+
 }
