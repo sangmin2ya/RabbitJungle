@@ -8,9 +8,11 @@ public class DataManager : MonoBehaviour
     private static DataManager instance;
 
     // Private fields for user stats
+    private int stageLevel;
     private float speed;
     private float attacSpeed;
     private float health;
+    private float maxHealth;
     private float damage;
     private int dashCount;
     private string weapon;
@@ -20,11 +22,21 @@ public class DataManager : MonoBehaviour
     private float swordLength;
     private float shurikenDamage;
     private float axeDamage;
+    public float firstDamage;
+    public float firstMaxHealth;
+    public float firstSpeed;
+    public float firstAttackSpeed;
+    public int firstDashCount;
     public bool justCleared = false;
     public bool specialWeaponGet = false;   
     public bool epicSkill = false;
     
     // getset 에 접근하게 해주는 프로퍼티
+    public int StageLevel
+    {
+        get { return stageLevel; }
+        set { stageLevel = value; }
+    }
     public float Speed
     {
         get { return speed; }
@@ -42,7 +54,11 @@ public class DataManager : MonoBehaviour
         get { return health; }
         set { health = value; }
     }
-
+    public float MaxHealth
+    {
+        get { return maxHealth; }
+        set { maxHealth = value; }
+    }
     public float Damage
     {
         get { return damage; }

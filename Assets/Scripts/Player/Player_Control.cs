@@ -36,7 +36,7 @@ public class Player_Control : MonoBehaviour
     }
     private void toggleMap()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             map.SetActive(!map.activeSelf);
             keyGuide.SetActive(!keyGuide.activeSelf);
@@ -64,7 +64,7 @@ public class Player_Control : MonoBehaviour
             {
                 if (hitdown[i].distance < 1 && hitdown[i].collider.CompareTag("Wall"))
                 {
-                    Debug.Log("�Ʒ� �浹!");
+                    //Debug.Log("�Ʒ� �浹!");
                     if (verticalInput < 0)
                     {
                         verticalInput = 0;
@@ -81,7 +81,7 @@ public class Player_Control : MonoBehaviour
             {
                 if (hitup[i].distance < 1 && hitup[i].collider.CompareTag("Wall"))
                 {
-                    Debug.Log("�� �浹!");
+                    //Debug.Log("�� �浹!");
                     if (verticalInput > 0)
                     {
                         verticalInput = 0;
@@ -97,7 +97,7 @@ public class Player_Control : MonoBehaviour
             {
                 if (hitleft[i].distance < 0.5 && hitleft[i].collider.CompareTag("Wall"))
                 {
-                    Debug.Log("�� �浹!");
+                    //Debug.Log("�� �浹!");
                     if (horizontalInput < 0)
                     {
                         horizontalInput = 0;
@@ -114,7 +114,7 @@ public class Player_Control : MonoBehaviour
             {
                 if (hitright[i].distance < 0.5 && hitright[i].collider.CompareTag("Wall"))
                 {
-                    Debug.Log("������ �浹!");
+                    //Debug.Log("������ �浹!");
                     if (horizontalInput > 0)
                     {
                         horizontalInput = 0;

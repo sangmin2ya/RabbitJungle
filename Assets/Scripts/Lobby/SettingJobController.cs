@@ -28,26 +28,46 @@ public class SettingJobController : MonoBehaviour
     }
     public void SelectGun()
     {
-        DataManager.Instance.Health = 4f;
+        DataManager.Instance.StageLevel = 1;
+        DataManager.Instance.MaxHealth = 4f;
+        DataManager.Instance.Health = DataManager.Instance.MaxHealth;
         DataManager.Instance.Speed = 10f;
         DataManager.Instance.Damage = 2f;
         DataManager.Instance.DashCount = 2;
         DataManager.Instance.AttacSpeed = 0.25f;
         DataManager.Instance.Weapon = WeaponType.Gun.ToString();
+        DataManager.Instance.SpecialWeapon = null;
         DataManager.Instance.BulletCount = 20;
+
+        DataManager.Instance.firstDamage = DataManager.Instance.Damage;
+        DataManager.Instance.firstMaxHealth = DataManager.Instance.MaxHealth;
+        DataManager.Instance.firstSpeed = DataManager.Instance.Speed;
+        DataManager.Instance.firstDashCount = DataManager.Instance.DashCount;
+        DataManager.Instance.firstAttackSpeed = DataManager.Instance.AttacSpeed;
+
         SceneManager.LoadScene("Game");
     }
     public void SelectSword()
     {
-        DataManager.Instance.Health = 5f;
+        DataManager.Instance.StageLevel = 1;
+        DataManager.Instance.MaxHealth = 5f;
+        DataManager.Instance.Health = DataManager.Instance.MaxHealth;
         DataManager.Instance.Speed = 10f;
         DataManager.Instance.Damage = 2f;
         DataManager.Instance.DashCount = 2;
         DataManager.Instance.AttacSpeed = 0.25f;
         DataManager.Instance.Weapon = WeaponType.Sword.ToString();
+        DataManager.Instance.SpecialWeapon = null;
         DataManager.Instance.SwordLength = 2f;
         DataManager.Instance.AxeDamage = 5f;
         DataManager.Instance.ShurikenDamage = 2f;
+
+        DataManager.Instance.firstDamage = DataManager.Instance.Damage;
+        DataManager.Instance.firstMaxHealth = DataManager.Instance.MaxHealth;
+        DataManager.Instance.firstSpeed = DataManager.Instance.Speed;
+        DataManager.Instance.firstDashCount = DataManager.Instance.DashCount;
+        DataManager.Instance.firstAttackSpeed = DataManager.Instance.AttacSpeed;
+
         SceneManager.LoadScene("Game");
     }
 }
