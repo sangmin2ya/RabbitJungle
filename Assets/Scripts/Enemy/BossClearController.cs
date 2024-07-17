@@ -6,7 +6,7 @@ public class BossClearController : MonoBehaviour
 {
     public GameObject Boss;
     private bool Cleared = false;
-    private bool Fighting = false;
+    private bool Fighting = true;
 
     private Transform playerTransform;
     private GameObject portalObject;
@@ -18,7 +18,7 @@ public class BossClearController : MonoBehaviour
     private float maxY = 15.0f;
     private float minDistanceFromPlayer = 15.0f; // 플레이어와 최소 거리
 
-    int spawnedBoss = 0;
+    int spawnedBoss = 1;
 
 
     // Start is called before the first frame update
@@ -54,7 +54,7 @@ public class BossClearController : MonoBehaviour
 
     }
 
-    public void SpawnBoss()
+    /*public void SpawnBoss()
     {
         GameObject player = GameObject.FindWithTag("Player");
         playerTransform = player.transform;
@@ -78,16 +78,16 @@ public class BossClearController : MonoBehaviour
             }
         }
 
-    }
-    private void OnCollisionEnter2D(Collision2D other)
+    }*/
+    /*private void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log("콜리션 발동");
         if (other.gameObject.CompareTag("Player") && Fighting == false)
         {
-            SpawnBoss();
-            Fighting = true;
-            Debug.Log("파이팅 트루");
+            //SpawnBoss();
+            //Fighting = true;
+            //Debug.Log("파이팅 트루");
         }
-    }
+    }*/
 }
 

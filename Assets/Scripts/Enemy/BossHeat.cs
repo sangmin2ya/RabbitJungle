@@ -5,21 +5,34 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class BossHeat : MonoBehaviour
 {
-    public float bossHP = 50.0f;
+    public Slider HpBarSlider;
+    public float bossHP = 50.0f * DataManager.Instance.StageLevel;
+    private float maxHP = 50.0f * DataManager.Instance.StageLevel;
 
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckHp();
+
     }
+
+
+    public void CheckHp() //*HP 갱신
+    {
+        if (HpBarSlider != null)
+            HpBarSlider.value = (bossHP / maxHP);
+        Debug.Log("적 체력 : " + bossHP / maxHP);
+    }
+
 
     // 충돌 시 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -232,6 +245,7 @@ public class BossHeat : MonoBehaviour
         {
             case <= 0:
                 Debug.Log("Die!");
+                HpBarSlider.value = 0;
                 Destroy(gameObject);
                 //Instantiate(deathEffectPrefab, transform.position, quaternion.identity); 사망 파티클
 
