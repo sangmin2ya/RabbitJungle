@@ -1056,18 +1056,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sniper
       objectReference: {fileID: 0}
-    - target: {fileID: 3013402065798596686, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3013402065798596686, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4453880775188152448, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 5555106814979436805, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
       propertyPath: rotation
       value: 
@@ -1113,28 +1101,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
-      propertyPath: coolTime
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
       propertyPath: rotation
       value: 
       objectReference: {fileID: 2146119624882259093}
     - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
-      propertyPath: bigBullet
-      value: 
-      objectReference: {fileID: 1499821665739892670, guid: 2fa18157983a5144d95b5a3729e59343, type: 3}
-    - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
-      propertyPath: epicSkill
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
       propertyPath: skillCoolTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
-      propertyPath: CoolDownUI.Array.size
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
