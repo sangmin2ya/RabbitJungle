@@ -67,7 +67,7 @@ public class Player_Control_Sword : MonoBehaviour
 
     public void baseSkill()
     {
-        if(dashCount > 0)
+        if (dashCount > 0)
         {
             GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(false);
             dashCount--;
@@ -89,7 +89,7 @@ public class Player_Control_Sword : MonoBehaviour
 
     IEnumerator ChargeDash()
     {
-        while(true)
+        while (true)
         {
             yield return null;
 
@@ -106,7 +106,7 @@ public class Player_Control_Sword : MonoBehaviour
             else
                 continue;
         }
-        
+
     }
 
     //private void OnCollisionEnter2D(Collision2D collision)
@@ -139,6 +139,8 @@ public class Player_Control_Sword : MonoBehaviour
                 if (!DataManager.Instance.beHit)
                 {
                     DataManager.Instance.beHit = true;
+                    Debug.Log("피해입음!");
+                    this.gameObject.GetComponent<HitEffect>().TriggerHitEffect();
                     DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
                     healthUIManager.SethealthCount(DataManager.Instance.Health);
                     if (DataManager.Instance.Health <= 0)
@@ -188,7 +190,7 @@ public class Player_Control_Sword : MonoBehaviour
                 }
             }
         }
-}
+    }
 
     public void Block()
     {
