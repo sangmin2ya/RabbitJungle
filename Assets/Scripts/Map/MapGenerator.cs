@@ -15,6 +15,7 @@ public class StageGenerator : MonoBehaviour
     private System.Random rand = new System.Random();
     private Tuple<int, int> farthestRoom;
     private Tuple<int, int> itemRoom;
+    private Tuple<int, int> itemRoomSub;
     private int[] dx = { 0, 1, 0, -1 }; // 오른쪽, 아래, 왼쪽, 위쪽
     private int[] dy = { 1, 0, -1, 0 };
 
@@ -23,6 +24,10 @@ public class StageGenerator : MonoBehaviour
         GenerateStage();
         PrintStage();
         farthestRoom = FindFarthestRoom();
+        if (itemRoom.Item1 == farthestRoom.Item1 && itemRoom.Item2 == farthestRoom.Item2)
+        {
+            itemRoom = itemRoomSub;
+        }
         Debug.Log($"가장 먼 방: ({farthestRoom.Item1}, {farthestRoom.Item2})");
         Debug.Log($"아이템 방: ({itemRoom.Item1}, {itemRoom.Item2})");
         CreateStage();
@@ -88,6 +93,10 @@ public class StageGenerator : MonoBehaviour
                     if (currentRoom == 11)
                     {
                         itemRoom = new Tuple<int, int>(nx, ny);
+                    }
+                    if (currentRoom == 12)
+                    {
+                        itemRoomSub = new Tuple<int, int>(nx, ny);
                     }
                     break;
                 }

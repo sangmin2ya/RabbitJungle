@@ -18,11 +18,14 @@ public class Bullet_Control : MonoBehaviour
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (!collision.collider.CompareTag("Weapon") && !collision.collider.CompareTag("Skill")) {
+        if (!collision.collider.CompareTag("Weapon") && !collision.collider.gameObject.CompareTag("Skill"))
+        {
             Destroy(gameObject);
         }
     }
+
+    
 }

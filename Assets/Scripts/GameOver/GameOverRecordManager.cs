@@ -9,12 +9,12 @@ public class GameOverRecordManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.gameObject.transform.GetComponent<TextMeshProUGUI>().text = "Records : " + DataManager.Instance.StageLevel;
+        gameObject.transform.GetComponent<TextMeshProUGUI>().text = "STAGE RECORD : <color=\"red\">" + DataManager.Instance.StageLevel + " </color>\n";
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

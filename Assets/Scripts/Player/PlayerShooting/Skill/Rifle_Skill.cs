@@ -35,17 +35,6 @@ public class Rifle_Skill : MonoBehaviour
                 skillCoolDownText = CoolDownUI[i].transform.GetComponent<TextMeshProUGUI>();
             }
         }
-        for (int i = 0; i < CoolDownUI.Length; i++)
-        {
-            if (CoolDownUI[i] != null)
-            {
-                CoolDownUI[i].SetActive(true);
-            }
-            else
-            {
-                break;
-            }
-        }
     }
 
     // Update is called once per frame
