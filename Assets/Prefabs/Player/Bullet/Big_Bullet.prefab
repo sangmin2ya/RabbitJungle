@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5234139109918999130}
   - component: {fileID: 1712706516824185392}
   - component: {fileID: 6959166077314077623}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Big_Bullet
   m_TagString: Skill
   m_Icon: {fileID: 0}
