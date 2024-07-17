@@ -3,7 +3,6 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.FilePathAttribute;
 using UnityEngine.UI;
 
 public class Gun_Basic_Shooting : MonoBehaviour
@@ -35,11 +34,11 @@ public class Gun_Basic_Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButton(0) && ammo > 0 && !isReloading)
+        if (Input.GetMouseButton(0) && ammo > 0 && !isReloading)
         {
-            if(Time.time > shotTime)
+            if (Time.time > shotTime)
             {
-                Instantiate(bullet, spawnPos.position, rotation.transform.rotation );
+                Instantiate(bullet, spawnPos.position, rotation.transform.rotation);
                 Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
                 ammo = ammo - 1;
                 shotTime = Time.time + timeBetweenShots;
@@ -53,11 +52,12 @@ public class Gun_Basic_Shooting : MonoBehaviour
 
     private void Reload()
     {
-        if(ammo == 0)
+        if (ammo == 0)
         {
             StartCoroutine("ReloadTime");
         }
-        if (Input.GetKeyDown(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             StartCoroutine("ReloadTime");
         }
     }

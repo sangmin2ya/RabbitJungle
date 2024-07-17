@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
     private float bulletSpeed = 10.0f;
-    
+
     private Transform playerTransform;
 
     private Vector2 bulletDirection;
