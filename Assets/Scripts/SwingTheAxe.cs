@@ -38,7 +38,7 @@ public class SwingTheAxe : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "Axe") 
         {
-            if (firstClassChange)
+            if (DataManager.Instance.firstClassChage)
             {
                 //DataManager.Instance.Health += 2;
                 //DataManager.Instance.Speed -= 2f;
@@ -46,7 +46,7 @@ public class SwingTheAxe : MonoBehaviour
                 //DataManager.Instance.DashCount;
                 //DataManager.Instance.AttacSpeed -= 200f;
 
-                firstClassChange = false;
+                DataManager.Instance.firstClassChage = false;
             }
 
             if (!swordObject.activeSelf)

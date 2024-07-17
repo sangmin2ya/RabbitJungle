@@ -15,7 +15,6 @@ public class SwingTheDagger : MonoBehaviour
     float coolTime = 0.5f;
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
-    bool firstClassChange = true;
 
     Queue<GameObject> q = new Queue<GameObject>();
 
@@ -40,7 +39,7 @@ public class SwingTheDagger : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword") 
         {
-            if(firstClassChange)
+            if(DataManager.Instance.firstClassChage)
             {
                 DataManager.Instance.Health--;
                 DataManager.Instance.Speed += 3f;
@@ -48,7 +47,7 @@ public class SwingTheDagger : MonoBehaviour
                 DataManager.Instance.DashCount++;
                 DataManager.Instance.AttacSpeed += 300f;
 
-                firstClassChange = false;
+                DataManager.Instance.firstClassChage = false;
             }
 
             if(!swordObject.activeSelf)
