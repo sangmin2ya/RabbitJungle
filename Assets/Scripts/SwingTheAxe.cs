@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,11 +15,22 @@ public class SwingTheAxe : MonoBehaviour
     float coolTime = 2.5f;
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
+    bool firstClassChange = false;
+
+    public GameObject[] CoolDownUI;
+    public TextMeshProUGUI skillCoolDownText;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        CoolDownUI = new GameObject[10];
+
+        for (int i = 0; i < GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
+        {
+            CoolDownUI[i] = GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.GetChild(i).gameObject;
+            if (CoolDownUI[i].name.Contains("Text"))
+                skillCoolDownText = CoolDownUI[i].transform.GetComponent<TextMeshProUGUI>();
+        }
     }
 
     // Update is called once per frame
@@ -26,7 +38,18 @@ public class SwingTheAxe : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "Axe") 
         {
-            if(!swordObject.activeSelf)
+            if (DataManager.Instance.firstClassChage)
+            {
+                //DataManager.Instance.Health += 2;
+                //DataManager.Instance.Speed -= 2f;
+                //DataManager.Instance.Damage += 2f;
+                //DataManager.Instance.DashCount;
+                //DataManager.Instance.AttacSpeed -= 200f;
+
+                DataManager.Instance.firstClassChage = false;
+            }
+
+            if (!swordObject.activeSelf)
             {
                 swordObject.SetActive(true);
 
@@ -44,6 +67,13 @@ public class SwingTheAxe : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "Axe")
         {
             deltaTime = 0;
+
+            for (int i = 0; i < CoolDownUI.Length; i++)
+            {
+                if (CoolDownUI[i] == null)
+                    break;
+                CoolDownUI[i].SetActive(true);
+            }
 
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -99,18 +129,28 @@ public class SwingTheAxe : MonoBehaviour
 
             deltaTime += Time.deltaTime;
 
+            skillCoolDownText.text = (coolTime - deltaTime).ToString("0.0");
+
             if (!powerSlash.IsDestroyed())
             {
                 Vector3 dir3 = rot.eulerAngles;
                 Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
                 powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
-
+                powerSlash.transform.Rotate(Vector3.forward * 1000 * Time.deltaTime);
                 if (deltaTime >= lifespan)
                     Destroy(powerSlash);
             }
 
             if (deltaTime >= coolTime)
+            {
+                for (int i = 0; i < CoolDownUI.Length; i++)
+                {
+                    if (CoolDownUI[i] == null)
+                        break;
+                    CoolDownUI[i].SetActive(false);
+                }
                 break;
+            }
         }
 
         deltaTime = 0;
