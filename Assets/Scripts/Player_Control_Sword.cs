@@ -13,7 +13,7 @@ public class Player_Control_Sword : MonoBehaviour
     //bool dashState = false;
     //Rigidbody2D myRigid;
     //float knockback = 100.0f;
-    //int dashCount = 2;
+    int dashCount = 2;
     float dashCoolTime = 0f;
     public GameObject map;
     public GameObject keyGuide;
@@ -26,6 +26,7 @@ public class Player_Control_Sword : MonoBehaviour
         StartCoroutine("Flip");
         //myRigid = GetComponent<Rigidbody2D>();
         StartCoroutine("ChargeDash");
+        dashCount = DataManager.Instance.DashCount;
     }
 
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class Player_Control_Sword : MonoBehaviour
         {
             baseSkill();
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        //else if (Input.GetKeyUp(KeyCode.Space))
         {
             speed = DataManager.Instance.Speed;
         }
@@ -64,10 +65,10 @@ public class Player_Control_Sword : MonoBehaviour
 
     public void baseSkill()
     {
-        if(DataManager.Instance.DashCount > 0)
+        if(dashCount > 0)
         {
-            GameObject.Find("Canvas_Dash").transform.GetChild(DataManager.Instance.DashCount).gameObject.SetActive(false);
-            DataManager.Instance.DashCount--;
+            GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(false);
+            dashCount--;
             speed *= 3;
             StartCoroutine("DashCutter");
         }
@@ -90,13 +91,13 @@ public class Player_Control_Sword : MonoBehaviour
         {
             yield return null;
 
-            if (DataManager.Instance.DashCount < 2)
+            if (dashCount < DataManager.Instance.DashCount)
             {
                 dashCoolTime += Time.deltaTime;
                 if (dashCoolTime >= 3)
                 {
-                    DataManager.Instance.DashCount++;
-                    GameObject.Find("Canvas_Dash").transform.GetChild(DataManager.Instance.DashCount).gameObject.SetActive(true);
+                    dashCount++;
+                    GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(true);
                     dashCoolTime = 0;
                 }
             }

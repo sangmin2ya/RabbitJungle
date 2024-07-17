@@ -25,7 +25,7 @@ public class SwingTheSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && !DataManager.Instance.epicSkill) 
+        if (Input.GetMouseButton(0) && !DataManager.Instance.specialWeaponGet) 
         {
             if(!swordObject.activeSelf)
             {
@@ -42,7 +42,7 @@ public class SwingTheSword : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && !DataManager.Instance.epicSkill)
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && !DataManager.Instance.specialWeaponGet)
         {
             deltaTime = 0;
 

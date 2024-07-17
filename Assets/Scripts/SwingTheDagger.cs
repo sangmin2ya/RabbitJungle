@@ -25,7 +25,7 @@ public class SwingTheDagger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && DataManager.Instance.epicSkill && DataManager.Instance.SpecialWeapon == "ShortSword") 
+        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword") 
         {
             if(!swordObject.activeSelf)
             {
@@ -42,7 +42,7 @@ public class SwingTheDagger : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.epicSkill && DataManager.Instance.SpecialWeapon == "ShortSword")
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword")
         {
             deltaTime = 0;
 
