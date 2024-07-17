@@ -1,0 +1,89 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BossClearController : MonoBehaviour
+{
+    public GameObject Boss;
+    private bool Cleared = false;
+    private bool Fighting = false;
+
+    private Transform playerTransform;
+    private GameObject portalObject;
+
+    //맵 상에서 적 생성 반경
+    private float minX = -15.0f;
+    private float maxX = 15.0f;
+    private float minY = -15.0f;
+    private float maxY = 15.0f;
+    private float minDistanceFromPlayer = 15.0f; // 플레이어와 최소 거리
+
+    int spawnedBoss = 0;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Find the Portal object in the parent
+        portalObject = transform.parent.Find("Portal")?.gameObject;
+        if (portalObject == null)
+        {
+            Debug.LogWarning("Portal object not found in parent!");
+        }
+        else
+        {
+            portalObject.SetActive(false); // Ensure the portal is initially inactive
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Cleared == false && Fighting == true)
+        {
+            if (spawnedBoss <= 0)
+            {
+                Cleared = true;
+                portalObject.SetActive(true);
+            }
+
+        }
+
+    }
+
+    public void SpawnBoss()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        playerTransform = player.transform;
+        Debug.Log("스폰 보스");
+
+        while (spawnedBoss < 1)
+        {
+            Vector2 spawnPosition = new Vector2(transform.position.x + Random.Range(minX, maxX),
+                                                transform.position.y + Random.Range(minY, maxY));
+
+            //플레이어와의 거리 계산
+            float distanceFromPlayer = Vector2.Distance(spawnPosition, playerTransform.position);
+
+
+            // 플레이어와의 최소 거리보다 길다면 몹 생성. 지금은 단거리 몹만 생성하지만 나중에 중거리 몹과 섞는 로직 짜야할듯
+            if (distanceFromPlayer > minDistanceFromPlayer)
+            {
+                Instantiate(Boss, spawnPosition, Quaternion.identity); // 기본 회전값으로 생성
+                spawnedBoss++;
+            }
+        }
+
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("콜리션 발동");
+        if (other.gameObject.CompareTag("Player") && Fighting == false)
+        {
+            SpawnBoss();
+            Fighting = true;
+        }
+    }
+}
+
