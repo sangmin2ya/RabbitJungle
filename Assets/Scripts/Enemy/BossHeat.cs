@@ -245,6 +245,7 @@ public class BossHeat : MonoBehaviour
         {
             case <= 0:
                 Debug.Log("Die!");
+                HpBarSlider.value = 0;
                 Destroy(gameObject);
                 //Instantiate(deathEffectPrefab, transform.position, quaternion.identity); 사망 파티클
 
