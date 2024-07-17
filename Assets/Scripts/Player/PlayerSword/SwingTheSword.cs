@@ -24,7 +24,7 @@ public class SwingTheSword : MonoBehaviour
     {
         CoolDownUI = new GameObject[10];
 
-        for (int i=0;i<GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
+        for (int i = 0; i < GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
         {
             CoolDownUI[i] = GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.GetChild(i).gameObject;
             if (CoolDownUI[i].name.Contains("Text"))
@@ -35,9 +35,9 @@ public class SwingTheSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && !DataManager.Instance.specialWeaponGet) 
+        if (Input.GetMouseButton(0) && !DataManager.Instance.specialWeaponGet)
         {
-            if(!swordObject.activeSelf)
+            if (!swordObject.activeSelf)
             {
                 swordObject.SetActive(true);
 
@@ -79,7 +79,7 @@ public class SwingTheSword : MonoBehaviour
         while (deltaAngle < swingAngle)
         {
             yield return null;
-        
+
             float delta = DataManager.Instance.AttacSpeed * Time.deltaTime;
 
             transform.Rotate(-Vector3.forward * delta);
@@ -108,10 +108,10 @@ public class SwingTheSword : MonoBehaviour
                 Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
                 powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
 
-                if(deltaTime >= lifespan)
+                if (deltaTime >= lifespan)
                     Destroy(powerSlash);
             }
-            
+
             if (deltaTime >= coolTime)
             {
                 for (int i = 0; i < CoolDownUI.Length; i++)
@@ -125,6 +125,6 @@ public class SwingTheSword : MonoBehaviour
         }
 
         deltaTime = 0;
-        
+
     }
 }

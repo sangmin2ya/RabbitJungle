@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     private float bulletSpeed = 10.0f;
-    
+
     private Transform playerTransform;
 
     private Vector2 bulletDirection;
