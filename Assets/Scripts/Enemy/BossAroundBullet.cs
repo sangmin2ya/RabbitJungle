@@ -5,22 +5,25 @@ using UnityEngine;
 
 public class BossAroundBullet : MonoBehaviour
 {
-    private float bulletSpeed = 10.0f;
-    private Transform playerTransform;
+    private float bulletSpeed = 10f;
     private Vector2 bulletDirection;
 
+    public void SetBulletProperties(Vector2 direction)
+    {
+        bulletDirection = direction.normalized;
+    }
+
     // Start is called before the first frame update
-    void Start()
+    void Start(Vector2 direction)
     {
 
-        //몬스터 위치 기반으로 방향 설정
-        bulletDirection = (playerTransform.position - transform.position).normalized;
-
+        //받아온 buleet speed 와 bulletDirection을 기반으로 속도와 방향 설정
+        bulletDirection = direction.normalized;
     }
 
     void Update()
     {
-
+        transform.position += (Vector3)(bulletDirection * bulletSpeed * Time.deltaTime);
     }
 
 

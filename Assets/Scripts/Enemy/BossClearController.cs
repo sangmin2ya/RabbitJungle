@@ -67,7 +67,7 @@ public class BossClearController : MonoBehaviour
             float distanceFromPlayer = Vector2.Distance(spawnPosition, playerTransform.position);
 
 
-            // 플레이어와의 최소 거리보다 길다면 몹 생성. 지금은 단거리 몹만 생성하지만 나중에 중거리 몹과 섞는 로직 짜야할듯
+            // 플레이어와의 최소 거리보다 길다면 몹 생성.
             if (distanceFromPlayer > minDistanceFromPlayer)
             {
                 Instantiate(Boss, spawnPosition, Quaternion.identity); // 기본 회전값으로 생성
