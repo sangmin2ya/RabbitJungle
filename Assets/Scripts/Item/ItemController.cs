@@ -20,27 +20,28 @@ public class ItemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CardSelect();
-    }
-    private void CardSelect()
-    {
         if (DataManager.Instance.justCleared)
         {
             DataManager.Instance.justCleared = false;
-            CardSelectUI.gameObject.SetActive(true);
-            for (int i = 0; i < 3; i++)
-            {
-                GameObject card = RandcomCard();
-                card.GetComponent<RectTransform>().position =
-                    new Vector3(card.GetComponent<RectTransform>().position.x + (i - 1) * 500,
-                    card.GetComponent<RectTransform>().position.y, card.GetComponent<RectTransform>().position.z);
-                cardButtons[i] = card.GetComponent<Button>();
-            }
-            foreach (var button in cardButtons)
-            {
-                button.onClick.AddListener(() => OnCardSelected(button));
-            }
-            Time.timeScale = 0;
+            StartCoroutine("CardSelect");
+        }
+    }
+    IEnumerator CardSelect()
+    {
+        CardSelectUI.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject card = RandcomCard();
+            card.GetComponent<RectTransform>().position =
+                new Vector3(card.GetComponent<RectTransform>().position.x + (i - 1) * 500,
+                card.GetComponent<RectTransform>().position.y, card.GetComponent<RectTransform>().position.z);
+            cardButtons[i] = card.GetComponent<Button>();
+        }
+        foreach (var button in cardButtons)
+        {
+            button.onClick.AddListener(() => OnCardSelected(button));
         }
     }
     private void OnCardSelected(Button selectedButton)
@@ -80,7 +81,7 @@ public class ItemController : MonoBehaviour
                 break;
             case "card3":
                 Debug.Log("체력추가!");
-                DataManager.Instance.Health += 1;
+                DataManager.Instance.MaxHealth += 1;
                 break;
             case "card4":
                 Debug.Log("공격속도증가!");
@@ -96,7 +97,8 @@ public class ItemController : MonoBehaviour
                 break;
             case "card7":
                 Debug.Log("체력회복!");
-                DataManager.Instance.Health += 0.5f;
+                if (DataManager.Instance.Health < DataManager.Instance.MaxHealth)
+                    DataManager.Instance.Health += 0.5f;
                 break;
             case "card8":
                 Debug.Log("꽝!");
