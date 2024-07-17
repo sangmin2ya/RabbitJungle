@@ -113,7 +113,7 @@ public class Player_Control_Sword : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy")) //|| collision.gameObject.CompareTag("Boss"))
         {
-            if (dashState)
+            if (DataManager.Instance.DashState)
             {
                 // attack damage to enemy based on character damage
                 // this will be managed by enemymanager
