@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class LongEnemyMovement : MonoBehaviour
 {
-    private float moveSpeed = 5.0f;
+    private float moveSpeed = 3.0f;
     private Transform playerTransform;
 
     // Start is called before the first frame update
