@@ -628,7 +628,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -684,6 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89fc2d136ec82594a8b23842ecd02f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HpBarSlider: {fileID: 0}
   bossHP: 50
 --- !u!1 &8831180562166487045
 GameObject:

@@ -15,7 +15,7 @@ public class SpawnController : MonoBehaviour
 
 
     private Transform playerTransform;
-    private int numberOfEnemy = 1; // 몬스터 생성 개수
+    private int numberOfEnemy = 5; // 몬스터 생성 개수
 
     //맵 상에서 적 생성 반경
     private float minX = -15.0f;
@@ -35,6 +35,7 @@ public class SpawnController : MonoBehaviour
     //임의의 SpawnEnemy 메소드 선언
     public void SpawnEnemies()
     {
+        SpawnCount++;
         GameObject player = GameObject.FindWithTag("Player");
         playerTransform = player.transform;
         if (playerTransform == null)
@@ -63,7 +64,6 @@ public class SpawnController : MonoBehaviour
             {
                 Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity); // 기본 회전값으로 생성
                 spawnedEnemys++;
-                SpawnCount++;
             }
         }
     }

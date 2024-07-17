@@ -50,6 +50,14 @@ public class SettingJobController : MonoBehaviour
         DataManager.Instance.firstDashCount = DataManager.Instance.DashCount;
         DataManager.Instance.firstAttackSpeed = DataManager.Instance.AttacSpeed;
 
+        DataManager.Instance.additionalDamage = 0;
+        DataManager.Instance.additionalMaxHealth = 0;
+        DataManager.Instance.additionalSpeed = 0;
+        DataManager.Instance.additionalDashCount = 0;
+        DataManager.Instance.additionalAttackSpeed = 0;
+
+        DataManager.Instance.specialWeaponGet = false;
+
         SceneManager.LoadScene("Game");
     }
     public void SelectSword()
@@ -73,6 +81,14 @@ public class SettingJobController : MonoBehaviour
         DataManager.Instance.firstSpeed = DataManager.Instance.Speed;
         DataManager.Instance.firstDashCount = DataManager.Instance.DashCount;
         DataManager.Instance.firstAttackSpeed = DataManager.Instance.AttacSpeed;
+
+        DataManager.Instance.additionalDamage = 0;
+        DataManager.Instance.additionalMaxHealth = 0;
+        DataManager.Instance.additionalSpeed = 0;
+        DataManager.Instance.additionalDashCount = 0;
+        DataManager.Instance.additionalAttackSpeed = 0;
+
+        DataManager.Instance.specialWeaponGet = false;
 
         SceneManager.LoadScene("Game");
     }

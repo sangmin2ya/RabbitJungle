@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class EnemyHeat : MonoBehaviour
 {
-    private float enemyHP = 5.0f * DataManager.Instance.StageLevel;
+    private float enemyHP;
 
     public ParticleSystem deathEffectPrefab;
 
@@ -16,7 +16,7 @@ public class EnemyHeat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        enemyHP = 5.0f * DataManager.Instance.StageLevel;
     }
 
     // Update is called once per frame

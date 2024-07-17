@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7881426166296051135}
   - component: {fileID: 4187331732874934162}
   - component: {fileID: 6930784574706804966}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Axe
   m_TagString: Skill
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2961948675700992555}
   - component: {fileID: 4765664976169313060}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1773140247703117444}
   - component: {fileID: 7656264282947850986}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

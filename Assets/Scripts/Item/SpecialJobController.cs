@@ -21,14 +21,13 @@ public class SpecialJobController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine("JobSelect");
+            JobSelect();
         }
     }
-    IEnumerator JobSelect()
+    private void JobSelect()
     {
         // Show 3 selectable card prefabs on screen
         specialJobsUI.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
         Time.timeScale = 0;
         // Change timescale to 0
         foreach (var button in jobButtons)

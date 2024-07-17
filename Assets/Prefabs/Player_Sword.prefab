@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 7682905090026061953}
   - component: {fileID: 1829861652474552352}
   - component: {fileID: 3643839967684381612}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Dagger
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3536830569433444754}
   - component: {fileID: 5782648368069979271}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 5342992778506004751}
   - component: {fileID: 3524503044742956902}
   - component: {fileID: 4203668750944942036}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LargeSword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -958,7 +958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6696246472662610421}
   - component: {fileID: 5900384054272604265}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1362,7 +1362,7 @@ GameObject:
   - component: {fileID: 6377036110674717844}
   - component: {fileID: 5313772297635851575}
   - component: {fileID: 4899280822517391755}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Axe
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1483,7 +1483,7 @@ GameObject:
   - component: {fileID: 7730175424374983007}
   - component: {fileID: 5369902852315952367}
   - component: {fileID: 857855089422681310}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
