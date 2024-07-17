@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 7719227137774998437}
   - component: {fileID: 7682905090026061953}
   - component: {fileID: 1829861652474552352}
+  - component: {fileID: 3643839967684381612}
   m_Layer: 0
   m_Name: Dagger
   m_TagString: Weapon
@@ -277,6 +278,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c5a1d65249e574fbdb19b258024eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &3643839967684381612
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757577849678783635}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2005876072078740734
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +705,7 @@ GameObject:
   - component: {fileID: 6485906204805013485}
   - component: {fileID: 5342992778506004751}
   - component: {fileID: 3524503044742956902}
+  - component: {fileID: 4203668750944942036}
   m_Layer: 0
   m_Name: LargeSword
   m_TagString: Weapon
@@ -808,6 +837,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c5a1d65249e574fbdb19b258024eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &4203668750944942036
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3766983912841039124}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3993851285129805204
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +1361,7 @@ GameObject:
   - component: {fileID: 3176703415850328753}
   - component: {fileID: 6377036110674717844}
   - component: {fileID: 5313772297635851575}
+  - component: {fileID: 4899280822517391755}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Weapon
@@ -1386,6 +1443,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c5a1d65249e574fbdb19b258024eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &4899280822517391755
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621491571741686359}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8817055568149065895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,6 +1482,7 @@ GameObject:
   - component: {fileID: 2112523192699341091}
   - component: {fileID: 7730175424374983007}
   - component: {fileID: 5369902852315952367}
+  - component: {fileID: 857855089422681310}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Weapon
@@ -1529,6 +1614,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c5a1d65249e574fbdb19b258024eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &857855089422681310
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817055568149065895}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8856692438925063896
 GameObject:
   m_ObjectHideFlags: 0
