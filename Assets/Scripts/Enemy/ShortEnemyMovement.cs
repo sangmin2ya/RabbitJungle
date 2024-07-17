@@ -18,6 +18,6 @@ public class ShortEnemyMovement : MonoBehaviour
         // player 태그를 향해서 Enemy 오브젝트가 이동
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerTransform = player.transform;
-        transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed*Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
     }
 }
