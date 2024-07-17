@@ -17,7 +17,7 @@ public class TeleportController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Door"))
+        if (collision.gameObject.CompareTag("Door") && prevRoom.transform.parent.parent.gameObject.GetComponent<RoomData>().RoomType != RoomType.Battle.ToString())
         {
             Debug.Log("지정된 오브젝트와 Door의 충돌 감지!");
             // 문과 연결된 장소로 이동
