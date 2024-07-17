@@ -29,5 +29,13 @@ public class DoorData : MonoBehaviour
         {
             connectedDoorPosition = new Vector3(transform.position.x, transform.position.y - 43, transform.position.z);
         }
+        if (gameObject.name == "SecretDoorEnter")
+        {
+            connectedDoorPosition = new Vector3(transform.position.x, transform.position.y + 42, transform.position.z);
+        }
+        else if (gameObject.name == "SecretDoorExit")
+        {
+            connectedDoorPosition = new Vector3(transform.position.x, transform.position.y - 42, transform.position.z);
+        }
     }
 }

@@ -156,13 +156,13 @@ public class ItemController : MonoBehaviour
             if (rand == 6)
             {
                 card.gameObject.name = "card2";
-                card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "DASH COUNT + 1";
+                card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "DASH COUNT\n+ 1";
                 card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Now, you are much faster...";
             }
             else
             {
                 card.gameObject.name = "card3";
-                card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "MAX HEALTH + 1";
+                card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "MAX HEALTH\n+ 1";
                 card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Now, you are much bigger...";
             }
         }
@@ -173,22 +173,22 @@ public class ItemController : MonoBehaviour
             {
                 case 0:
                     card.gameObject.name = "card4";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Attack speed - 0.01";
+                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Attack speed\n- 0.02";
                     card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Attack more!";
                     break;
                 case 1:
                     card.gameObject.name = "card5";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Move speed + 1";
+                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Move speed\n+ 1.5";
                     card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Move faster!";
                     break;
                 case 2:
                     card.gameObject.name = "card6";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Attack damage + 0.2";
+                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Attack damage\n+ 0.4";
                     card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Attack harder!";
                     break;
                 case 3:
                     card.gameObject.name = "card7";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Recover Health + 0.5";
+                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Recover Health\n+ 0.5";
                     card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Don't die!";
                     break;
                 case 4:

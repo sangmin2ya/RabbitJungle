@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapController : MonoBehaviour
@@ -19,6 +20,14 @@ public class MapController : MonoBehaviour
             for (int i = 1; i < 5; i++)
             {
                 transform.parent.GetChild(i).GetChild(0).GetChild(0).gameObject.SetActive(true);
+            }
+        }
+        if (transform.parent.GetComponent<RoomData>().RoomType == RoomType.Cleared.ToString())
+        {
+            GameObject wallUI = transform.parent.Find("MinimapUI").gameObject;
+            for (int i = 0; i < 4; i++)
+            {
+                wallUI.transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.green;
             }
         }
     }

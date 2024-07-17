@@ -10,6 +10,7 @@ public class BossClearController : MonoBehaviour
 
     private Transform playerTransform;
     private GameObject portalObject;
+    private GameObject secretDoor;
 
     //맵 상에서 적 생성 반경
     private float minX = -15.0f;
@@ -26,6 +27,8 @@ public class BossClearController : MonoBehaviour
     {
         // Find the Portal object in the parent
         portalObject = transform.parent.Find("Portal")?.gameObject;
+        secretDoor = transform.parent.Find("SecretDoorEnter")?.gameObject;
+
         if (portalObject == null)
         {
             Debug.LogWarning("Portal object not found in parent!");
@@ -33,6 +36,7 @@ public class BossClearController : MonoBehaviour
         else
         {
             portalObject.SetActive(false); // Ensure the portal is initially inactive
+            secretDoor.SetActive(false);
         }
 
     }
@@ -48,6 +52,7 @@ public class BossClearController : MonoBehaviour
             {
                 Cleared = true;
                 portalObject.SetActive(true);
+                secretDoor.SetActive(true);
             }
 
         }
