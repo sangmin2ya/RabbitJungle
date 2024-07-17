@@ -72,9 +72,14 @@ public class Player_Control : MonoBehaviour
         // Special Weapon
         if (DataManager.Instance.specialWeaponGet)
         {
-            SpecialWeaponGet();
-            WeaponChange();
+            if (DataManager.Instance.firstClassChage)
+            {
+                SpecialWeaponGet();
+                DataManager.Instance.firstClassChage = false;
+            }
         }
+
+        WeaponChange();
 
         // Check Player Life
         PlayerDeath();
@@ -224,18 +229,25 @@ public class Player_Control : MonoBehaviour
     {
         if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
         {
-            playerGun[1].SetActive(true);
             playerGun[0].SetActive(false);
+            playerGun[1].SetActive(true);
+            playerGun[2].SetActive(false);
+            playerGun[3].SetActive(false);
         }
         else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
         {
-            playerGun[2].SetActive(true);
             playerGun[0].SetActive(false);
+            playerGun[1].SetActive(false);
+            playerGun[2].SetActive(true);
+            playerGun[3].SetActive(false);
+
         }
         else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
         {
-            playerGun[3].SetActive(true);
             playerGun[0].SetActive(false);
+            playerGun[1].SetActive(false);
+            playerGun[2].SetActive(false);
+            playerGun[3].SetActive(true);
         }
     }
 

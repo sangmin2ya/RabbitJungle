@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 6375133133129368937}
   - component: {fileID: 5555106814979436805}
   - component: {fileID: 5849279961425523145}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5559409031092277065
 Transform:
   m_ObjectHideFlags: 0
@@ -99,15 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466a491ca8c2e964e9a01b4760ac7d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 5
   ammo: 0
-  bullet: {fileID: 186791521697897486, guid: 62552e13cf733ce4494f14456d7db895, type: 3}
+  bullet: {fileID: 1499821665739892670, guid: 2fa18157983a5144d95b5a3729e59343, type: 3}
   bulletEffect: {fileID: 4812964823256676647, guid: 5d1549af7e2fb204fb3cdf701f68e27c, type: 3}
   spawnPos: {fileID: 2990064265687073751}
   rotation: {fileID: 0}
   timeBetweenShots: 1
   shotTime: 0
   isReloading: 0
+  bulletUIManager: {fileID: 0}
 --- !u!114 &5849279961425523145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,10 +120,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f2ca494d5986f42aaffa4aff25306c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bigBullet: {fileID: 7951554445271053154, guid: 2a7c29ab7c06f92479f94ed8b5e75203, type: 3}
+  bigBullet: {fileID: 1317793906329304207, guid: fa9ff593a89dae94d8bdfe0bca322fe9, type: 3}
   bulletEffect: {fileID: 4812964823256676647, guid: 5d1549af7e2fb204fb3cdf701f68e27c, type: 3}
   spawnPos: {fileID: 2990064265687073751}
   rotation: {fileID: 0}
+  skillCoolTime: 2
+  skillCool: 0
+  CoolDownUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  skillCoolDownText: {fileID: 0}
 --- !u!1 &4453880775188152448
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2990064265687073751}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
