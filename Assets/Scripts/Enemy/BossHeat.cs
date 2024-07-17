@@ -55,6 +55,7 @@ public class BossHeat : MonoBehaviour
 
 
         // different damage according to weapon type
+        /*
         if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Skill"))
         {
 
@@ -76,10 +77,91 @@ public class BossHeat : MonoBehaviour
             }
 
         }
-        // when enemy heated, compare enemyHP
-        //GameObject hp1 = transform.Find("HP_1").gameObject;
+        */
+
+        if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Skill"))
+        {
+            if (collision.gameObject.CompareTag("Weapon"))
+            {
+                if (DataManager.Instance.Weapon == WeaponType.Gun.ToString())
+                {
+                    Debug.Log("총 맞음!");
+                    switch (DataManager.Instance.Weapon)
+                    {
+                        case nameof(SpecialWeaponType.ShotGun):
+                            Destroy(collision.gameObject);
+                            bossHP -= 3;
+                            Debug.LogWarning("샷건 맞음!");
+                            break;
+
+                        case nameof(SpecialWeaponType.Rifle):
+                            Destroy(collision.gameObject);
+                            Debug.LogWarning("라이플 맞음!");
+                            bossHP -= 2;
+                            break;
+
+                        case nameof(SpecialWeaponType.Sniper):
+                            Destroy(collision.gameObject);
+                            Debug.LogWarning("스나이퍼 맞음!");
+                            bossHP -= 5;
+                            break;
+                        default:
+                            Destroy(collision.gameObject);
+                            Debug.LogWarning("기본 총 맞음");
+                            bossHP -= 1;
+                            break;
+                    }
+                }
+                else if (DataManager.Instance.Weapon == WeaponType.Sword.ToString())
+                {
+                    Debug.Log("칼 맞음!");
+                    switch (DataManager.Instance.Weapon)
+                    {
+                        case nameof(SpecialWeaponType.ShortSword):
+                            Destroy(collision.gameObject);
+                            bossHP -= 2;
+                            Debug.LogWarning("단검 맞음!");
+                            break;
+
+                        case nameof(SpecialWeaponType.LongSword):
+                            Destroy(collision.gameObject);
+                            Debug.LogWarning("대검 맞음!");
+                            bossHP -= 5;
+                            break;
+
+                        case nameof(SpecialWeaponType.Axe):
+                            Destroy(collision.gameObject);
+                            Debug.LogWarning("도끼 맞음!");
+                            bossHP -= 3;
+                            break;
+                        default:
+                            Destroy(collision.gameObject);
+                            Debug.LogWarning("기본 칼 맞음");
+                            bossHP -= 2;
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("총기 타입 없음!");
+                    bossHP -= 2;
+                }
+            }
+            else if (collision.gameObject.CompareTag("Skill"))
+            {
+                Debug.Log("스킬 맞음!");
+                bossHP -= 5;
+            }
+            else
+            {
+                Debug.Log("넌 왜 닳는거..?");
+                bossHP = -1;
+
+            }
+        }
 
 
+        // when enemy heated, compare bossHP
         switch (bossHP)
         {
             case <= 0:

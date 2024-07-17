@@ -60,7 +60,6 @@ public class EnemyHeat : MonoBehaviour
         // different damage according to weapon type ShortSword, LongSword, Axe, ShotGun, Rifle, Sniper
         if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Skill"))
         {
-
             if (collision.gameObject.CompareTag("Weapon"))
             {
                 if (DataManager.Instance.Weapon == WeaponType.Gun.ToString())
@@ -126,6 +125,17 @@ public class EnemyHeat : MonoBehaviour
                     Debug.Log("총기 타입 없음!");
                     enemyHP -= 2;
                 }
+            }
+            else if (collision.gameObject.CompareTag("Skill"))
+            {
+                Debug.Log("스킬 맞음!");
+                enemyHP -= 5;
+            }
+            else
+            {
+                Debug.Log("넌 왜 닳는거..?");
+                enemyHP = -1;
+
             }
         }
         // when enemy heated, compare enemyHP
