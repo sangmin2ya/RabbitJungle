@@ -23,13 +23,12 @@ public class Gun_ShotHun : MonoBehaviour
 
     public bool isReloading;
 
-    public TextMeshProUGUI ammoText;
 
     // Start is called before the first frame update
     void Start()
     {
         ammo = maxAmmo;
-        AmmoText(ammo);
+
     }
 
     // Update is called once per frame
@@ -48,7 +47,6 @@ public class Gun_ShotHun : MonoBehaviour
                 Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
 
                 ammo = ammo-1;
-                AmmoText(ammo);
                 shotTime = Time.time + timeBetweenShots;
             }
 
@@ -68,10 +66,6 @@ public class Gun_ShotHun : MonoBehaviour
         }
     }
 
-    public void AmmoText(int ammo)
-    {
-        ammoText.text = "Ammo : " + ammo;
-    }
 
     IEnumerator ReloadTime()
     {
@@ -79,7 +73,6 @@ public class Gun_ShotHun : MonoBehaviour
         yield return new WaitForSeconds(1);
         ammo = maxAmmo;
         isReloading = false;
-        AmmoText(ammo);
     }
 
 }

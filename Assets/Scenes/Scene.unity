@@ -924,6 +924,10 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1590713750514479761, guid: cf4854a73839e8947bd1b1394e2fd240, type: 3}
+      propertyPath: healthUIManager
+      value: 
+      objectReference: {fileID: 1681152514}
     - target: {fileID: 1827595889042887292, guid: cf4854a73839e8947bd1b1394e2fd240, type: 3}
       propertyPath: ammoText
       value: 
@@ -938,7 +942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2093906145690994898, guid: cf4854a73839e8947bd1b1394e2fd240, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2672469254543760605, guid: cf4854a73839e8947bd1b1394e2fd240, type: 3}
       propertyPath: m_Name
@@ -946,12 +950,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4612326903066256176, guid: cf4854a73839e8947bd1b1394e2fd240, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5363790491448501911, guid: cf4854a73839e8947bd1b1394e2fd240, type: 3}
       propertyPath: ammoText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5363790491448501911, guid: cf4854a73839e8947bd1b1394e2fd240, type: 3}
+      propertyPath: bulletUIManager
+      value: 
+      objectReference: {fileID: 65640204}
     - target: {fileID: 7295898135791739099, guid: cf4854a73839e8947bd1b1394e2fd240, type: 3}
       propertyPath: ammoText
       value: 
@@ -969,6 +977,17 @@ PrefabInstance:
       addedObject: {fileID: 400091222}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf4854a73839e8947bd1b1394e2fd240, type: 3}
+--- !u!114 &1681152514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8715025836264892684, guid: bdfd56e003a9ceb4f871f61297d993f1, type: 3}
+  m_PrefabInstance: {fileID: 7680748197063738886}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2adfbc8c3102b654080261f8d1e44a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2000218842
 GameObject:
   m_ObjectHideFlags: 0
