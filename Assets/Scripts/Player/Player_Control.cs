@@ -74,6 +74,7 @@ public class Player_Control : MonoBehaviour
         {
             SpecialWeaponGet();
         }
+        WeaponChange();
 
         // Check Player Life
         PlayerDeath();
@@ -219,17 +220,33 @@ public class Player_Control : MonoBehaviour
     }
     
 
+    public void WeaponChange()
+    {
+        if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
+        {
+            playerGun[1].SetActive(true);
+            playerGun[0].SetActive(false);
+        }
+        else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
+        {
+            playerGun[2].SetActive(true);
+            playerGun[0].SetActive(false);
+        }
+        else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
+        {
+            playerGun[3].SetActive(true);
+            playerGun[0].SetActive(false);
+        }
+    }
+
     // player gun switch case
     public void SpecialWeaponGet()
     {
+
         if (DataManager.Instance.firstClassChage)
         {
             if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
             {
-                playerGun[1].SetActive(true);
-                playerGun[0].SetActive(false);
-
-
                 DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
                 DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed - 0.15f;
                 DataManager.Instance.BulletCount = DataManager.Instance.BulletCount + 30;
@@ -237,9 +254,6 @@ public class Player_Control : MonoBehaviour
             }
             else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
             {
-                playerGun[2].SetActive(true);
-                playerGun[0].SetActive(false);
-
                 DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
                 DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed + 0.75f;
                 DataManager.Instance.BulletCount = DataManager.Instance.BulletCount - 10;
@@ -248,10 +262,7 @@ public class Player_Control : MonoBehaviour
             }
             else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
             {
-                playerGun[3].SetActive(true);
-                playerGun[0].SetActive(false);
-
-                DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
+                DataManager.Instance.Damage = DataManager.Instance.Damage + 2;
                 DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed + 0.75f;
                 DataManager.Instance.BulletCount = DataManager.Instance.BulletCount - 10;
                 DataManager.Instance.SkillDamage = 5.0f;
