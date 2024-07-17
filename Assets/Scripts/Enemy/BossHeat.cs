@@ -11,12 +11,11 @@ public class BossHeat : MonoBehaviour
 {
     public Slider HpBarSlider;
     public float bossHP = 50.0f * DataManager.Instance.StageLevel;
-    public float maxHP = 50.0f * DataManager.Instance.StageLevel;
+    private float maxHP = 50.0f * DataManager.Instance.StageLevel;
 
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -30,8 +29,8 @@ public class BossHeat : MonoBehaviour
     public void CheckHp() //*HP 갱신
     {
         if (HpBarSlider != null)
-            HpBarSlider.value = bossHP / maxHP;
-        Debug.Log("적 체력 : " + bossHP);
+            HpBarSlider.value = (bossHP / maxHP);
+        Debug.Log("적 체력 : " + bossHP / maxHP);
     }
 
 
