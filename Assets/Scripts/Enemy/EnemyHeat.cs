@@ -8,8 +8,7 @@ using UnityEngine.InputSystem;
 
 public class EnemyHeat : MonoBehaviour
 {
-    private int enemyHP = 5;
-    private DataManager dataManager;
+    private float enemyHP = 5.0f;
 
     public ParticleSystem deathEffectPrefab;
 
@@ -66,76 +65,62 @@ public class EnemyHeat : MonoBehaviour
                 if (DataManager.Instance.Weapon == WeaponType.Gun.ToString())
                 {
                     Debug.Log("총 맞음!");
-                    switch (DataManager.Instance.Weapon)
-                    {
-                        case nameof(SpecialWeaponType.ShotGun):
-                            Destroy(collision.gameObject);
-                            enemyHP -= 3;
-                            Debug.LogWarning("샷건 맞음!");
-                            break;
-
-                        case nameof(SpecialWeaponType.Rifle):
-                            Destroy(collision.gameObject);
-                            Debug.LogWarning("라이플 맞음!");
-                            enemyHP -= 2;
-                            break;
-
-                        case nameof(SpecialWeaponType.Sniper):
-                            Destroy(collision.gameObject);
-                            Debug.LogWarning("스나이퍼 맞음!");
-                            enemyHP -= 5;
-                            break;
-                        default:
-                            Destroy(collision.gameObject);
-                            Debug.LogWarning("기본 총 맞음");
-                            enemyHP -= 1;
-                            break;
-                    }
+                    enemyHP -= DataManager.Instance.Damage;
                 }
                 else if (DataManager.Instance.Weapon == WeaponType.Sword.ToString())
                 {
                     Debug.Log("칼 맞음!");
-                    switch (DataManager.Instance.Weapon)
-                    {
-                        case nameof(SpecialWeaponType.ShortSword):
-                            Destroy(collision.gameObject);
-                            enemyHP -= 2;
-                            Debug.LogWarning("단검 맞음!");
-                            break;
-
-                        case nameof(SpecialWeaponType.LongSword):
-                            Destroy(collision.gameObject);
-                            Debug.LogWarning("대검 맞음!");
-                            enemyHP -= 5;
-                            break;
-
-                        case nameof(SpecialWeaponType.Axe):
-                            Destroy(collision.gameObject);
-                            Debug.LogWarning("도끼 맞음!");
-                            enemyHP -= 3;
-                            break;
-                        default:
-                            Destroy(collision.gameObject);
-                            Debug.LogWarning("기본 칼 맞음");
-                            enemyHP -= 2;
-                            break;
-                    }
+                    enemyHP -= DataManager.Instance.Damage;
                 }
                 else
                 {
                     Debug.Log("총기 타입 없음!");
-                    enemyHP -= 2;
+                    enemyHP -= DataManager.Instance.Damage;
                 }
             }
             else if (collision.gameObject.CompareTag("Skill"))
             {
                 Debug.Log("스킬 맞음!");
-                enemyHP -= 5;
+                if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Axe.ToString())
+                {
+                    Debug.Log("도끼 스킬 맞음!");
+                    enemyHP -= DataManager.Instance.AxeDamage;
+                }
+                else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.LongSword.ToString())
+                {
+                    Debug.Log("대검 스킬 맞음!");
+                    enemyHP -= DataManager.Instance.SkillDamage;
+                }
+                else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
+                {
+                    Debug.Log("단검 스킬 맞음!");
+                    enemyHP -= DataManager.Instance.ShurikenDamage;
+                }
+                else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
+                {
+                    Debug.Log("단검 스킬 맞음!");
+                    enemyHP -= DataManager.Instance.SkillDamage;
+                }
+                else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
+                {
+                    Debug.Log("단검 스킬 맞음!");
+                    enemyHP -= DataManager.Instance.SkillDamage;
+                }
+                else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
+                {
+                    Debug.Log("단검 스킬 맞음!");
+                    enemyHP -= DataManager.Instance.SkillDamage;
+                }
+                else
+                {
+                    Debug.Log("모르는 스킬 맞음!");
+                    enemyHP -= DataManager.Instance.SkillDamage;
+                }
             }
             else
             {
                 Debug.Log("넌 왜 닳는거..?");
-                enemyHP = -1;
+                enemyHP = DataManager.Instance.Damage;
 
             }
         }

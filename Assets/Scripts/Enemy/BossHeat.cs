@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class BossHeat : MonoBehaviour
 {
-    private int bossHP = 50;
+    private float bossHP = 50.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -78,7 +78,7 @@ public class BossHeat : MonoBehaviour
 
         }
         */
-
+        /*
         if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Skill"))
         {
             if (collision.gameObject.CompareTag("Weapon"))
@@ -159,7 +159,73 @@ public class BossHeat : MonoBehaviour
 
             }
         }
+        */
+        if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Skill"))
+        {
+            if (collision.gameObject.CompareTag("Weapon"))
+            {
+                if (DataManager.Instance.Weapon == WeaponType.Gun.ToString())
+                {
+                    Debug.Log("총 맞음!");
+                    bossHP -= DataManager.Instance.Damage;
+                }
+                else if (DataManager.Instance.Weapon == WeaponType.Sword.ToString())
+                {
+                    Debug.Log("칼 맞음!");
+                    bossHP -= DataManager.Instance.Damage;
+                }
+                else
+                {
+                    Debug.Log("총기 타입 없음!");
+                    bossHP -= DataManager.Instance.Damage;
+                }
+            }
+            else if (collision.gameObject.CompareTag("Skill"))
+            {
+                Debug.Log("스킬 맞음!");
+                if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Axe.ToString())
+                {
+                    Debug.Log("도끼 스킬 맞음!");
+                    bossHP -= DataManager.Instance.AxeDamage;
+                }
+                else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.LongSword.ToString())
+                {
+                    Debug.Log("대검 스킬 맞음!");
+                    bossHP -= DataManager.Instance.SkillDamage;
+                }
+                else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
+                {
+                    Debug.Log("단검 스킬 맞음!");
+                    bossHP -= DataManager.Instance.ShurikenDamage;
+                }
+                else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
+                {
+                    Debug.Log("단검 스킬 맞음!");
+                    bossHP -= DataManager.Instance.SkillDamage;
+                }
+                else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
+                {
+                    Debug.Log("단검 스킬 맞음!");
+                    bossHP -= DataManager.Instance.SkillDamage;
+                }
+                else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
+                {
+                    Debug.Log("단검 스킬 맞음!");
+                    bossHP -= DataManager.Instance.SkillDamage;
+                }
+                else
+                {
+                    Debug.Log("모르는 스킬 맞음!");
+                    bossHP -= DataManager.Instance.SkillDamage;
+                }
+            }
+            else
+            {
+                Debug.Log("넌 왜 닳는거..?");
+                bossHP = DataManager.Instance.Damage;
 
+            }
+        }
 
         // when enemy heated, compare bossHP
         switch (bossHP)
