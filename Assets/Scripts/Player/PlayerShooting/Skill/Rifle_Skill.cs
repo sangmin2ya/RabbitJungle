@@ -18,7 +18,6 @@ public class Rifle_Skill : MonoBehaviour
 
     private bool skill;
 
-    public bool epicSkill;
 
     public GameObject[] CoolDownUI;
     public TextMeshProUGUI skillCoolDownText;
@@ -32,18 +31,27 @@ public class Rifle_Skill : MonoBehaviour
         {
             CoolDownUI[i] = GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.GetChild(i).gameObject;
             if (CoolDownUI[i].name.Contains("Text"))
+            {
                 skillCoolDownText = CoolDownUI[i].transform.GetComponent<TextMeshProUGUI>();
+            }
         }
         for (int i = 0; i < CoolDownUI.Length; i++)
         {
-            CoolDownUI[i].SetActive(true);
+            if (CoolDownUI[i] != null)
+            {
+                CoolDownUI[i].SetActive(true);
+            }
+            else
+            {
+                break;
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (epicSkill)
+        if (DataManager.Instance.epicSkill)
         {
             if (!skill && skillCool > skillCoolTime)
             {
