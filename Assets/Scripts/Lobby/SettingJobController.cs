@@ -26,6 +26,10 @@ public class SettingJobController : MonoBehaviour
         mainCanvas.SetActive(false);
         selectjobCanvas.SetActive(true);
     }
+    public void GameQuit()
+    {
+        Application.Quit();
+    }
     public void SelectGun()
     {
         DataManager.Instance.StageLevel = 1;

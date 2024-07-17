@@ -220,9 +220,10 @@ public class Player_Control : MonoBehaviour
     {
         if (collision.collider.CompareTag("Enemy"))
         {
+            Debug.Log("피해입음!");
+            this.gameObject.GetComponent<HitEffect>().TriggerHitEffect();
             DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
             healthUIManager.SethealthCount(DataManager.Instance.Health);
-
         }
     }
 }
