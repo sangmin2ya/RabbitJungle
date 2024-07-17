@@ -185,7 +185,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -210,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 7203857}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.23, z: -29.060883}
+  m_LocalPosition: {x: -902.6425, y: -877.0399, z: 5.2032995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2946,7 +2946,6 @@ GameObject:
   m_Component:
   - component: {fileID: 740711330}
   - component: {fileID: 740711329}
-  - component: {fileID: 740711331}
   m_Layer: 0
   m_Name: GameOverManager
   m_TagString: Untagged
@@ -2981,27 +2980,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!320 &740711331
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 740711328}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: a7bbbd2ae240b554b8c43d8b6d1e7860, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: 6259578311281240209, guid: a7bbbd2ae240b554b8c43d8b6d1e7860, type: 2}
-    value: {fileID: 1322667352}
-  - key: {fileID: 7088097748536632234, guid: a7bbbd2ae240b554b8c43d8b6d1e7860, type: 2}
-    value: {fileID: 1081803729}
-  m_ExposedReferences:
-    m_References: []
 --- !u!1 &863648981
 GameObject:
   m_ObjectHideFlags: 0
@@ -3600,7 +3578,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081803729}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 

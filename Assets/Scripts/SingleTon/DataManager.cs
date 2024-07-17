@@ -28,8 +28,13 @@ public class DataManager : MonoBehaviour
     public float firstSpeed;
     public float firstAttackSpeed;
     public int firstDashCount;
+    public float additionalDamage = 0;
+    public float additionalMaxHealth = 0;
+    public float additionalSpeed = 0;
+    public float additionalAttackSpeed = 0;
+    public int additionalDashCount = 0;
     public bool justCleared = false;
-    public bool specialWeaponGet = false;   
+    public bool specialWeaponGet = false;
     public bool epicSkill = false;
     public bool isDead = false;
     public bool firstClassChage = true;
