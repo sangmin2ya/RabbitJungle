@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
-public class Gun_ShotHun : MonoBehaviour
+
+public class Gun_Rifle : MonoBehaviour
 {
-
     public int maxAmmo;
     public int ammo;
-    public int ShootBulletCount;
+
 
     public GameObject bullet;
+    public GameObject bigBullet;
     public GameObject bulletEffect;
     public Transform spawnPos;
 
@@ -19,12 +22,15 @@ public class Gun_ShotHun : MonoBehaviour
     public float shotTime;
 
     public bool isReloading;
+    public bool skill;
 
+    public BulletUIManager bulletUIManager;
 
     // Start is called before the first frame update
     void Start()
     {
         ammo = maxAmmo;
+        bulletUIManager.SetBulletCount(ammo);
     }
 
     // Update is called once per frame
@@ -34,15 +40,19 @@ public class Gun_ShotHun : MonoBehaviour
         {
             if (Time.time > shotTime)
             {
-                for (int i = -1; i < ShootBulletCount-1; i++)
+                if (!skill)
                 {
-                    Quaternion rotate = Quaternion.Euler(0, 0, i);
-                    Instantiate(bullet, spawnPos.position, rotation.transform.rotation * rotate);
-                    
+                    Instantiate(bullet, spawnPos.position, rotation.transform.rotation);
+                    Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
+                    ammo = ammo - 1;
+                    bulletUIManager.SetBulletCount(ammo);
                 }
-                Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
+                else if (skill)
+                {
+                    Instantiate(bigBullet, spawnPos.position, rotation.transform.rotation);
+                    Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
+                }
 
-                ammo--;
                 shotTime = Time.time + timeBetweenShots;
             }
 
@@ -67,6 +77,7 @@ public class Gun_ShotHun : MonoBehaviour
         isReloading = true;
         yield return new WaitForSeconds(1);
         ammo = maxAmmo;
+        bulletUIManager.SetBulletCount(ammo);
         isReloading = false;
     }
 

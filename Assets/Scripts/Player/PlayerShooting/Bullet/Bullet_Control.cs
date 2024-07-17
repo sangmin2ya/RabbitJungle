@@ -21,7 +21,7 @@ public class Bullet_Control : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (!collision.collider.CompareTag("Weapon")) {
+        if (!collision.collider.CompareTag("Weapon") && !collision.collider.CompareTag("Skill")) {
             Destroy(gameObject);
         }
     }

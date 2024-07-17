@@ -146,7 +146,6 @@ GameObject:
   - component: {fileID: 1590713750514479761}
   - component: {fileID: 4353856514668435016}
   - component: {fileID: 8056909589184301398}
-  - component: {fileID: -3165579778799057743}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -187,7 +186,12 @@ MonoBehaviour:
   verticalInput: 0
   map: {fileID: 0}
   keyGuide: {fileID: 0}
-  player: {fileID: 2672469254543760605}
+  healthUIManager: {fileID: 0}
+  playerGun:
+  - {fileID: 4612326903066256176}
+  - {fileID: 2093906145690994898}
+  - {fileID: 7588857794738240113}
+  - {fileID: 1990288015098316543}
 --- !u!50 &4353856514668435016
 Rigidbody2D:
   serializedVersion: 4
@@ -260,18 +264,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8647287, y: 1.5346434}
   m_EdgeRadius: 0
---- !u!114 &-3165579778799057743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2672469254543760605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32b22e1cfe9288c42a76c5e9ca1b2b8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3954182580984528397
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +354,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6779024736273896541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8766092306555572900}
+  m_Layer: 0
+  m_Name: SPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8766092306555572900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6779024736273896541}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.294, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1586125093338064196}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6897829527504727105
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,13 +862,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2146119624882259093}
     - target: {fileID: 7245715111729718263, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
+      propertyPath: spawnPos
+      value: 
+      objectReference: {fileID: 8766092306555572900}
+    - target: {fileID: 7245715111729718263, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
+      propertyPath: bigBullet
+      value: 
+      objectReference: {fileID: 1499821665739892670, guid: 2fa18157983a5144d95b5a3729e59343, type: 3}
+    - target: {fileID: 7245715111729718263, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
+      propertyPath: epicSkill
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245715111729718263, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
+      propertyPath: skillCoolTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245715111729718263, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
       propertyPath: ShootBulletCount
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7245715111729718263, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
+      propertyPath: CoolDownUI.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572927060940400732, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
+      propertyPath: ammo
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8572927060940400732, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
       propertyPath: rotation
       value: 
       objectReference: {fileID: 2146119624882259093}
+    - target: {fileID: 8572927060940400732, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
+      propertyPath: spawnPos
+      value: 
+      objectReference: {fileID: 8766092306555572900}
     - target: {fileID: 8856349539015144182, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
       propertyPath: m_Name
       value: ShotGun
@@ -856,12 +907,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 412667952523718083, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8766092306555572900}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
 --- !u!4 &1586125093338064196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 412667952523718083, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
+  m_PrefabInstance: {fileID: 1421196910359906439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7588857794738240113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8856349539015144182, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
   m_PrefabInstance: {fileID: 1421196910359906439}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3625166051206860465
@@ -878,7 +937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3013402065798596686, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5555106814979436805, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
       propertyPath: rotation
@@ -932,11 +991,32 @@ PrefabInstance:
       propertyPath: rotation
       value: 
       objectReference: {fileID: 2146119624882259093}
+    - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
+      propertyPath: bigBullet
+      value: 
+      objectReference: {fileID: 1499821665739892670, guid: 2fa18157983a5144d95b5a3729e59343, type: 3}
+    - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
+      propertyPath: epicSkill
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
+      propertyPath: skillCoolTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
+      propertyPath: CoolDownUI.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
+--- !u!1 &1990288015098316543 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3013402065798596686, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
+  m_PrefabInstance: {fileID: 3625166051206860465}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9181098417628578296 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5559409031092277065, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
@@ -1020,6 +1100,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5360462537345806938, guid: d6e526d29b9727748afa9de59576331b, type: 3}
   m_PrefabInstance: {fileID: 4702140196515280153}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4612326903066256176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 90948823347435049, guid: d6e526d29b9727748afa9de59576331b, type: 3}
+  m_PrefabInstance: {fileID: 4702140196515280153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5414341848133607553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1037,8 +1122,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2146119624882259093}
     - target: {fileID: -4252655139307273132, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
+      propertyPath: epicSkill
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4252655139307273132, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
       propertyPath: skillCool
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -4252655139307273132, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
+      propertyPath: skillCoolTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -4252655139307273132, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
+      propertyPath: CoolDownUI.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4799638202723380667, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1086,7 +1183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6209504780493154387, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7282347808945583315, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
       propertyPath: rotation
@@ -1134,6 +1231,7 @@ MonoBehaviour:
   shotTime: 0
   isReloading: 0
   skill: 0
+  bulletUIManager: {fileID: 0}
 --- !u!4 &8226558453663171273 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4109816592972227144, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
