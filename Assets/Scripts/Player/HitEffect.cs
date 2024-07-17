@@ -8,7 +8,7 @@ public class HitEffect : MonoBehaviour
 {
     public Image hitUIImage; // UI 이미지
     public CinemachineImpulseSource cameraShake; // 카메라 흔들림 소스
-    public float fadeDuration = 1.0f; // 투명도 조절 시간
+    public float fadeDuration = 0.5f; // 투명도 조절 시간
     private bool isHeat = false;
 
     // Start is called before the first frame update

@@ -59,10 +59,10 @@ public class Player_Control : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
+        Block();
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * DataManager.Instance.Speed);
         transform.Translate(Vector2.up * verticalInput * Time.deltaTime * DataManager.Instance.Speed);
-        Block();
-
+        
         // Basic Movement Skill
         baseSkill();
 
