@@ -3,7 +3,6 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.FilePathAttribute;
 using UnityEngine.UI;
 
 public class Gun_Basic_Shooting : MonoBehaviour
