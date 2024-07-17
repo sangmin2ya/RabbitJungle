@@ -58,7 +58,7 @@ public class Player_Control_Sword : MonoBehaviour
 
     private void toggleMap()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             map.SetActive(!map.activeSelf);
             keyGuide.SetActive(!keyGuide.activeSelf);
