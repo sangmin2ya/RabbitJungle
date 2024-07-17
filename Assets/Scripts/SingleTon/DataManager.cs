@@ -21,7 +21,9 @@ public class DataManager : MonoBehaviour
     private float shurikenDamage;
     private float axeDamage;
     public bool justCleared = false;
+    public bool specialWeaponGet = false;   
     public bool epicSkill = false;
+    
     // getset 에 접근하게 해주는 프로퍼티
     public float Speed
     {
