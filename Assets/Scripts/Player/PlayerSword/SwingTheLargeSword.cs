@@ -38,14 +38,15 @@ public class SwingTheLargeSword : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "LongSword") 
         {
-            if (DataManager.Instance.firstClassChage)
+            //if (DataManager.Instance.firstClassChage)
             {
-                DataManager.Instance.Health += 2;
-                DataManager.Instance.Speed -= 2f;
-                DataManager.Instance.Damage += 2f;
-                DataManager.Instance.AttacSpeed -= 200f;
+                DataManager.Instance.firstMaxHealth = 7;
+                DataManager.Instance.firstSpeed = 8f;
+                DataManager.Instance.firstDamage = 4f;
+                DataManager.Instance.firstAttackSpeed = 300f;
+                DataManager.Instance.firstDashCount = 2;
 
-                DataManager.Instance.firstClassChage = false;
+                //DataManager.Instance.firstClassChage = false;
             }
 
             if (!swordObject.activeSelf)

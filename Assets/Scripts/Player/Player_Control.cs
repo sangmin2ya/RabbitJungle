@@ -73,8 +73,8 @@ public class Player_Control : MonoBehaviour
         if (DataManager.Instance.specialWeaponGet)
         {
             SpecialWeaponGet();
+            WeaponChange();
         }
-        WeaponChange();
 
         // Check Player Life
         PlayerDeath();
@@ -242,35 +242,38 @@ public class Player_Control : MonoBehaviour
     // player gun switch case
     public void SpecialWeaponGet()
     {
-
-        if (DataManager.Instance.firstClassChage)
+        if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
         {
-            if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
-            {
-                DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
-                DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed - 0.15f;
-                DataManager.Instance.BulletCount = DataManager.Instance.BulletCount + 30;
-                DataManager.Instance.SkillDamage = 2.0f;
-            }
-            else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
-            {
-                DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
-                DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed + 0.75f;
-                DataManager.Instance.BulletCount = DataManager.Instance.BulletCount - 10;
-                DataManager.Instance.SkillDamage = 1.0f;
-
-            }
-            else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
-            {
-                DataManager.Instance.Damage = DataManager.Instance.Damage + 2;
-                DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed + 0.75f;
-                DataManager.Instance.BulletCount = DataManager.Instance.BulletCount - 10;
-                DataManager.Instance.SkillDamage = 5.0f;
-            }
-
-            DataManager.Instance.firstClassChage = false;
+            DataManager.Instance.firstMaxHealth = 4;
+            DataManager.Instance.firstDashCount = 2;
+            DataManager.Instance.firstSpeed = 10f;
+            DataManager.Instance.firstDamage = 1;
+            DataManager.Instance.firstAttackSpeed = 0.1f;
+            DataManager.Instance.BulletCount = 50;
+            DataManager.Instance.SkillDamage = 2.0f;
+        }
+        else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
+        {
+            DataManager.Instance.firstMaxHealth = 4;
+            DataManager.Instance.firstDashCount = 2;
+            DataManager.Instance.firstSpeed = 10f;
+            DataManager.Instance.firstDamage = 1;
+            DataManager.Instance.firstAttackSpeed = 1;
+            DataManager.Instance.BulletCount = 10;
+            DataManager.Instance.SkillDamage = 1.0f;
 
         }
+        else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
+        {
+            DataManager.Instance.firstMaxHealth = 4;
+            DataManager.Instance.firstDashCount = 2;
+            DataManager.Instance.firstSpeed = 10f;
+            DataManager.Instance.firstDamage = 4;
+            DataManager.Instance.firstAttackSpeed = 1;
+            DataManager.Instance.BulletCount = 10;
+            DataManager.Instance.SkillDamage = 5.0f;
+        }
+
     }
 
     IEnumerator Flip()
