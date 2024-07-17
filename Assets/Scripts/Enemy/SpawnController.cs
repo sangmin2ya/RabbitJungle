@@ -15,7 +15,7 @@ public class SpawnController : MonoBehaviour
 
 
     private Transform playerTransform;
-    private int numberOfEnemy = 10; // 몬스터 생성 개수
+    private int numberOfEnemy = 1; // 몬스터 생성 개수
 
     //맵 상에서 적 생성 반경
     private float minX = -15.0f;
@@ -64,6 +64,7 @@ public class SpawnController : MonoBehaviour
                 Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity); // 기본 회전값으로 생성
                 spawnedEnemys++;
             }
+            SpawnCount++;
         }
     }
     private void Update()
@@ -88,14 +89,10 @@ public class SpawnController : MonoBehaviour
         Debug.Log("콜리션 발동");
         if (other.gameObject.CompareTag("Player") && gameObject.transform.parent.GetComponent<RoomData>().RoomType.ToString() == RoomType.Battle.ToString())
         {
-            // spawnEnemies
+            visited = true;// spawnEnemies
             SpawnEnemies();
-            SpawnCount++;
-            visited = true;
             Invoke("SpawnEnemies", 3.0f);// spawn once more
-            SpawnCount++;
             Invoke("SpawnEnemies", 6.0f);// spawn twice more
-            SpawnCount++;
 
         }
     }

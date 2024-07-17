@@ -23,8 +23,7 @@ public class Player_Control_Sword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //speed = DataManager.Instance.Speed;
-        speed = 10.0f;
+        speed = DataManager.Instance.Speed;
         StartCoroutine("Flip");
         StartCoroutine("ChargeDash");
         StartCoroutine("HitDelay");

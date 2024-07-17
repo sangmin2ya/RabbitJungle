@@ -22,7 +22,7 @@ public class BossHeat : MonoBehaviour
     }
 
     // 충돌 시 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
 
         /* for special weapon
