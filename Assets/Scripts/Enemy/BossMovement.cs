@@ -42,6 +42,7 @@ public class BossMovement : MonoBehaviour
     void Start()
     {
         currentState = BossState.Rest; // 처음 3초는 Rest
+        currentShootState = BossShootState.Stop; // 처음 3초는 Stop
         StartCoroutine(StateControl());
         StartCoroutine(BossShootControl());
     }
@@ -126,6 +127,7 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator BossShootControl()
     {
+        yield return new WaitForSeconds(3f); // Initial 3-second delay
         CancelInvoke();
         BossShootState newState = (BossShootState)Random.Range(0, System.Enum.GetValues(typeof(BossShootState)).Length);
         currentShootState = newState;
