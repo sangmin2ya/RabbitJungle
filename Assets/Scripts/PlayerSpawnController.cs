@@ -20,12 +20,14 @@ public class PlayerSpawnController : MonoBehaviour
             go = Instantiate(Player_Gun, new Vector3(0, 0, 0), Player_Gun.transform.rotation);
             go.GetComponent<Player_Control>().map = map;
             go.GetComponent<Player_Control>().keyGuide = keyGuide;
+            go.GetComponent<Player_Control>().healthUIManager = GameObject.Find("Battle_Ui").transform.GetComponentInChildren<HealthUIManager>();
         }
         else
         {
             go = Instantiate(Player_Sword, new Vector3(0, 0, 0), Player_Sword.transform.rotation);
             go.GetComponent<Player_Control_Sword>().map = map;
             go.GetComponent<Player_Control_Sword>().keyGuide = keyGuide;
+            go.GetComponent<Player_Control_Sword>().healthUIManager = GameObject.Find("Battle_Ui").transform.GetComponentInChildren<HealthUIManager>();
         }
         characterCamera.GetComponent<CinemachineVirtualCamera>().Follow = go.transform;
 
