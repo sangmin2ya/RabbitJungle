@@ -17,7 +17,6 @@ public class Sniper_Skill : MonoBehaviour
     public float skillCool;
     private float coolTIme;
 
-    public bool epicSkill;
 
     public GameObject[] CoolDownUI;
     public TextMeshProUGUI skillCoolDownText;
@@ -39,7 +38,7 @@ public class Sniper_Skill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (epicSkill)
+        if (DataManager.Instance.epicSkill)
         {
             if (Input.GetMouseButton(1) && skillCool > skillCoolTime)
             {

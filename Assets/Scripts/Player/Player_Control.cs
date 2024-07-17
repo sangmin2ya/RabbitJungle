@@ -13,7 +13,7 @@ public class Player_Control : MonoBehaviour
     // Player Movement
     public float horizontalInput;
     public float verticalInput;
-
+    
     // Player UI
     public GameObject map;
     public GameObject keyGuide;
@@ -21,7 +21,7 @@ public class Player_Control : MonoBehaviour
 
     // Dash
     private bool dashState = false;
-    private bool isDashing = false;
+    private bool isDashing = false; 
     private float dashDuration = 0.1f;
     private float dashTimer = 0f;
     private int dashCount;
@@ -61,6 +61,8 @@ public class Player_Control : MonoBehaviour
         Block();
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * DataManager.Instance.Speed);
         transform.Translate(Vector2.up * verticalInput * Time.deltaTime * DataManager.Instance.Speed);
+
+
         // Basic Movement Skill
         baseSkill();
 
@@ -167,7 +169,7 @@ public class Player_Control : MonoBehaviour
     // player movement skill
     public void baseSkill()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashing && !DataManager.Instance.DashState)
         {
             BaseSkill();
             //DataManager.Instance.DashCount--;
@@ -189,10 +191,12 @@ public class Player_Control : MonoBehaviour
         if (dashCount > 0)
         {
             isDashing = true;
+            DataManager.Instance.DashState = true;
             dashTimer = dashDuration;
 
             GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(false);
             dashCount--;
+
 
             StartCoroutine("DashCutter");
         }
@@ -218,34 +222,45 @@ public class Player_Control : MonoBehaviour
     // player gun switch case
     public void SpecialWeaponGet()
     {
-        if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
+        if (DataManager.Instance.firstClassChage)
         {
-            playerGun[1].SetActive(true);
-            playerGun[0].SetActive(false);
+            if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
+            {
+                playerGun[1].SetActive(true);
+                playerGun[0].SetActive(false);
 
-            DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
-            DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed - 0.15f;
-            DataManager.Instance.BulletCount = DataManager.Instance.BulletCount + 30;
-        }
-        else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
-        {
-            playerGun[2].SetActive(true);
-            playerGun[0].SetActive(false);
 
-            DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
-            DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed + 0.75f;
-            DataManager.Instance.BulletCount = DataManager.Instance.BulletCount - 10;
-        }
-        else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
-        {
-            playerGun[3].SetActive(true);
-            playerGun[0].SetActive(false);
+                DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
+                DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed - 0.15f;
+                DataManager.Instance.BulletCount = DataManager.Instance.BulletCount + 30;
+                DataManager.Instance.SkillDamage = 2.0f;
+            }
+            else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
+            {
+                playerGun[2].SetActive(true);
+                playerGun[0].SetActive(false);
 
-            DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
-            DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed + 0.75f;
-            DataManager.Instance.BulletCount = DataManager.Instance.BulletCount - 10;
+                DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
+                DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed + 0.75f;
+                DataManager.Instance.BulletCount = DataManager.Instance.BulletCount - 10;
+                DataManager.Instance.SkillDamage = 1.0f;
+
+            }
+            else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
+            {
+                playerGun[3].SetActive(true);
+                playerGun[0].SetActive(false);
+
+                DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
+                DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed + 0.75f;
+                DataManager.Instance.BulletCount = DataManager.Instance.BulletCount - 10;
+                DataManager.Instance.SkillDamage = 5.0f;
+            }
+
+            DataManager.Instance.firstClassChage = false;
+
         }
-    }
+    }    
 
     IEnumerator Flip()
     {
@@ -263,7 +278,7 @@ public class Player_Control : MonoBehaviour
 
         }
     }
-
+ 
     IEnumerator DashCutter()
     {
         DataManager.Instance.DashState = true;
@@ -297,13 +312,11 @@ public class Player_Control : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!dashState)
+        if(!DataManager.Instance.DashState)
         {
             if (!DataManager.Instance.beHit)
             {
                 DataManager.Instance.beHit = true;
-                Debug.Log("피해입음!");
-                this.gameObject.GetComponent<HitEffect>().TriggerHitEffect();
                 DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
 
                 if (DataManager.Instance.Health <= 0)
