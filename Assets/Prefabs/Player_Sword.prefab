@@ -1538,9 +1538,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7775275265329483853}
   - component: {fileID: 6729021759368195159}
-  - component: {fileID: 3758404850332528060}
   - component: {fileID: 2723725648489594801}
   - component: {fileID: -8938209003175932058}
+  - component: {fileID: 3758404850332528060}
   m_Layer: 6
   m_Name: Player_Sword
   m_TagString: Player
@@ -1592,24 +1592,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &3758404850332528060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185040333067558719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26504411de411d4468698c57e82c4735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalInput: 0
-  verticalInput: 0
-  speed: 0
-  map: {fileID: 0}
-  keyGuide: {fileID: 0}
-  healthUIManager: {fileID: 0}
 --- !u!70 &2723725648489594801
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1657,6 +1639,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b22e1cfe9288c42a76c5e9ca1b2b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3758404850332528060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185040333067558719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26504411de411d4468698c57e82c4735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalInput: 0
+  verticalInput: 0
+  speed: 0
+  map: {fileID: 0}
+  keyGuide: {fileID: 0}
+  healthUIManager: {fileID: 0}
 --- !u!1 &9201572315853517780
 GameObject:
   m_ObjectHideFlags: 0

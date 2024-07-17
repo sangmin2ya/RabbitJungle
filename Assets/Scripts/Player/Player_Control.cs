@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Player_Control : MonoBehaviour
@@ -20,18 +21,35 @@ public class Player_Control : MonoBehaviour
 
     // Dash
     private bool dashState = false;
+    private bool isDashing = false; 
+    private float dashDuration = 0.1f;
+    private float dashTimer = 0f;
+    private int dashCount;
+    public float dashCoolTime = 0f;
+    //private Rigidbody2D rb;
 
     // Player Gun
     public GameObject[] playerGun;
 
+    public float maxHealth;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        DataManager.Instance.Health = 4.0f;
+        // Max Health / Health Setting 
+        maxHealth = 4.0f;
+        healthUIManager.SethealthCount(maxHealth);
+        DataManager.Instance.Health = maxHealth;
+
         StartCoroutine("Flip");
+        StartCoroutine("ChargeDash");
+        StartCoroutine("HitDelay");
+
         DataManager.Instance.Speed = 10.0f;
         DataManager.Instance.DashCount = 2;
-        healthUIManager.SethealthCount(DataManager.Instance.Health);
+
+        dashCount = DataManager.Instance.DashCount;
     }
 
     // Update is called once per frame
@@ -151,23 +169,53 @@ public class Player_Control : MonoBehaviour
     // player movement skill
     public void baseSkill()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && dashState == false)
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
         {
             BaseSkill();
-            DataManager.Instance.DashCount--;
+            //DataManager.Instance.DashCount--;
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             DataManager.Instance.Speed = 10.0f;
+        }
+
+        if (isDashing)
+        {
+            //Dash();
         }
     }
 
     // player movement skill
     private void BaseSkill()
     {
-        DataManager.Instance.Speed = 40;
-        StartCoroutine("DashCutter");
+        if (dashCount > 0)
+        {
+            isDashing = true;
+            dashTimer = dashDuration;
+
+            GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(false);
+            dashCount--;
+
+            StartCoroutine("DashCutter");
+        }
     }
+    /*
+    void Dash()
+    {
+        dashTimer -= Time.deltaTime;
+
+        if(dashTimer > 0)
+        {
+            transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * 40);
+            transform.Translate(Vector2.up * verticalInput * Time.deltaTime * 40);
+        }
+        else
+        {
+            isDashing = false;
+            //DataManager.Instance.Speed = DataManager.Instance.Speed;
+        }
+    }
+    */
 
     // player gun switch case
     public void SpecialWeaponGet()
@@ -176,16 +224,28 @@ public class Player_Control : MonoBehaviour
         {
             playerGun[1].SetActive(true);
             playerGun[0].SetActive(false);
+
+            DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
+            DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed - 0.15f;
+            DataManager.Instance.BulletCount = DataManager.Instance.BulletCount + 30; 
         }
         else if(DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
         {
             playerGun[2].SetActive(true);
             playerGun[0].SetActive(false);
+
+            DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
+            DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed + 0.75f;
+            DataManager.Instance.BulletCount = DataManager.Instance.BulletCount - 10;
         }
         else if(DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
         {
             playerGun[3].SetActive(true);
             playerGun[0].SetActive(false);
+
+            DataManager.Instance.Damage = DataManager.Instance.Damage - 1;
+            DataManager.Instance.AttacSpeed = DataManager.Instance.AttacSpeed +0.75f;
+            DataManager.Instance.BulletCount = DataManager.Instance.BulletCount - 10;
         }
     }    
 
@@ -208,21 +268,81 @@ public class Player_Control : MonoBehaviour
  
     IEnumerator DashCutter()
     {
-        dashState = true;
+        DataManager.Instance.DashState = true;
         this.gameObject.layer = 10;
         yield return new WaitForSeconds(0.25f);
-        dashState = false;
+        DataManager.Instance.DashState = false;
         this.gameObject.layer = 0;
     }
 
-    // oncollision update
-    private void OnCollisionEnter2D(Collision2D collision)
+    IEnumerator ChargeDash()
     {
-        if (collision.collider.CompareTag("Enemy"))
+        while (true)
         {
-            DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
-            healthUIManager.SethealthCount(DataManager.Instance.Health);
+            yield return null;
 
+            if (dashCount < DataManager.Instance.DashCount)
+            {
+                dashCoolTime += Time.deltaTime;
+                if (dashCoolTime >= 3)
+                {
+                    dashCount++;
+                    GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(true);
+                    dashCoolTime = 0;
+                }
+            }
+            else
+                continue;
+        }
+
+    }
+    // oncollision update
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.collider.CompareTag("Enemy"))
+    //    {
+    //        DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
+    //        healthUIManager.SethealthCount(DataManager.Instance.Health);
+    //        if (DataManager.Instance.Health <= 0)
+    //            DataManager.Instance.isDead = true;
+    //    }
+    //}
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(!dashState)
+        {
+            if (!DataManager.Instance.beHit)
+            {
+                DataManager.Instance.beHit = true;
+                DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
+                healthUIManager.SethealthCount(DataManager.Instance.Health);
+                if (DataManager.Instance.Health <= 0)
+                {
+                    DataManager.Instance.beHit = false;
+                    DataManager.Instance.isDead = true;
+                }
+            }
+        }
+    }
+
+    IEnumerator HitDelay()
+    {
+        float hitDelay = 0f;
+
+        while (true)
+        {
+            yield return null;
+
+            if (DataManager.Instance.beHit)
+            {
+                hitDelay += Time.deltaTime;
+                if (hitDelay >= 0.5f)
+                {
+                    hitDelay = 0f;
+                    DataManager.Instance.beHit = false;
+                }
+            }
         }
     }
 }

@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 502982440083838929}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.074917, y: 0.33898, z: 0.54369}
-  m_LocalScale: {x: 0.19012953, y: 0.61134213, z: 1.7760817}
+  m_LocalPosition: {x: 0.033307, y: 0.19921, z: -0.015303}
+  m_LocalScale: {x: 0.12963031, y: 0.41681308, z: 1.2109325}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2928930206456844939}
@@ -145,8 +145,8 @@ GameObject:
   - component: {fileID: 1106242653398363768}
   - component: {fileID: 1590713750514479761}
   - component: {fileID: 4353856514668435016}
-  - component: {fileID: 8056909589184301398}
-  m_Layer: 0
+  - component: {fileID: 4853533093888143514}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 2672469254543760605}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -0.03045325, z: 0.0724516}
+  m_LocalPosition: {x: 0.02, y: -0.03045325, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -187,11 +187,13 @@ MonoBehaviour:
   map: {fileID: 0}
   keyGuide: {fileID: 0}
   healthUIManager: {fileID: 0}
+  dashCoolTime: 0
   playerGun:
   - {fileID: 4612326903066256176}
   - {fileID: 2093906145690994898}
   - {fileID: 7588857794738240113}
   - {fileID: 1990288015098316543}
+  maxHealth: 0
 --- !u!50 &4353856514668435016
 Rigidbody2D:
   serializedVersion: 4
@@ -219,7 +221,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!61 &8056909589184301398
+--- !u!61 &4853533093888143514
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,7 +253,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.067635655, y: -0.09984332}
+  m_Offset: {x: -0.057533324, y: -0.11890215}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -262,7 +264,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8647287, y: 1.5346434}
+  m_Size: {x: 0.88493335, y: 1.6367017}
   m_EdgeRadius: 0
 --- !u!1 &3954182580984528397
 GameObject:
@@ -290,8 +292,8 @@ Transform:
   m_GameObject: {fileID: 3954182580984528397}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0724516}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.027151, y: 0.048747, z: 0.51726}
+  m_LocalScale: {x: 1.4861, y: 1.4861, z: 1.4861}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4064357482670236073}
@@ -411,8 +413,8 @@ Transform:
   m_GameObject: {fileID: 6897829527504727105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.20591, y: -0.12947, z: -2.9698}
-  m_LocalScale: {x: 0.14846563, y: 0.14176093, z: 1.7760817}
+  m_LocalPosition: {x: 0.12262, y: -0.12018, z: -2.4108}
+  m_LocalScale: {x: 0.10122387, y: 0.096652605, z: 1.2109325}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2928930206456844939}
@@ -495,8 +497,8 @@ Transform:
   m_GameObject: {fileID: 8027734310280591540}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.32471, y: 0.33454, z: 0.54369}
-  m_LocalScale: {x: 0.19012953, y: 0.61134213, z: 1.7760817}
+  m_LocalPosition: {x: -0.23916, y: 0.19618, z: -0.015303}
+  m_LocalScale: {x: 0.12963031, y: 0.41681308, z: 1.2109325}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2928930206456844939}
@@ -579,8 +581,8 @@ Transform:
   m_GameObject: {fileID: 8139786998699956308}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1249, y: -0.57572, z: 0.54369}
-  m_LocalScale: {x: 0.46030113, y: 0.5389668, z: 1.7760817}
+  m_LocalPosition: {x: -0.10293, y: -0.42443, z: -0.015303}
+  m_LocalScale: {x: 0.31383333, y: 0.36746755, z: 1.2109325}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2928930206456844939}
@@ -663,8 +665,8 @@ Transform:
   m_GameObject: {fileID: 8373711113322819610}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05585, y: -0.013134, z: 0.54369}
-  m_LocalScale: {x: 0.7930796, y: 0.53415656, z: 1.7760817}
+  m_LocalPosition: {x: -0.05585, y: -0.040862, z: -0.015303}
+  m_LocalScale: {x: 0.5407217, y: 0.36418796, z: 1.2109325}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2928930206456844939}
@@ -747,8 +749,8 @@ Transform:
   m_GameObject: {fileID: 8631606354763159686}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.19816, y: -0.13391, z: -2.9698}
-  m_LocalScale: {x: 0.14846563, y: 0.14176093, z: 1.7760817}
+  m_LocalPosition: {x: -0.15288, y: -0.12321, z: -2.4108}
+  m_LocalScale: {x: 0.10122387, y: 0.096652605, z: 1.2109325}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2928930206456844939}
@@ -902,6 +904,10 @@ PrefabInstance:
       value: ShotGun
       objectReference: {fileID: 0}
     - target: {fileID: 8856349539015144182, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856349539015144182, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -936,8 +942,16 @@ PrefabInstance:
       value: Sniper
       objectReference: {fileID: 0}
     - target: {fileID: 3013402065798596686, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013402065798596686, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453880775188152448, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555106814979436805, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
       propertyPath: rotation
@@ -997,7 +1011,7 @@ PrefabInstance:
       objectReference: {fileID: 1499821665739892670, guid: 2fa18157983a5144d95b5a3729e59343, type: 3}
     - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
       propertyPath: epicSkill
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5849279961425523145, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
       propertyPath: skillCoolTime
@@ -1035,8 +1049,12 @@ PrefabInstance:
       value: Basic Gun
       objectReference: {fileID: 0}
     - target: {fileID: 90948823347435049, guid: d6e526d29b9727748afa9de59576331b, type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 90948823347435049, guid: d6e526d29b9727748afa9de59576331b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5360462537345806938, guid: d6e526d29b9727748afa9de59576331b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1137,6 +1155,10 @@ PrefabInstance:
       propertyPath: CoolDownUI.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4676333226820472292, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4799638202723380667, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.58
@@ -1182,6 +1204,10 @@ PrefabInstance:
       value: Rifle
       objectReference: {fileID: 0}
     - target: {fileID: 6209504780493154387, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6209504780493154387, guid: bb678c47346150742a8f8c23381e13a6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1220,7 +1246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263a7d4062badf84fa41f86fe0c3775c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 50
   ammo: 0
   bullet: {fileID: 186791521697897486, guid: 62552e13cf733ce4494f14456d7db895, type: 3}
   bigBullet: {fileID: 1499821665739892670, guid: 2fa18157983a5144d95b5a3729e59343, type: 3}
