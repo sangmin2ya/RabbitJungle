@@ -13,7 +13,7 @@ public class Player_Control : MonoBehaviour
     // Player Movement
     public float horizontalInput;
     public float verticalInput;
-    
+
     // Player UI
     public GameObject map;
     public GameObject keyGuide;
@@ -21,7 +21,7 @@ public class Player_Control : MonoBehaviour
 
     // Dash
     private bool dashState = false;
-    private bool isDashing = false; 
+    private bool isDashing = false;
     private float dashDuration = 0.1f;
     private float dashTimer = 0f;
     private int dashCount;
@@ -201,12 +201,12 @@ public class Player_Control : MonoBehaviour
             StartCoroutine("DashCutter");
         }
     }
-    
+
     void Dash()
     {
         dashTimer -= Time.deltaTime;
 
-        if(dashTimer > 0)
+        if (dashTimer > 0)
         {
             transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * 40);
             transform.Translate(Vector2.up * verticalInput * Time.deltaTime * 40);
@@ -217,7 +217,7 @@ public class Player_Control : MonoBehaviour
             //DataManager.Instance.Speed = DataManager.Instance.Speed;
         }
     }
-    
+
 
     // player gun switch case
     public void SpecialWeaponGet()
@@ -260,7 +260,7 @@ public class Player_Control : MonoBehaviour
             DataManager.Instance.firstClassChage = false;
 
         }
-    }    
+    }
 
     IEnumerator Flip()
     {
@@ -278,7 +278,7 @@ public class Player_Control : MonoBehaviour
 
         }
     }
- 
+
     IEnumerator DashCutter()
     {
         DataManager.Instance.DashState = true;
@@ -312,11 +312,13 @@ public class Player_Control : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(!DataManager.Instance.DashState)
+        if (!DataManager.Instance.DashState)
         {
             if (!DataManager.Instance.beHit)
             {
                 DataManager.Instance.beHit = true;
+                Debug.Log("피해입음!");
+                this.gameObject.GetComponent<HitEffect>().TriggerHitEffect();
                 DataManager.Instance.Health = DataManager.Instance.Health - 0.5f;
 
                 if (DataManager.Instance.Health <= 0)

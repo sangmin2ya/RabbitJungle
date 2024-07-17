@@ -28,7 +28,16 @@ public class BossMovement : MonoBehaviour
 
     private BossState currentState;
     private BossShootState currentShootState;
-
+    void Awake()
+    {
+        //StartCoroutine(StopGameForSeconds());
+    }
+    IEnumerator StopGameForSeconds()
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSeconds(3);
+        Time.timeScale = 1;
+    }
     // Start is called before the first frame update
     void Start()
     {

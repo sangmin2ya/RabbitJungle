@@ -49,6 +49,8 @@ public class Player_Control_Sword : MonoBehaviour
 
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * speed);
         transform.Translate(Vector2.up * verticalInput * Time.deltaTime * speed);
+
+        healthUIManager.SethealthCount(DataManager.Instance.Health);
     }
 
     private void FixedUpdate()
