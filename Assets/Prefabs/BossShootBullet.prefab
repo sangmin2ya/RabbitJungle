@@ -95,11 +95,11 @@ GameObject:
   - component: {fileID: 3539147949612524763}
   - component: {fileID: -8844587201953022227}
   - component: {fileID: 7289653150260428130}
-  - component: {fileID: 2117992421608418607}
-  - component: {fileID: 6988363565537485592}
+  - component: {fileID: -7230270872033109698}
+  - component: {fileID: 6597146712425056159}
   m_Layer: 7
-  m_Name: EnemyBullet
-  m_TagString: Enemy
+  m_Name: BossShootBullet
+  m_TagString: BOSS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6598517729033223344}
@@ -182,19 +182,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
---- !u!114 &2117992421608418607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8808613486895273275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee68024702ad144b5ff0c548849b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!58 &6988363565537485592
+--- !u!58 &-7230270872033109698
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,3 +217,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
+--- !u!114 &6597146712425056159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8808613486895273275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0016dfbf671ba9e4daa5d0dc143e07f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

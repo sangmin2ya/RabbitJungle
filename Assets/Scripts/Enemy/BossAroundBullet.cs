@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public class BossAroundBullet : MonoBehaviour
 {
-    private float bulletSpeed = 10.0f;
-    private Transform playerTransform;
+    /*
+    private float bulletSpeed = 10f;
     private Vector2 bulletDirection;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetBulletProperties(Vector2 direction)
     {
-        //플레이어 위치 인식
-        playerTransform = GameObject.FindWithTag("Player").transform;
-        //플레이어 위치와 몬스터 위치 기반으로 방향 설정
-        bulletDirection = (playerTransform.position - transform.position).normalized;
+        bulletDirection = direction.normalized;
+    }
 
+    // Start is called before the first frame update
+    void Start(Vector2 direction)
+    {
+
+        //받아온 buleet speed 와 bulletDirection을 기반으로 속도와 방향 설정
+        bulletDirection = direction.normalized;
     }
 
     void Update()
     {
-        // update bullet transform position by delta time
         transform.position += (Vector3)(bulletDirection * bulletSpeed * Time.deltaTime);
-
     }
 
 
@@ -38,5 +39,5 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject); // 탄막 제거
         }
     }
-
+*/
 }

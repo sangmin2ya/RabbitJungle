@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1755887381086503328}
   - component: {fileID: 771370138934000585}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GameObject_Dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 7719227137774998437}
   - component: {fileID: 7682905090026061953}
   - component: {fileID: 1829861652474552352}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Dagger
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3536830569433444754}
   - component: {fileID: 5782648368069979271}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5248575500543557540}
   - component: {fileID: 1743438419210111812}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,6 +412,91 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalInput: 0
   angle: 0
+--- !u!1 &3085624314012220871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8768343220973532433}
+  - component: {fileID: 1130068776897531661}
+  m_Layer: 0
+  m_Name: Impulse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8768343220973532433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3085624314012220871}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.5284147, y: -0.56389827, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7775275265329483853}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1130068776897531661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3085624314012220871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 4
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 1, y: -0.5, z: 0}
 --- !u!1 &3247702596034688972
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1100899432972945204}
   - component: {fileID: 5560885438240567648}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: DirectionTri
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +677,7 @@ GameObject:
   - component: {fileID: 6485906204805013485}
   - component: {fileID: 5342992778506004751}
   - component: {fileID: 3524503044742956902}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LargeSword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -817,7 +902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6696246472662610421}
   - component: {fileID: 5900384054272604265}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -985,7 +1070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3059614126069165137}
   - component: {fileID: 2215637332348983385}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GameObject_LargeSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1119,7 +1204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8630755525638364682}
   - component: {fileID: 871707329936181743}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GameObject_Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1169,7 +1254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1694505308059912120}
   - component: {fileID: 2696536759299446703}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GameObject _Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1220,7 +1305,7 @@ GameObject:
   - component: {fileID: 3176703415850328753}
   - component: {fileID: 6377036110674717844}
   - component: {fileID: 5313772297635851575}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Axe
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1313,7 +1398,7 @@ GameObject:
   - component: {fileID: 2112523192699341091}
   - component: {fileID: 7730175424374983007}
   - component: {fileID: 5369902852315952367}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -1541,6 +1626,7 @@ GameObject:
   - component: {fileID: 2723725648489594801}
   - component: {fileID: -8938209003175932058}
   - component: {fileID: 3758404850332528060}
+  - component: {fileID: 4605500422327979192}
   m_Layer: 6
   m_Name: Player_Sword
   m_TagString: Player
@@ -1563,6 +1649,7 @@ Transform:
   m_Children:
   - {fileID: 5248575500543557540}
   - {fileID: 3929554605961944859}
+  - {fileID: 8768343220973532433}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6729021759368195159
@@ -1657,6 +1744,21 @@ MonoBehaviour:
   map: {fileID: 0}
   keyGuide: {fileID: 0}
   healthUIManager: {fileID: 0}
+--- !u!114 &4605500422327979192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185040333067558719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497943c6e2c143749901e4d869ab466e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitUIImage: {fileID: 0}
+  cameraShake: {fileID: 1130068776897531661}
+  fadeDuration: 1
 --- !u!1 &9201572315853517780
 GameObject:
   m_ObjectHideFlags: 0
