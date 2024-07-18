@@ -3,19 +3,28 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Wall
+  - Door
+  - Enemy
+  - Portal
+  - Weapon
+  - Skill
+  - BOSS
+  - EnemyNumber
+  - ITEM
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Room
   - Water
   - UI
+  - Player
+  - Bullet
+  - Weapon
   - 
-  - 
-  - 
-  - 
-  - 
+  - Dash_Sword
   - 
   - 
   - 
