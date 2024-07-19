@@ -26,4 +26,5 @@ public class PortalControl : MonoBehaviour
             SceneManager.LoadScene(gameScene);
         }
     }
+
 }

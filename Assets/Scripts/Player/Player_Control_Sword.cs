@@ -34,10 +34,24 @@ public class Player_Control_Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!DataManager.Instance.isFreeze)
+        {
+            Move();
+        }
+        // Toogle Map
+        toggleMap();
+        healthUIManager.SethealthCount(DataManager.Instance.Health);
+    }
+
+    private void FixedUpdate()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
+    private void Move()
+    {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
         Block();
-        toggleMap();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             baseSkill();
@@ -50,14 +64,7 @@ public class Player_Control_Sword : MonoBehaviour
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * speed);
         transform.Translate(Vector2.up * verticalInput * Time.deltaTime * speed);
 
-        healthUIManager.SethealthCount(DataManager.Instance.Health);
     }
-
-    private void FixedUpdate()
-    {
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-    }
-
     private void toggleMap()
     {
         if (Input.GetKeyDown(KeyCode.Tab))

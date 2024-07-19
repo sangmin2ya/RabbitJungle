@@ -32,7 +32,7 @@ public class SettingJobController : MonoBehaviour
     }
     public void SelectGun()
     {
-        DataManager.Instance.StageLevel = 1;
+        DataManager.Instance.StageLevel = 0;
         DataManager.Instance.MaxHealth = 4f;
         DataManager.Instance.Health = DataManager.Instance.MaxHealth;
         DataManager.Instance.Speed = 10f;
@@ -58,11 +58,11 @@ public class SettingJobController : MonoBehaviour
 
         DataManager.Instance.specialWeaponGet = false;
 
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Intro");
     }
     public void SelectSword()
     {
-        DataManager.Instance.StageLevel = 1;
+        DataManager.Instance.StageLevel = 0;
         DataManager.Instance.MaxHealth = 5f;
         DataManager.Instance.Health = DataManager.Instance.MaxHealth;
         DataManager.Instance.Speed = 10f;
@@ -90,6 +90,6 @@ public class SettingJobController : MonoBehaviour
 
         DataManager.Instance.specialWeaponGet = false;
 
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Intro");
     }
 }

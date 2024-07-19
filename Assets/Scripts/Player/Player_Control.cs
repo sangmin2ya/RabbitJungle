@@ -54,21 +54,12 @@ public class Player_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Player Movement
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-
-        Block();
-        transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * DataManager.Instance.Speed);
-        transform.Translate(Vector2.up * verticalInput * Time.deltaTime * DataManager.Instance.Speed);
-
-
-        // Basic Movement Skill
-        baseSkill();
-
+        if (!DataManager.Instance.isFreeze)
+        {
+            Move();
+        }
         // Toogle Map
         toggleMap();
-
         // Special Weapon
         if (DataManager.Instance.specialWeaponGet)
         {
@@ -85,7 +76,20 @@ public class Player_Control : MonoBehaviour
         PlayerDeath();
         healthUIManager.SethealthCount(DataManager.Instance.Health);
     }
+    private void Move()
+    {
+        // Player Movement
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
+        Block();
+        transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * DataManager.Instance.Speed);
+        transform.Translate(Vector2.up * verticalInput * Time.deltaTime * DataManager.Instance.Speed);
+
+
+        // Basic Movement Skill
+        baseSkill();
+    }
     //Toogle Map 
     private void toggleMap()
     {

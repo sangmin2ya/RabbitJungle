@@ -16,7 +16,8 @@ public class EnemyHeat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyHP = 5.0f * DataManager.Instance.StageLevel;
+        enemyHP = 5.0f * (DataManager.Instance.StageLevel == 0 ? 1 : DataManager.Instance.StageLevel);
+        //enemyHP = 5.0f * DataManager.Instance.StageLevel;
     }
 
     // Update is called once per frame

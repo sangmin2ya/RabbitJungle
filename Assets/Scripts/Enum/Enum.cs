@@ -12,5 +12,5 @@ public enum RoomType
 }
 public enum userState
 {
-    moving , stop, attaking
+    moving, stop, attaking
 }
