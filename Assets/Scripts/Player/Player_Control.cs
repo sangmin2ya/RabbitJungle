@@ -71,7 +71,7 @@ public class Player_Control : MonoBehaviour
         }
 
         WeaponChange();
-
+        GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").gameObject.SetActive(DataManager.Instance.epicSkill);
         // Check Player Life
         PlayerDeath();
         healthUIManager.SethealthCount(DataManager.Instance.Health);
@@ -204,10 +204,9 @@ public class Player_Control : MonoBehaviour
             DataManager.Instance.DashState = true;
             dashTimer = dashDuration;
 
-            GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(false);
+            GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).GetComponent<Image>().fillAmount = GameObject.Find("Canvas_Dash").transform.GetChild(dashCount + 1).GetComponent<Image>().fillAmount;
+            GameObject.Find("Canvas_Dash").transform.GetChild(dashCount + 1).GetComponent<Image>().fillAmount = 0;
             dashCount--;
-
-
             StartCoroutine("DashCutter");
         }
     }
@@ -327,10 +326,10 @@ public class Player_Control : MonoBehaviour
             if (dashCount < DataManager.Instance.DashCount)
             {
                 dashCoolTime += Time.deltaTime;
+                GameObject.Find("Canvas_Dash").transform.GetChild(dashCount + 1).GetComponent<Image>().fillAmount = dashCoolTime / 3;
                 if (dashCoolTime >= 3)
                 {
                     dashCount++;
-                    GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(true);
                     dashCoolTime = 0;
                 }
             }

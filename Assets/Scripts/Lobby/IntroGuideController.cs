@@ -86,6 +86,7 @@ public class IntroGuideController : MonoBehaviour
                 case 6:
                     guidePanel.transform.Find("Start").gameObject.SetActive(true);
                     door.SetActive(true);
+                    DataManager.Instance.Health = DataManager.Instance.MaxHealth;
                     break;
                 default:
                     break;

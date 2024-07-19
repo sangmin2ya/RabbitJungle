@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StageGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject mapPrefab;
+    [SerializeField] private List<GameObject> mapPrefab;
     [SerializeField] private GameObject bossMapPrefab;
     [SerializeField] private GameObject itemMapPrefab;
     [SerializeField] private GameObject specialJobUI;
@@ -31,6 +31,8 @@ public class StageGenerator : MonoBehaviour
         Debug.Log($"가장 먼 방: ({farthestRoom.Item1}, {farthestRoom.Item2})");
         Debug.Log($"아이템 방: ({itemRoom.Item1}, {itemRoom.Item2})");
         CreateStage();
+
+
     }
     /// <summary>
     /// 스테이지 생성
@@ -198,7 +200,7 @@ public class StageGenerator : MonoBehaviour
                     }
                     else
                     {
-                        currentMap = Instantiate(mapPrefab, new Vector3((i - size / 2) * 75, (j - size / 2) * 75, 0), Quaternion.identity);
+                        currentMap = Instantiate(mapPrefab[DataManager.Instance.StageLevel - 1], new Vector3((i - size / 2) * 75, (j - size / 2) * 75, 0), Quaternion.identity);
                         currentMap.GetComponent<RoomData>().RoomType = RoomType.Battle.ToString();
                     }
                 }

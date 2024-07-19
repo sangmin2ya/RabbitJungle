@@ -78,8 +78,8 @@ public class Player_Control_Sword : MonoBehaviour
     {
         if (dashCount > 0)
         {
-            GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(false);
-            dashCount--;
+            GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).GetComponent<Image>().fillAmount = GameObject.Find("Canvas_Dash").transform.GetChild(dashCount + 1).GetComponent<Image>().fillAmount;
+            GameObject.Find("Canvas_Dash").transform.GetChild(dashCount + 1).GetComponent<Image>().fillAmount = 0; dashCount--;
             speed *= 3;
             StartCoroutine("DashCutter");
         }
@@ -105,10 +105,10 @@ public class Player_Control_Sword : MonoBehaviour
             if (dashCount < DataManager.Instance.DashCount)
             {
                 dashCoolTime += Time.deltaTime;
+                GameObject.Find("Canvas_Dash").transform.GetChild(dashCount + 1).GetComponent<Image>().fillAmount = dashCoolTime / 3;
                 if (dashCoolTime >= 3)
                 {
                     dashCount++;
-                    GameObject.Find("Canvas_Dash").transform.GetChild(dashCount).gameObject.SetActive(true);
                     dashCoolTime = 0;
                 }
             }
