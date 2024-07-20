@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpecialJobController : MonoBehaviour
@@ -33,7 +34,13 @@ public class SpecialJobController : MonoBehaviour
         foreach (var button in jobButtons)
         {
             button.gameObject.SetActive(true);
-            button.onClick.AddListener(() => OnJobSelected(button));
+            if (DataManager.Instance.weaponList.Any(x => x.Item1 == button.gameObject.name))
+            {
+                button.enabled = false;
+                button.gameObject.transform.Find("Block").gameObject.SetActive(true);
+            }
+            else
+                button.onClick.AddListener(() => OnJobSelected(button));
         }
     }
     private void OnJobSelected(UnityEngine.UI.Button selectedButton)
@@ -54,31 +61,35 @@ public class SpecialJobController : MonoBehaviour
     }
     private void ApplyJobEffect(string jobName)
     {
-        DataManager.Instance.specialWeaponGet = true;
-        DataManager.Instance.firstClassChage = true;
-        DataManager.Instance.epicSkill = false;
         switch (jobName)
         {
             case "Shotgun":
                 DataManager.Instance.SpecialWeapon = SpecialWeaponType.ShotGun.ToString();
+                DataManager.Instance.weaponList.Add(new System.Tuple<string, bool>(SpecialWeaponType.ShotGun.ToString(), false));
                 break;
             case "Rifle":
                 DataManager.Instance.SpecialWeapon = SpecialWeaponType.Rifle.ToString();
+                DataManager.Instance.weaponList.Add(new System.Tuple<string, bool>(SpecialWeaponType.Rifle.ToString(), false));
                 break;
             case "Sniper":
                 DataManager.Instance.SpecialWeapon = SpecialWeaponType.Sniper.ToString();
+                DataManager.Instance.weaponList.Add(new System.Tuple<string, bool>(SpecialWeaponType.Sniper.ToString(), false));
                 break;
             case "ShortSword":
                 DataManager.Instance.SpecialWeapon = SpecialWeaponType.ShortSword.ToString();
+                DataManager.Instance.weaponList.Add(new System.Tuple<string, bool>(SpecialWeaponType.ShortSword.ToString(), false));
                 break;
             case "LongSword":
                 DataManager.Instance.SpecialWeapon = SpecialWeaponType.LongSword.ToString();
+                DataManager.Instance.weaponList.Add(new System.Tuple<string, bool>(SpecialWeaponType.LongSword.ToString(), false));
                 break;
             case "Axe":
                 DataManager.Instance.SpecialWeapon = SpecialWeaponType.Axe.ToString();
+                DataManager.Instance.weaponList.Add(new System.Tuple<string, bool>(SpecialWeaponType.Axe.ToString(), false));
                 break;
             default:
                 break;
         }
+        DataManager.Instance.classChage = true;
     }
 }

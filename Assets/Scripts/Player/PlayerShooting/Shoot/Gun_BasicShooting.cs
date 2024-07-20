@@ -23,7 +23,10 @@ public class Gun_Basic_Shooting : MonoBehaviour
 
 
     public BulletUIManager bulletUIManager;
-
+    void OnEnable()
+    {
+        bulletUIManager.SetBulletCount(ammo);
+    }
     // Start is called before the first frame update
     void Start()
     {

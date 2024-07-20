@@ -38,7 +38,7 @@ public class Sniper_Skill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DataManager.Instance.epicSkill)
+        if (DataManager.Instance.weaponList.Contains(new System.Tuple<string, bool>(SpecialWeaponType.Sniper.ToString(), true)))
         {
             if (Input.GetMouseButton(1) && skillCool > skillCoolTime)
             {

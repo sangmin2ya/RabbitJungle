@@ -36,7 +36,7 @@ public class SwingTheLargeSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "LongSword")
+        if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "LongSword")
         {
             //if (DataManager.Instance.firstClassChage)
             {
@@ -65,7 +65,7 @@ public class SwingTheLargeSword : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "LongSword")
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.SpecialWeapon == "LongSword")
         {
             deltaTime = 0;
 

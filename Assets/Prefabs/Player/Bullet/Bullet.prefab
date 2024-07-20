@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   lifeTime: 3
+  bulletHp: 2
   bulletParticle: {fileID: 6115179905634550017, guid: 32e54a4e512ebb74cb69ff8f605b3598, type: 3}
 --- !u!50 &-4209432244411205215
 Rigidbody2D:

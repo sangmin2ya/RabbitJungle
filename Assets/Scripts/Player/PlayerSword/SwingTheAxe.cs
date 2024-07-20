@@ -36,7 +36,7 @@ public class SwingTheAxe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "Axe")
+        if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "Axe")
         {
             //if (DataManager.Instance.firstClassChage)
             {
@@ -64,7 +64,7 @@ public class SwingTheAxe : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "Axe")
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.SpecialWeapon == "Axe")
         {
             deltaTime = 0;
 

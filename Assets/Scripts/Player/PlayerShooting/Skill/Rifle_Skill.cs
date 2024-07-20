@@ -40,7 +40,7 @@ public class Rifle_Skill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DataManager.Instance.epicSkill)
+        if (DataManager.Instance.weaponList.Contains(new System.Tuple<string, bool>(SpecialWeaponType.Rifle.ToString(), true)))
         {
             if (!skill && skillCool > skillCoolTime)
             {
@@ -93,11 +93,8 @@ public class Rifle_Skill : MonoBehaviour
                     }
                 }
             }
-
             skillCool = skillCool + Time.deltaTime;
             skillCoolDownText.text = coolTIme.ToString("0.0");
-
-
         }
 
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,12 +35,12 @@ public class DataManager : MonoBehaviour
     public float additionalAttackSpeed = 0;
     public int additionalDashCount = 0;
     public bool justCleared = false;
-    public bool specialWeaponGet = false;
-    public bool epicSkill = false;
+    public List<Tuple<string, bool>> weaponList = new List<Tuple<string, bool>>();
     public bool isDead = false;
-    public bool firstClassChage = true;
+    public bool classChage = true;
     public bool beHit = false;
     public bool isFreeze = false;
+    public int bulletHp = 1;
 
     // getset 에 접근하게 해주는 프로퍼티
     public int StageLevel

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -68,17 +69,17 @@ public class ItemController : MonoBehaviour
         {
             case "card1":
                 Debug.Log("에픽스킬!");
-                DataManager.Instance.epicSkill = true;
-                if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
-                    DataManager.Instance.ShurikenDamage += 2;
-                if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.LongSword.ToString())
-                    DataManager.Instance.SwordLength += 1f;
-                if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Axe.ToString())
-                    DataManager.Instance.AxeDamage += 5;
+                for (int i = 0; i < DataManager.Instance.weaponList.Count; i++)
+                {
+                    if (DataManager.Instance.weaponList[i].Item2 == false)
+                    {
+                        DataManager.Instance.weaponList[i] = new System.Tuple<string, bool>(DataManager.Instance.weaponList[i].Item1, true);
+                        break;
+                    }
+                }
                 break;
             case "card2":
                 DataManager.Instance.additionalDashCount += 1;
-
                 Debug.Log("대시추가!");
                 break;
             case "card3":
@@ -87,31 +88,38 @@ public class ItemController : MonoBehaviour
                 DataManager.Instance.Health += 1;
                 break;
             case "card4":
-                Debug.Log("공격속도증가!");
-                DataManager.Instance.additionalAttackSpeed -= 0.02f;
-
+                Debug.Log("사거리증가/도탄횟수증가!");
+                if (DataManager.Instance.Weapon == WeaponType.Sword.ToString())
+                    DataManager.Instance.SwordLength += 1;
+                else
+                    DataManager.Instance.bulletHp += 1;
                 break;
             case "card5":
-                Debug.Log("이동속도증가!");
-                DataManager.Instance.additionalSpeed += 1.5f;
-
+                Debug.Log("공격속도증가!");
+                if (DataManager.Instance.Weapon == WeaponType.Gun.ToString())
+                    DataManager.Instance.additionalAttackSpeed -= 0.02f;
+                else
+                    DataManager.Instance.additionalAttackSpeed += 10;
                 break;
             case "card6":
-                Debug.Log("공격력증가!");
-                DataManager.Instance.additionalDamage += 0.4f;
-
+                Debug.Log("이동속도증가!");
+                DataManager.Instance.additionalSpeed += 1.5f;
                 break;
             case "card7":
+                Debug.Log("공격력증가!");
+                DataManager.Instance.additionalDamage += 0.5f;
+                break;
+            case "card8":
                 Debug.Log("체력회복!");
                 if (DataManager.Instance.Health < DataManager.Instance.MaxHealth)
                     DataManager.Instance.Health += 0.5f;
                 break;
-            case "card8":
-                Debug.Log("꽝!");
-                break;
             case "card9":
+                Debug.Log("스킬쿨타임감소!");
+                break;
+            case "card10":
                 Debug.Log("랜덤!");
-                ApplyCardEffect("card" + Random.Range(4, 9));
+                ApplyCardEffect("card" + Random.Range(6, 10));
                 break;
             default:
                 break;
@@ -128,42 +136,66 @@ public class ItemController : MonoBehaviour
     private GameObject RandcomCard()
     {
         GameObject card = null;
-        int rand = DataManager.Instance.specialWeaponGet ? Random.Range(1, 22) : Random.Range(6, 22);
-        if (rand <= 5 && !DataManager.Instance.epicSkill)
+        int rand = Random.Range(1, 19);
+        string weapon = null;
+        //가장 먼저 먹었던 무기순서로 고유스킬 활성화 안된 무기 찾기
+        for (int i = 0; i < DataManager.Instance.weaponList.Count; i++)
+        {
+            if (!DataManager.Instance.weaponList[i].Item2)
+            {
+                weapon = DataManager.Instance.weaponList[i].Item1;
+                break;
+            }
+        }
+        if (rand <= 2 && weapon != null)
         {
             string effect = "";
-            if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
-                effect = "Powerful Shuriken!\nDamage + 1";
-            if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.LongSword.ToString())
-                effect = "Longer Sword!\nLength + 1";
-            if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Axe.ToString())
-                effect = "Powerful Axe!\nDamage + 1";
-            if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
-                effect = "[RightClick]\nHuge Shotgun!";
-            if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
-                effect = "[RightClick]\nPowerful Rifle!";
-            if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
-                effect = "[RightClick]\nBIG BULLET!";
+            if (weapon == SpecialWeaponType.ShortSword.ToString())
+                effect = "나선수리검\n수리검 투척 갯수 증가";
+            if (weapon == SpecialWeaponType.LongSword.ToString())
+                effect = "회전회오리\n대검을 회전시킵니다.";
+            if (weapon == SpecialWeaponType.Axe.ToString())
+                effect = "잔혹한 도끼\n도끼투척 갯수 증가";
+            if (weapon == SpecialWeaponType.ShotGun.ToString())
+                effect = "[우클릭]\n스킬활성화\n벅 샷";
+            if (weapon == SpecialWeaponType.Rifle.ToString())
+                effect = "[우클릭]\n스킬활성화\n강화 사격";
+            if (weapon == SpecialWeaponType.Sniper.ToString())
+                effect = "[우클릭]\n스킬활성화\n관통 사격";
 
             card = Instantiate(epicCard, CardSelectUI.transform);
             card.gameObject.name = "card1";
-            card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Now, you can kill them all....";
+            card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "힘의 차이가\n느껴집니다...";
             card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = effect;
         }
-        else if (rand <= 7)
+        else if (rand <= 5)
         {
             card = Instantiate(epicCard, CardSelectUI.transform);
-            if (rand == 6)
+            if (rand == 3)
             {
                 card.gameObject.name = "card2";
-                card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "DASH COUNT\n+ 1";
-                card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Now, you are much faster...";
+                card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "대쉬 갯수\n+ 1";
+                card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "몸통박치기!";
             }
-            else
+            else if (rand == 4)
             {
                 card.gameObject.name = "card3";
-                card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "MAX HEALTH\n+ 1";
-                card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Now, you are much bigger...";
+                card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "최대 체력 증가\n+ 1";
+                card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "단단해지기!";
+            }
+            else if (rand == 5)
+            {
+                card.gameObject.name = "card4";
+                if (DataManager.Instance.Weapon == WeaponType.Sword.ToString())
+                {
+                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "사정거리 증가\n+ 1";
+                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "어디까지 길어지는 거에요?";
+                }
+                else
+                {
+                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "도탄 횟수 증가\n+ 1";
+                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "이제 총알이 튕깁니다";
+                }
             }
         }
         else
@@ -172,34 +204,35 @@ public class ItemController : MonoBehaviour
             switch (rand % 6)
             {
                 case 0:
-                    card.gameObject.name = "card4";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Attack speed\n- 0.02";
-                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Attack more!";
+                    card.gameObject.name = "card5";
+                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text
+                         = DataManager.Instance.Weapon == WeaponType.Gun.ToString() ? "사격 속도 증가\n- 0.02" : "칼 속도 증가\n+ 10";
+                    card.transform.Find("Expain").GetComponent<TextMeshProUGUI>().text = "더 빠르게!";
                     break;
                 case 1:
-                    card.gameObject.name = "card5";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Move speed\n+ 1.5";
-                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Move faster!";
+                    card.gameObject.name = "card6";
+                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "이동속도 증가\n+ 1.5";
+                    card.transform.Find("Expain").GetComponent<TextMeshProUGUI>().text = "하지만 빨랐죠?";
                     break;
                 case 2:
-                    card.gameObject.name = "card6";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Attack damage\n+ 0.4";
-                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Attack harder!";
+                    card.gameObject.name = "card7";
+                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "공격력 증가\n+ 0.5";
+                    card.transform.Find("Expain").GetComponent<TextMeshProUGUI>().text = "힘이 곧 정의입니다.";
                     break;
                 case 3:
-                    card.gameObject.name = "card7";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Recover Health\n+ 0.5";
-                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Don't die!";
+                    card.gameObject.name = "card8";
+                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "체력 회복\n+ 1";
+                    card.transform.Find("Expain").GetComponent<TextMeshProUGUI>().text = "죽을 것 같다면\n어쩔 수 없죠...";
                     break;
                 case 4:
-                    card.gameObject.name = "card8";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "OOPS!";
-                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "Maybe next chance...";
+                    card.gameObject.name = "card9";
+                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "스킬 쿨타임 감소\n- 0.5";
+                    card.transform.Find("Expain").GetComponent<TextMeshProUGUI>().text = "이미\n쿨타임이 0초는 아니죠?";
                     break;
                 case 5:
-                    card.gameObject.name = "card9";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "Random";
-                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "It's literally Random.";
+                    card.gameObject.name = "card10";
+                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "랜덤";
+                    card.transform.Find("Expain").GetComponent<TextMeshProUGUI>().text = "말 그대로 랜덤입니다.";
                     break;
                 default:
                     break;

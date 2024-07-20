@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.Collections;
 
 
 public class Player_Control : MonoBehaviour
@@ -61,17 +62,14 @@ public class Player_Control : MonoBehaviour
         // Toogle Map
         toggleMap();
         // Special Weapon
-        if (DataManager.Instance.specialWeaponGet)
+        if (DataManager.Instance.classChage)
         {
-            if (DataManager.Instance.firstClassChage)
-            {
-                SpecialWeaponGet();
-                DataManager.Instance.firstClassChage = false;
-            }
+            SpecialWeaponGet();
+            DataManager.Instance.classChage = false;
         }
-
+        ChangeWeapon();
         WeaponChange();
-        GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").gameObject.SetActive(DataManager.Instance.epicSkill);
+        GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").gameObject.SetActive(DataManager.Instance.weaponList.Any(x => x.Item1 == DataManager.Instance.SpecialWeapon && x.Item2 == true));
         // Check Player Life
         PlayerDeath();
         healthUIManager.SethealthCount(DataManager.Instance.Health);
@@ -227,7 +225,36 @@ public class Player_Control : MonoBehaviour
         }
     }
 
-
+    public void ChangeWeapon()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.ShotGun.ToString()))
+            {
+                Debug.Log("무기변경1");
+                DataManager.Instance.SpecialWeapon = SpecialWeaponType.ShotGun.ToString();
+                DataManager.Instance.classChage = true;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.Rifle.ToString()))
+            {
+                Debug.Log("무기변경2");
+                DataManager.Instance.SpecialWeapon = SpecialWeaponType.Rifle.ToString();
+                DataManager.Instance.classChage = true;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.Sniper.ToString()))
+            {
+                Debug.Log("무기변경3");
+                DataManager.Instance.SpecialWeapon = SpecialWeaponType.Sniper.ToString();
+                DataManager.Instance.classChage = true;
+            }
+        }
+    }
     public void WeaponChange()
     {
         if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
@@ -265,7 +292,7 @@ public class Player_Control : MonoBehaviour
             DataManager.Instance.firstDamage = 1;
             DataManager.Instance.firstAttackSpeed = 0.1f;
             DataManager.Instance.BulletCount = 50;
-            DataManager.Instance.SkillDamage = 2.0f;
+            DataManager.Instance.SkillDamage = DataManager.Instance.Damage + 1;
         }
         else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
         {
@@ -275,7 +302,7 @@ public class Player_Control : MonoBehaviour
             DataManager.Instance.firstDamage = 1;
             DataManager.Instance.firstAttackSpeed = 1;
             DataManager.Instance.BulletCount = 10;
-            DataManager.Instance.SkillDamage = 1.0f;
+            DataManager.Instance.SkillDamage = DataManager.Instance.Damage + 1f;
 
         }
         else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
@@ -286,7 +313,7 @@ public class Player_Control : MonoBehaviour
             DataManager.Instance.firstDamage = 4;
             DataManager.Instance.firstAttackSpeed = 1;
             DataManager.Instance.BulletCount = 10;
-            DataManager.Instance.SkillDamage = 5.0f;
+            DataManager.Instance.SkillDamage = DataManager.Instance.Damage + 1f;
         }
 
     }

@@ -37,7 +37,7 @@ public class SwingTheDagger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword")
+        if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "ShortSword")
         {
             //if(DataManager.Instance.firstClassChage)
             {
@@ -65,7 +65,7 @@ public class SwingTheDagger : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword")
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.SpecialWeapon == "ShortSword")
         {
             deltaTime = 0;
 

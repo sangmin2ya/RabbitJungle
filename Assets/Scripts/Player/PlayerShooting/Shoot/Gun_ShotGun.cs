@@ -22,7 +22,10 @@ public class Gun_ShotGun : MonoBehaviour
     public bool isReloading;
 
     public BulletUIManager bulletUIManager;
-
+    void OnEnable()
+    {
+        bulletUIManager.SetBulletCount(ammo);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -37,15 +40,15 @@ public class Gun_ShotGun : MonoBehaviour
         {
             if (Time.time > shotTime)
             {
-                for (int i = -1; i < ShootBulletCount-1; i++)
+                for (int i = -1; i < ShootBulletCount - 1; i++)
                 {
                     Quaternion rotate = Quaternion.Euler(0, 0, i);
                     Instantiate(bullet, spawnPos.position, rotation.transform.rotation * rotate);
-                    
+
                 }
                 Instantiate(bulletEffect, spawnPos.position, rotation.transform.rotation);
 
-                ammo = ammo-1;
+                ammo = ammo - 1;
                 bulletUIManager.SetBulletCount(ammo);
                 shotTime = Time.time + timeBetweenShots;
             }
