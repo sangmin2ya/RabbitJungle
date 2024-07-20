@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4009219662934262965}
   - component: {fileID: 1688549434129875063}
   - component: {fileID: 8716123872279568152}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Yeolpacham
   m_TagString: Skill
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3701558692299687456}
   - component: {fileID: 6731638355855925979}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

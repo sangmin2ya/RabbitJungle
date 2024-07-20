@@ -32,7 +32,7 @@ public class BossShootBullet : MonoBehaviour
     {
         // 탄막이 다른 콜라이더(other)와 충돌했을때 플레이어 태그인지 비교
         // and compare with Wall Tag
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Wall") || other.CompareTag("Weapon") || other.CompareTag("Skill"))
         {
             Destroy(gameObject); // 탄막 제거
         }

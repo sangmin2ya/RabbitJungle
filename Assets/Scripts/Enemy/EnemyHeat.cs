@@ -9,14 +9,16 @@ using UnityEngine.InputSystem;
 public class EnemyHeat : MonoBehaviour
 {
     private float enemyHP;
+    private float enemyFullHp;
 
-    public ParticleSystem deathEffectPrefab;
+    public ParticleSystem dieParticle;
 
 
     // Start is called before the first frame update
     void Start()
     {
         enemyHP = 5.0f * (DataManager.Instance.StageLevel == 0 ? 1 : DataManager.Instance.StageLevel);
+        enemyFullHp = enemyHP;
         //enemyHP = 5.0f * DataManager.Instance.StageLevel;
     }
 
@@ -135,16 +137,17 @@ public class EnemyHeat : MonoBehaviour
         Transform hp3Transform = enemyHPTransform.Find("HP_3");
         Transform hp4Transform = enemyHPTransform.Find("HP_4");
         Transform hp5Transform = enemyHPTransform.Find("HP_5");
-        switch (enemyHP)
+        switch (enemyHP / enemyFullHp * 10)
         {
             case <= 0:
                 Debug.Log("Die!");
+                Instantiate(dieParticle, transform.position, Quaternion.identity);
                 Destroy(gameObject);
                 //Instantiate(deathEffectPrefab, transform.position, quaternion.identity); 사망 파티클
 
                 break;
 
-            case <= 1:
+            case <= 2:
                 Debug.Log("적피 1");
                 if (hp2Transform != null)
                 {
@@ -165,7 +168,7 @@ public class EnemyHeat : MonoBehaviour
                 //Destroy(enemyHPTransform.gameObject.transform.Find("HP_2"));
                 break;
 
-            case <= 2:
+            case <= 4:
                 Debug.Log("적피 2");
                 if (hp3Transform != null)
                 {
@@ -181,7 +184,7 @@ public class EnemyHeat : MonoBehaviour
                 }
                 break;
 
-            case <= 3:
+            case <= 6:
                 Debug.Log("적피 3");
                 if (hp4Transform != null)
                 {
@@ -193,7 +196,7 @@ public class EnemyHeat : MonoBehaviour
                 }
                 break;
 
-            case <= 4:
+            case <= 8:
                 Debug.Log("적피 4");
                 if (hp5Transform != null)
                 {

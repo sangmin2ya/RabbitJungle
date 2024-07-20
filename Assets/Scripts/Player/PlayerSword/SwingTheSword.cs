@@ -114,7 +114,7 @@ public class SwingTheSword : MonoBehaviour
 
             if (deltaTime >= coolTime)
             {
-                for (int i = 0; i < CoolDownUI.Length; i++)
+                for (int i = 1; i < CoolDownUI.Length; i++)
                 {
                     if (CoolDownUI[i] == null)
                         break;

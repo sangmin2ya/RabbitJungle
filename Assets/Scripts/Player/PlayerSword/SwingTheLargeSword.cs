@@ -36,7 +36,7 @@ public class SwingTheLargeSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "LongSword") 
+        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "LongSword")
         {
             //if (DataManager.Instance.firstClassChage)
             {
@@ -92,7 +92,7 @@ public class SwingTheLargeSword : MonoBehaviour
         while (deltaAngle < swingAngle)
         {
             yield return null;
-        
+
             float delta = swingSpeed * Time.deltaTime;
 
             transform.Rotate(-Vector3.forward * delta);
@@ -126,7 +126,7 @@ public class SwingTheLargeSword : MonoBehaviour
 
             if (deltaTime >= coolTime)
             {
-                for (int i = 0; i < CoolDownUI.Length; i++)
+                for (int i = 1; i < CoolDownUI.Length; i++)
                 {
                     if (CoolDownUI[i] == null)
                         break;

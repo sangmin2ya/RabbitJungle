@@ -78,7 +78,7 @@ public class ShotGun_Skill : MonoBehaviour
             }
             else if (skillCoolTime - skillCool < 0)
             {
-                for (int i = 0; i < CoolDownUI.Length; i++)
+                for (int i = 1; i < CoolDownUI.Length; i++)
                 {
                     if (CoolDownUI[i] != null)
                     {

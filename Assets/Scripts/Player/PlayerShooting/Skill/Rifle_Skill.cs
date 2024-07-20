@@ -75,13 +75,13 @@ public class Rifle_Skill : MonoBehaviour
                 }
             }
 
-            if(skillCoolTime - skillCool > 0)
+            if (skillCoolTime - skillCool > 0)
             {
                 coolTIme = skillCoolTime - skillCool;
             }
-            else if(skillCoolTime - skillCool < 0)
+            else if (skillCoolTime - skillCool < 0)
             {
-                for (int i = 0; i < CoolDownUI.Length; i++)
+                for (int i = 1; i < CoolDownUI.Length; i++)
                 {
                     if (CoolDownUI[i] != null)
                     {

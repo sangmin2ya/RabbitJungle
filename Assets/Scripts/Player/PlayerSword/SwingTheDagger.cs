@@ -37,7 +37,7 @@ public class SwingTheDagger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword") 
+        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "ShortSword")
         {
             //if(DataManager.Instance.firstClassChage)
             {
@@ -50,7 +50,7 @@ public class SwingTheDagger : MonoBehaviour
                 //DataManager.Instance.firstClassChage = false;
             }
 
-            if(!swordObject.activeSelf)
+            if (!swordObject.activeSelf)
             {
                 swordObject.SetActive(true);
 
@@ -85,7 +85,7 @@ public class SwingTheDagger : MonoBehaviour
         while (deltaAngle < swingAngle)
         {
             yield return null;
-        
+
             float delta = swingSpeed * Time.deltaTime;
 
             transform.Rotate(-Vector3.forward * delta);
@@ -124,9 +124,9 @@ public class SwingTheDagger : MonoBehaviour
 
             skillCoolDownText.text = (coolTime - deltaTime).ToString("0.0");
 
-            if(deltaTime >= coolTime && CoolDownUI[0].activeSelf)
+            if (deltaTime >= coolTime && CoolDownUI[0].activeSelf)
             {
-                for (int i = 0; i < CoolDownUI.Length; i++)
+                for (int i = 1; i < CoolDownUI.Length; i++)
                 {
                     if (CoolDownUI[i] == null)
                         break;

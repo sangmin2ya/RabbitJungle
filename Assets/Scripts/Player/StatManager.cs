@@ -33,6 +33,6 @@ public class StatManager : MonoBehaviour
     }
     private void UpdateStage()
     {
-        stage.text = "[STAGE - " + DataManager.Instance.StageLevel + "]";
+        stage.text = "[STAGE " + DataManager.Instance.StageLevel + " ]";
     }
 }

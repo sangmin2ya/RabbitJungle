@@ -7,6 +7,8 @@ public class Bullet_Control : MonoBehaviour
     public float speed;
     public float lifeTime;
 
+    [SerializeField] private GameObject bulletParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +25,10 @@ public class Bullet_Control : MonoBehaviour
     {
         if (!collision.collider.CompareTag("Weapon") && !collision.collider.gameObject.CompareTag("Skill"))
         {
+            Instantiate(bulletParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
 
-    
+
 }

@@ -36,7 +36,7 @@ public class SwingTheAxe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "Axe") 
+        if (Input.GetMouseButton(0) && DataManager.Instance.specialWeaponGet && DataManager.Instance.SpecialWeapon == "Axe")
         {
             //if (DataManager.Instance.firstClassChage)
             {
@@ -91,7 +91,7 @@ public class SwingTheAxe : MonoBehaviour
         while (deltaAngle < swingAngle)
         {
             yield return null;
-        
+
             float delta = swingSpeed * Time.deltaTime;
 
             transform.Rotate(-Vector3.forward * delta);
@@ -143,7 +143,7 @@ public class SwingTheAxe : MonoBehaviour
 
             if (deltaTime >= coolTime)
             {
-                for (int i = 0; i < CoolDownUI.Length; i++)
+                for (int i = 1; i < CoolDownUI.Length; i++)
                 {
                     if (CoolDownUI[i] == null)
                         break;

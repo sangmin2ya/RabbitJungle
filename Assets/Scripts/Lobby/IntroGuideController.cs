@@ -103,7 +103,7 @@ public class IntroGuideController : MonoBehaviour
     {
         focus.SetActive(true);
         DataManager.Instance.isFreeze = true;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(4f);
         focus.SetActive(false);
         DataManager.Instance.isFreeze = false;
         if (step == 2)

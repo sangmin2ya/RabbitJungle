@@ -173,3 +173,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   lifeTime: 3
+  bulletParticle: {fileID: 6115179905634550017, guid: 32e54a4e512ebb74cb69ff8f605b3598, type: 3}
