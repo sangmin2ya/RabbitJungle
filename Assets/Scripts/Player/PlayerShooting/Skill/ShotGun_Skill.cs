@@ -25,6 +25,8 @@ public class ShotGun_Skill : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        skillCool = 10.0f;
+        skillCoolTime = 10.0f;
         CoolDownUI = new GameObject[10];
 
         for (int i = 0; i < GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
@@ -38,6 +40,7 @@ public class ShotGun_Skill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        skillCoolTime = 10 - DataManager.Instance.additionalSkillCoolDown;
         if (DataManager.Instance.weaponList.Contains(new System.Tuple<string, bool>(SpecialWeaponType.ShotGun.ToString(), true)))
         {
             if (Input.GetMouseButton(1) && skillCool > skillCoolTime)
@@ -48,7 +51,7 @@ public class ShotGun_Skill : MonoBehaviour
                     for (int j = 0; j < ShootBulletCount; j++)
                     {
                         int count = ShootBulletCount / 2;
-                        Quaternion rotate = Quaternion.Euler(0, 0, j - count);
+                        Quaternion rotate = Quaternion.Euler(0, 0, (j - count) * 2);
                         Instantiate(bigBullet, spawnPos.position, rotation.transform.rotation * rotate);
                     }
 
@@ -93,9 +96,6 @@ public class ShotGun_Skill : MonoBehaviour
 
             skillCool = skillCool + Time.deltaTime;
             skillCoolDownText.text = coolTIme.ToString("0.0");
-
-
         }
-
     }
 }

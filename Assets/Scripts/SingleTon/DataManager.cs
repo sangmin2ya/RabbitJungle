@@ -34,6 +34,7 @@ public class DataManager : MonoBehaviour
     public float additionalSpeed = 0;
     public float additionalAttackSpeed = 0;
     public int additionalDashCount = 0;
+    public float additionalSkillCoolDown = 0;
     public bool justCleared = false;
     public List<Tuple<string, bool>> weaponList = new List<Tuple<string, bool>>();
     public bool isDead = false;

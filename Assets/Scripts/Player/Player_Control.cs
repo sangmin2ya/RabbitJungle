@@ -38,9 +38,9 @@ public class Player_Control : MonoBehaviour
     void Start()
     {
         // Max Health / Health Setting 
-        maxHealth = 4.0f;
+        maxHealth = DataManager.Instance.Health;
         healthUIManager.SethealthCount(maxHealth);
-        DataManager.Instance.Health = maxHealth;
+        //DataManager.Instance.Health = maxHealth;
 
         StartCoroutine("Flip");
         StartCoroutine("ChargeDash");

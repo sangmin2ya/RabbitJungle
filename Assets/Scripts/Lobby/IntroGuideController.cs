@@ -36,6 +36,7 @@ public class IntroGuideController : MonoBehaviour
             //StartCoroutine(FadeOutStory());
             DataManager.Instance.isFreeze = false;
             DataManager.Instance.StageLevel = 1;
+            DataManager.Instance.Health = DataManager.Instance.MaxHealth;
             SceneManager.LoadScene("Game");
         }
     }

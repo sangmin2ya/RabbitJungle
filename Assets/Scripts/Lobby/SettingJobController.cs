@@ -56,6 +56,7 @@ public class SettingJobController : MonoBehaviour
         DataManager.Instance.additionalMaxHealth = 0;
         DataManager.Instance.additionalSpeed = 0;
         DataManager.Instance.additionalDashCount = 0;
+        DataManager.Instance.additionalSkillCoolDown = 0;
         DataManager.Instance.additionalAttackSpeed = 0;
 
         SceneManager.LoadScene("Intro");
@@ -87,6 +88,7 @@ public class SettingJobController : MonoBehaviour
         DataManager.Instance.additionalSpeed = 0;
         DataManager.Instance.additionalDashCount = 0;
         DataManager.Instance.additionalAttackSpeed = 0;
+        DataManager.Instance.additionalSkillCoolDown = 0;
 
         SceneManager.LoadScene("Intro");
     }

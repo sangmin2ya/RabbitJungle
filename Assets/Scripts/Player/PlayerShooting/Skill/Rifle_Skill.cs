@@ -12,11 +12,11 @@ public class Rifle_Skill : MonoBehaviour
     public GameObject rifle;
 
     public float skillTime;
-    public float skillCool;
-    public float skillCoolTime;
+    private float skillCool;
+    private float skillCoolTime;
     private float coolTIme;
 
-    private bool skill;
+    private bool skill = false;
 
 
     public GameObject[] CoolDownUI;
@@ -25,6 +25,9 @@ public class Rifle_Skill : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        skillCool = 10.0f;
+        skillCoolTime = 10.0f;
+
         CoolDownUI = new GameObject[10];
 
         for (int i = 0; i < GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
@@ -40,6 +43,7 @@ public class Rifle_Skill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        skillCoolTime = 10 - DataManager.Instance.additionalSkillCoolDown;
         if (DataManager.Instance.weaponList.Contains(new System.Tuple<string, bool>(SpecialWeaponType.Rifle.ToString(), true)))
         {
             if (!skill && skillCool > skillCoolTime)
@@ -96,7 +100,6 @@ public class Rifle_Skill : MonoBehaviour
             skillCool = skillCool + Time.deltaTime;
             skillCoolDownText.text = coolTIme.ToString("0.0");
         }
-
     }
 
 }

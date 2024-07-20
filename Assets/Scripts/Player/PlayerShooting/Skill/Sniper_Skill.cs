@@ -25,6 +25,8 @@ public class Sniper_Skill : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        skillCool = 10.0f;
+        skillCoolTime = 10.0f;
         CoolDownUI = new GameObject[10];
 
         for (int i = 0; i < GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
@@ -38,6 +40,7 @@ public class Sniper_Skill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        skillCoolTime = 10 - DataManager.Instance.additionalSkillCoolDown;
         if (DataManager.Instance.weaponList.Contains(new System.Tuple<string, bool>(SpecialWeaponType.Sniper.ToString(), true)))
         {
             if (Input.GetMouseButton(1) && skillCool > skillCoolTime)

@@ -1014,6 +1014,10 @@ PrefabInstance:
       propertyPath: spawnPos
       value: 
       objectReference: {fileID: 8766092306555572900}
+    - target: {fileID: 8572927060940400732, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
+      propertyPath: firstTimeBetweenShots
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8856349539015144182, guid: 9e6eca055ff01bf4b9be1cdf8d583d6b, type: 3}
       propertyPath: m_Name
       value: ShotGun
@@ -1060,6 +1064,10 @@ PrefabInstance:
       propertyPath: rotation
       value: 
       objectReference: {fileID: 2146119624882259093}
+    - target: {fileID: 5555106814979436805, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
+      propertyPath: firstTimeBetweenShots
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5559409031092277065, guid: e072cb8c6f0e6144c80798d585dfac93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.802
@@ -1193,6 +1201,10 @@ PrefabInstance:
       objectReference: {fileID: 2146119624882259093}
     - target: {fileID: 6349432671235303269, guid: d6e526d29b9727748afa9de59576331b, type: 3}
       propertyPath: timeBetweenShots
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6349432671235303269, guid: d6e526d29b9727748afa9de59576331b, type: 3}
+      propertyPath: firstTimeBetweenShots
       value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1339,7 +1351,7 @@ MonoBehaviour:
   bulletEffect: {fileID: 4812964823256676647, guid: 5d1549af7e2fb204fb3cdf701f68e27c, type: 3}
   spawnPos: {fileID: 8226558453663171273}
   rotation: {fileID: 2146119624882259093}
-  timeBetweenShots: 0.1
+  firstTimeBetweenShots: 0.15
   shotTime: 0
   isReloading: 0
   skill: 0
