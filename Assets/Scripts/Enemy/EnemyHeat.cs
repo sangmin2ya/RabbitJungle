@@ -12,6 +12,7 @@ public class EnemyHeat : MonoBehaviour
     private float enemyFullHp;
 
     public ParticleSystem dieParticle;
+    public ParticleSystem cutParticle;
 
 
     // Start is called before the first frame update
@@ -30,7 +31,6 @@ public class EnemyHeat : MonoBehaviour
     // 충돌 시 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         /* for special weapon
                 switch (DataManager.Instance.Weapon)
         {
@@ -63,6 +63,20 @@ public class EnemyHeat : MonoBehaviour
         // different damage according to weapon type ShortSword, LongSword, Axe, ShotGun, Rifle, Sniper
         if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Skill"))
         {
+            Vector2 heatDirection = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
+            if (DataManager.Instance.Weapon == WeaponType.Sword.ToString())
+            {
+                cutParticle.Play();
+                StartCoroutine(stopMove());
+                GetComponent<Rigidbody2D>().AddForce((transform.position - GameObject.FindGameObjectWithTag("Player").transform.position).normalized, ForceMode2D.Impulse);
+            }
+            else
+            {
+                StartCoroutine(stopMove());
+                GetComponent<Rigidbody2D>().AddForce(heatDirection, ForceMode2D.Impulse);
+            }
+
+
             if (collision.gameObject.CompareTag("Weapon"))
             {
                 if (DataManager.Instance.Weapon == WeaponType.Gun.ToString())
@@ -87,17 +101,17 @@ public class EnemyHeat : MonoBehaviour
                 if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Axe.ToString())
                 {
                     Debug.Log("도끼 스킬 맞음!");
-                    enemyHP -= DataManager.Instance.AxeDamage;
+                    enemyHP -= DataManager.Instance.Damage * 2.5f;
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.LongSword.ToString())
                 {
                     Debug.Log("대검 스킬 맞음!");
-                    enemyHP -= (DataManager.Instance.Damage * 5f);
+                    enemyHP -= DataManager.Instance.Damage * 2.5f;
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
                 {
                     Debug.Log("단검 스킬 맞음!");
-                    enemyHP -= DataManager.Instance.ShurikenDamage;
+                    enemyHP -= DataManager.Instance.Damage + 1;
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
                 {
@@ -117,7 +131,7 @@ public class EnemyHeat : MonoBehaviour
                 else
                 {
                     Debug.Log("칼 기본 스킬 맞음!");
-                    enemyHP -= (DataManager.Instance.Damage * 2.5f);
+                    enemyHP -= DataManager.Instance.Damage * 1.5f;
                 }
             }
             else
@@ -129,7 +143,21 @@ public class EnemyHeat : MonoBehaviour
         }
         // when enemy heated, compare enemyHP
         //GameObject hp1 = transform.Find("HP_1").gameObject;
-
+        IEnumerator stopMove()
+        {
+            if (GetComponent<LongEnemyMovement>() != null)
+            {
+                GetComponent<LongEnemyMovement>().justHeat = true;
+                yield return new WaitForSeconds(0.8f);
+                GetComponent<LongEnemyMovement>().justHeat = false;
+            }
+            else
+            {
+                GetComponent<ShortEnemyMovement>().justHeat = true;
+                yield return new WaitForSeconds(0.8f);
+                GetComponent<ShortEnemyMovement>().justHeat = false;
+            }
+        }
 
 
         Transform enemyHPTransform = gameObject.transform.Find("EnemyHP");

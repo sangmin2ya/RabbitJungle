@@ -12,7 +12,8 @@ public class SwingTheSword : MonoBehaviour
     GameObject powerSlash;
     float deltaAngle = 0;
     float deltaTime = 0;
-    float coolTime = 10.0f;
+    float firstCoolTime = 10.0f;
+    public float coolTime;
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
 
@@ -23,6 +24,7 @@ public class SwingTheSword : MonoBehaviour
     void Start()
     {
         CoolDownUI = new GameObject[10];
+        coolTime = firstCoolTime;
 
         for (int i = 0; i < GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
         {
@@ -35,6 +37,11 @@ public class SwingTheSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (coolTime <= 1)
+            coolTime = 1f;
+        else
+            coolTime = firstCoolTime - DataManager.Instance.additionalSkillCoolDown;
+
         if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == null)
         {
             if (!swordObject.activeSelf)
@@ -107,9 +114,6 @@ public class SwingTheSword : MonoBehaviour
                 Vector3 dir3 = rot.eulerAngles;
                 Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
                 powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
-
-                if (deltaTime >= lifespan)
-                    Destroy(powerSlash);
             }
 
             if (deltaTime >= coolTime)
@@ -123,8 +127,6 @@ public class SwingTheSword : MonoBehaviour
                 break;
             }
         }
-
         deltaTime = 0;
-
     }
 }

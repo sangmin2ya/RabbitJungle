@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class ItemController : MonoBehaviour
     [SerializeField] private GameObject epicCard;
     [SerializeField] private GameObject CardSelectUI;
     private Button[] cardButtons = new Button[3];
+    private bool randomSelect = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +29,16 @@ public class ItemController : MonoBehaviour
             DataManager.Instance.justCleared = false;
             StartCoroutine("CardSelect");
         }
+        if (randomSelect)
+        {
+            randomSelect = false;
+            StartCoroutine("CardSelect");
+        }
     }
     IEnumerator CardSelect()
     {
-        CardSelectUI.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
+        CardSelectUI.gameObject.SetActive(true);
         Time.timeScale = 0;
         for (int i = 0; i < 3; i++)
         {
@@ -90,7 +97,9 @@ public class ItemController : MonoBehaviour
             case "card4":
                 Debug.Log("사거리증가/도탄횟수증가!");
                 if (DataManager.Instance.Weapon == WeaponType.Sword.ToString())
-                    DataManager.Instance.SwordLength += 1;
+                {
+                    DataManager.Instance.SwordLength += 0.5f;
+                }
                 else
                     DataManager.Instance.bulletHp += 1;
                 break;
@@ -120,7 +129,7 @@ public class ItemController : MonoBehaviour
                 break;
             case "card10":
                 Debug.Log("랜덤!");
-                ApplyCardEffect("card" + Random.Range(6, 10));
+                randomSelect = true;
                 break;
             default:
                 break;
@@ -152,11 +161,11 @@ public class ItemController : MonoBehaviour
         {
             string effect = "";
             if (weapon == SpecialWeaponType.ShortSword.ToString())
-                effect = "<color=\"red\">나선 수리검</color>\n수리검 투척 갯수 증가";
+                effect = "<color=\"red\">나선 수리검</color>\n수리검 투척\n갯수 증가";
             if (weapon == SpecialWeaponType.LongSword.ToString())
-                effect = "<color=\"red\">회전회오리</color>\n대검을 회전시킵니다.";
+                effect = "<color=\"red\">회전회오리</color>\n대검을\n회전시킵니다.";
             if (weapon == SpecialWeaponType.Axe.ToString())
-                effect = "<color=\"red\">잔혹한 도끼</color>\n도끼투척 갯수 증가";
+                effect = "<color=\"red\">잔혹한 도끼</color>\n도끼투척\n갯수 증가";
             if (weapon == SpecialWeaponType.ShotGun.ToString())
                 effect = "스킬활성화\n[우클릭]<color=\"blue\">벅 샷";
             if (weapon == SpecialWeaponType.Rifle.ToString())
@@ -228,12 +237,12 @@ public class ItemController : MonoBehaviour
                 case 4:
                     card.gameObject.name = "card9";
                     card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "스킬쿨타임 감소\n-0.5";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "이미\n쿨타임이 0초는 아니죠?";
+                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "이미 쿨타임이\n0초는 아니죠?";
                     break;
                 case 5:
                     card.gameObject.name = "card10";
-                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "랜덤";
-                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "말 그대로\n랜덤입니다.";
+                    card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text = "다시 뽑기";
+                    card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "한번 더!";
                     break;
                 default:
                     break;

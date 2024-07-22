@@ -7,9 +7,13 @@ public class SkillManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(DestroySelfAfterDelay(2f));
     }
-
+    IEnumerator DestroySelfAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
+    }
     // Update is called once per frame
     void Update()
     {

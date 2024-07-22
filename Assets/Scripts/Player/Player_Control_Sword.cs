@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Player_Control_Sword : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class Player_Control_Sword : MonoBehaviour
     public float speed;
     int dashCount = 2;
     float dashCoolTime = 0f;
-
+    private List<Vector3> firstWeaponLength = new List<Vector3>();
+    List<GameObject> swordList = new List<GameObject>();
     // UI
     public GameObject map;
     public GameObject keyGuide;
@@ -23,12 +25,18 @@ public class Player_Control_Sword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DataManager.Instance.isDead = false;
         speed = DataManager.Instance.Speed;
         StartCoroutine("Flip");
         StartCoroutine("ChargeDash");
         StartCoroutine("HitDelay");
         dashCount = DataManager.Instance.DashCount;
         healthUIManager.SethealthCount(DataManager.Instance.Health);
+        swordList = GameObject.FindGameObjectsWithTag("Weapon").ToList();
+        foreach (GameObject go in swordList)
+        {
+            firstWeaponLength.Add(go.transform.localScale);
+        }
     }
 
     // Update is called once per frame
@@ -40,9 +48,39 @@ public class Player_Control_Sword : MonoBehaviour
         }
         // Toogle Map
         toggleMap();
+        ChangeSwordLength();
         healthUIManager.SethealthCount(DataManager.Instance.Health);
     }
-
+    public void ChangeWeapon()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.ShortSword.ToString()))
+            {
+                Debug.Log("무기변경1");
+                DataManager.Instance.SpecialWeapon = SpecialWeaponType.ShortSword.ToString();
+                DataManager.Instance.classChage = true;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.LongSword.ToString()))
+            {
+                Debug.Log("무기변경2");
+                DataManager.Instance.SpecialWeapon = SpecialWeaponType.LongSword.ToString();
+                DataManager.Instance.classChage = true;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.Axe.ToString()))
+            {
+                Debug.Log("무기변경3");
+                DataManager.Instance.SpecialWeapon = SpecialWeaponType.Axe.ToString();
+                DataManager.Instance.classChage = true;
+            }
+        }
+    }
     private void FixedUpdate()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -84,7 +122,13 @@ public class Player_Control_Sword : MonoBehaviour
             StartCoroutine("DashCutter");
         }
     }
-
+    private void ChangeSwordLength()
+    {
+        for (int i = 0; i < swordList.Count; i++)
+        {
+            swordList[i].transform.localScale = new Vector3(firstWeaponLength[i].x, firstWeaponLength[i].y * (1 + DataManager.Instance.SwordLength), firstWeaponLength[i].z);
+        }
+    }
     IEnumerator DashCutter()
     {
         //dashState = true;

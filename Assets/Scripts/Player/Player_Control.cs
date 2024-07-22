@@ -37,6 +37,7 @@ public class Player_Control : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DataManager.Instance.isDead = false;
         // Max Health / Health Setting 
         maxHealth = DataManager.Instance.Health;
         healthUIManager.SethealthCount(maxHealth);
@@ -71,7 +72,7 @@ public class Player_Control : MonoBehaviour
         WeaponChange();
         GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").gameObject.SetActive(DataManager.Instance.weaponList.Any(x => x.Item1 == DataManager.Instance.SpecialWeapon && x.Item2 == true));
         // Check Player Life
-        PlayerDeath();
+        //PlayerDeath();
         healthUIManager.SethealthCount(DataManager.Instance.Health);
     }
     private void Move()

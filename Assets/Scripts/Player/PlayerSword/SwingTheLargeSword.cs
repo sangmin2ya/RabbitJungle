@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,7 +13,8 @@ public class SwingTheLargeSword : MonoBehaviour
     GameObject powerSlash;
     float deltaAngle = 0;
     float deltaTime = 0;
-    float coolTime = 5.0f;
+    float firstCoolTime = 5.0f;
+    float coolTime;
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
     bool firstClassChange = false;
@@ -24,6 +26,7 @@ public class SwingTheLargeSword : MonoBehaviour
     void Start()
     {
         CoolDownUI = new GameObject[10];
+        coolTime = firstCoolTime;
 
         for (int i = 0; i < GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
         {
@@ -36,11 +39,16 @@ public class SwingTheLargeSword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (coolTime <= 1)
+            coolTime = 1f;
+        else
+            coolTime = firstCoolTime - DataManager.Instance.additionalSkillCoolDown;
+
         if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "LongSword")
         {
             //if (DataManager.Instance.firstClassChage)
             {
-                DataManager.Instance.firstMaxHealth = 7;
+                DataManager.Instance.firstMaxHealth = 4;
                 DataManager.Instance.firstSpeed = 8f;
                 DataManager.Instance.firstDamage = 4f;
                 DataManager.Instance.firstAttackSpeed = 300f;
@@ -51,7 +59,7 @@ public class SwingTheLargeSword : MonoBehaviour
 
             if (!swordObject.activeSelf)
             {
-                swordObject.transform.localScale = new Vector3(swordObject.transform.localScale.x, DataManager.Instance.SwordLength, swordObject.transform.localScale.z);
+                //swordObject.transform.localScale = new Vector3(swordObject.transform.localScale.x, DataManager.Instance.SwordLength, swordObject.transform.localScale.z);
                 swordObject.SetActive(true);
 
                 Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -89,16 +97,18 @@ public class SwingTheLargeSword : MonoBehaviour
 
     IEnumerator Swing()
     {
-        while (deltaAngle < swingAngle)
+        float angle = DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.LongSword.ToString() && x.Item2 == false) ? swingAngle : 360;
+        float swing = DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.LongSword.ToString() && x.Item2 == false) ? swingSpeed : swingSpeed * 2;
+        while (deltaAngle < angle)
         {
             yield return null;
 
-            float delta = swingSpeed * Time.deltaTime;
+            float delta = swing * Time.deltaTime;
 
             transform.Rotate(-Vector3.forward * delta);
             deltaAngle += delta;
 
-            if (deltaAngle > swingAngle)
+            if (deltaAngle >= angle)
             {
                 swordObject.SetActive(false);
             }
@@ -123,7 +133,6 @@ public class SwingTheLargeSword : MonoBehaviour
                 if (deltaTime >= lifespan)
                     Destroy(powerSlash);
             }
-
             if (deltaTime >= coolTime)
             {
                 for (int i = 1; i < CoolDownUI.Length; i++)
@@ -134,8 +143,8 @@ public class SwingTheLargeSword : MonoBehaviour
                 }
                 break;
             }
-        }
 
+        }
         deltaTime = 0;
     }
 }

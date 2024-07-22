@@ -176,13 +176,13 @@ MonoBehaviour:
   additionalSpeed: 0
   additionalAttackSpeed: 0
   additionalDashCount: 0
+  additionalSkillCoolDown: 0
   justCleared: 0
-  specialWeaponGet: 0
-  epicSkill: 0
   isDead: 0
-  firstClassChage: 1
+  classChage: 1
   beHit: 0
   isFreeze: 0
+  bulletHp: 1
 --- !u!1 &133202301
 GameObject:
   m_ObjectHideFlags: 0

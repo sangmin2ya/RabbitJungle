@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,10 +10,11 @@ public class SwingTheAxe : MonoBehaviour
     public float swingSpeed = 500.0f;
     public GameObject swordObject;
     public GameObject yeolpacham;
-    GameObject powerSlash;
+    private List<GameObject> powerSlash = new List<GameObject>();
     float deltaAngle = 0;
     float deltaTime = 0;
-    float coolTime = 2.5f;
+    float firstCoolTime = 2.5f;
+    float coolTime;
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
     bool firstClassChange = false;
@@ -24,6 +26,7 @@ public class SwingTheAxe : MonoBehaviour
     void Start()
     {
         CoolDownUI = new GameObject[10];
+        coolTime = firstCoolTime;
 
         for (int i = 0; i < GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
         {
@@ -36,11 +39,16 @@ public class SwingTheAxe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (coolTime <= 1)
+            coolTime = 1f;
+        else
+            coolTime = firstCoolTime - DataManager.Instance.additionalSkillCoolDown;
+
         if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "Axe")
         {
             //if (DataManager.Instance.firstClassChage)
             {
-                DataManager.Instance.firstMaxHealth = 5;
+                DataManager.Instance.firstMaxHealth = 4;
                 DataManager.Instance.firstSpeed = 10f;
                 DataManager.Instance.firstDamage = 2f;
                 DataManager.Instance.firstAttackSpeed = 500f;
@@ -80,8 +88,17 @@ public class SwingTheAxe : MonoBehaviour
 
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            powerSlash = Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation);
-
+            powerSlash.Clear();
+            if (DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.Axe.ToString() && x.Item2 == true))
+            {
+                powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
+                powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
+                powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
+            }
+            else
+            {
+                powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
+            }
             StartCoroutine(PowerSlash(rotation));
         }
     }
@@ -131,14 +148,31 @@ public class SwingTheAxe : MonoBehaviour
 
             skillCoolDownText.text = (coolTime - deltaTime).ToString("0.0");
 
-            if (!powerSlash.IsDestroyed())
+            for (int i = 0; i < powerSlash.Count; i++)
             {
-                Vector3 dir3 = rot.eulerAngles;
-                Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
-                powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
-                powerSlash.transform.Rotate(Vector3.forward * 1000 * Time.deltaTime);
-                if (deltaTime >= lifespan)
-                    Destroy(powerSlash);
+                if (!powerSlash[i].IsDestroyed())
+                {
+                    Vector3 dir3 = rot.eulerAngles;
+                    Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
+                    if (i == 0)
+                    {
+                        powerSlash[i].transform.position += dir.normalized * Time.deltaTime * 50;
+                        powerSlash[i].transform.Rotate(Vector3.forward * 1000 * Time.deltaTime);
+                    }
+                    if (i == 1)
+                    {
+                        powerSlash[i].transform.position += (dir.normalized + new Vector3(0, 0, -45)) * Time.deltaTime * 50;
+                        powerSlash[i].transform.Rotate(Vector3.forward * 1000 * Time.deltaTime);
+                    }
+                    if (i == 2)
+                    {
+                        powerSlash[i].transform.position += (dir.normalized + new Vector3(0, 0, +45)) * Time.deltaTime * 50;
+                        powerSlash[i].transform.Rotate(Vector3.forward * 1000 * Time.deltaTime);
+                    }
+
+                    if (deltaTime >= lifespan)
+                        Destroy(powerSlash[i]);
+                }
             }
 
             if (deltaTime >= coolTime)
@@ -151,8 +185,8 @@ public class SwingTheAxe : MonoBehaviour
                 }
                 break;
             }
-        }
 
+        }
         deltaTime = 0;
     }
 }

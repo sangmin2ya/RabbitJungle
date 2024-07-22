@@ -9,14 +9,16 @@ public class SwingTheDagger : MonoBehaviour
     public float swingSpeed = 500.0f;
     public GameObject swordObject;
     public GameObject yeolpacham;
+    List<GameObject> powerSlash = new List<GameObject>();
     //GameObject powerSlash;
     float deltaAngle = 0;
     float deltaTime = 0;
-    float coolTime = 0.5f;
+    float firstCoolTime = 0.5f;
+    float coolTime;
     float lifespan = 2.0f;
     float swingAngle = 90.0f;
 
-    Queue<GameObject> q = new Queue<GameObject>();
+    Queue<List<GameObject>> q = new Queue<List<GameObject>>();
 
     public GameObject[] CoolDownUI;
     public TextMeshProUGUI skillCoolDownText;
@@ -25,6 +27,7 @@ public class SwingTheDagger : MonoBehaviour
     void Start()
     {
         CoolDownUI = new GameObject[10];
+        coolTime = firstCoolTime;
 
         for (int i = 0; i < GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").transform.childCount; i++)
         {
@@ -37,6 +40,11 @@ public class SwingTheDagger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (coolTime <= 0.5)
+            coolTime = 0.5f;
+        else
+            coolTime = firstCoolTime - DataManager.Instance.additionalSkillCoolDown;
+
         if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "ShortSword")
         {
             //if(DataManager.Instance.firstClassChage)
@@ -104,26 +112,42 @@ public class SwingTheDagger : MonoBehaviour
 
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        GameObject powerSlash = Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation);
+        powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
+        powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
+        powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
         q.Enqueue(powerSlash);
 
         while (true)
         {
             yield return null;
-            if (powerSlash.IsDestroyed())
+            for (int i = 0; i < powerSlash.Count; i++)
             {
-                q.Dequeue();
-                deltaTime = 0;
-                break;
+                if (powerSlash[i].IsDestroyed())
+                {
+                    q.Dequeue();
+                    deltaTime = 0;
+                    break;
+                }
+                Vector3 dir3 = rotation.eulerAngles;
+                Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
+
+                if (i == 0)
+                {
+                    powerSlash[i].transform.position += dir.normalized * Time.deltaTime * 50;
+                }
+                if (i == 1)
+                {
+                    powerSlash[i].transform.position += (dir.normalized + new Vector3(0, 0, -45)) * Time.deltaTime * 50;
+                }
+                if (i == 2)
+                {
+                    powerSlash[i].transform.position += (dir.normalized + new Vector3(0, 0, +45)) * Time.deltaTime * 50;
+                }
+                deltaTime += Time.deltaTime;
+                t += Time.deltaTime;
+
+                skillCoolDownText.text = (coolTime - deltaTime).ToString("0.0");
             }
-            Vector3 dir3 = rotation.eulerAngles;
-            Vector3 dir = new Vector3(Mathf.Cos(dir3.z * Mathf.Deg2Rad), Mathf.Sin(dir3.z * Mathf.Deg2Rad), 0);
-            powerSlash.transform.position += dir.normalized * Time.deltaTime * 50;
-            deltaTime += Time.deltaTime;
-            t += Time.deltaTime;
-
-            skillCoolDownText.text = (coolTime - deltaTime).ToString("0.0");
-
             if (deltaTime >= coolTime && CoolDownUI[0].activeSelf)
             {
                 for (int i = 1; i < CoolDownUI.Length; i++)
@@ -136,9 +160,13 @@ public class SwingTheDagger : MonoBehaviour
 
             if (t >= lifespan)
             {
-                Destroy(q.Dequeue());
+                foreach (GameObject go in (q.Dequeue()))
+                {
+                    Destroy(go);
+                }
                 break;
             }
+
         }
     }
 }
