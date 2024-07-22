@@ -11,6 +11,7 @@ public class EndingController : MonoBehaviour
     void Start()
     {
         resultText.text = "처치한 악한 토끼 : <color=\"red\">" + DataManager.Instance.killedEnemy + "</color>\n플레이 타임 : <color=\"green\">" + FormatPlaytime(DataManager.Instance.playTime) + "</color>";
+        DataManager.Instance.whileGame = false;
     }
 
     // Update is called once per frame

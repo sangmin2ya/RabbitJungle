@@ -36,6 +36,7 @@ public class SettingJobController : MonoBehaviour
     {
         DataManager.Instance.killedEnemy = 0;
         DataManager.Instance.playTime = 0;
+        DataManager.Instance.whileGame = true;
 
         DataManager.Instance.isDead = false;
         DataManager.Instance.StageLevel = 0;
@@ -70,6 +71,7 @@ public class SettingJobController : MonoBehaviour
     {
         DataManager.Instance.killedEnemy = 0;
         DataManager.Instance.playTime = 0;
+        DataManager.Instance.whileGame = true;
 
         DataManager.Instance.isDead = false;
         DataManager.Instance.StageLevel = 0;
