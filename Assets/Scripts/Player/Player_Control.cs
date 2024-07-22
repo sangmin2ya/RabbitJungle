@@ -51,6 +51,15 @@ public class Player_Control : MonoBehaviour
         DataManager.Instance.DashCount = 2;
 
         dashCount = DataManager.Instance.DashCount;
+        DataManager.Instance.DashState = false;
+        if (SceneManager.GetActiveScene().name == "BossScene")
+        {
+            StartCoroutine(Pause(3f));
+        }
+    }
+    IEnumerator Pause(float time)
+    {
+        yield return new WaitForSeconds(time);
     }
 
     // Update is called once per frame
@@ -68,7 +77,6 @@ public class Player_Control : MonoBehaviour
             SpecialWeaponGet();
             DataManager.Instance.classChage = false;
         }
-        ChangeWeapon();
         WeaponChange();
         GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").gameObject.SetActive(DataManager.Instance.weaponList.Any(x => x.Item1 == DataManager.Instance.SpecialWeapon && x.Item2 == true));
         // Check Player Life
@@ -80,7 +88,7 @@ public class Player_Control : MonoBehaviour
         // Player Movement
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-
+        ChangeWeapon();
         Block();
         transform.Translate(Vector2.right * horizontalInput * Time.deltaTime * DataManager.Instance.Speed);
         transform.Translate(Vector2.up * verticalInput * Time.deltaTime * DataManager.Instance.Speed);

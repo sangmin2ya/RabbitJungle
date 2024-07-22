@@ -6,6 +6,7 @@ public class Weapon_Rotation_Sword : MonoBehaviour
 {
     public float horizontalInput;
     public float angle;
+    public bool whileSwing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +19,10 @@ public class Weapon_Rotation_Sword : MonoBehaviour
     {
         Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //if (!whileSwing)
         transform.rotation = rotation;
-        
+
     }
 
     IEnumerator Flip()

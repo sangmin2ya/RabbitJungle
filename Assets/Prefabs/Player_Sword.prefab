@@ -2341,6 +2341,11 @@ MonoBehaviour:
   horizontalInput: 0
   verticalInput: 0
   speed: 0
+  swordList:
+  - {fileID: 8817055568149065895}
+  - {fileID: 1757577849678783635}
+  - {fileID: 3766983912841039124}
+  - {fileID: 8863914718911428178}
   map: {fileID: 0}
   keyGuide: {fileID: 0}
   healthUIManager: {fileID: 0}

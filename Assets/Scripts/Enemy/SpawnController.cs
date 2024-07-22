@@ -28,8 +28,6 @@ public class SpawnController : MonoBehaviour
     void Start()
     {
 
-
-
     }
 
     //임의의 SpawnEnemy 메소드 선언
@@ -74,7 +72,7 @@ public class SpawnController : MonoBehaviour
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("EnemyNumber");
             gameObject.transform.parent.GetComponent<RoomData>().RemainedEnemy = enemies.Length;
 
-            if (SpawnCount >= 3 && gameObject.transform.parent.GetComponent<RoomData>().RemainedEnemy <= 0 && gameObject.transform.parent.GetComponent<RoomData>().RoomType == RoomType.Battle.ToString())
+            if (SpawnCount >= 6 && gameObject.transform.parent.GetComponent<RoomData>().RemainedEnemy <= 0 && gameObject.transform.parent.GetComponent<RoomData>().RoomType == RoomType.Battle.ToString())
             {
                 //set currentMap cleared
                 Debug.Log("클리어!");
@@ -90,17 +88,13 @@ public class SpawnController : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && gameObject.transform.parent.GetComponent<RoomData>().RoomType.ToString() == RoomType.Battle.ToString())
         {
             visited = true;// spawnEnemies
+            numberOfEnemy = DataManager.Instance.StageLevel * 2;
             SpawnEnemies();
-            Invoke("SpawnEnemies", 2.0f);// spawn once more
-            Invoke("SpawnEnemies", 4.0f);// spawn twice more
-            if (DataManager.Instance.StageLevel >= 2)
-            {
-                Invoke("SpawnEnemies", 6.0f);// spawn three more
-            }
-            if (DataManager.Instance.StageLevel >= 3)
-            {
-                Invoke("SpawnEnemies", 8.0f);// spawn four more
-            }
+            Invoke("SpawnEnemies", 1.5f);// spawn once more
+            Invoke("SpawnEnemies", 3.0f);// spawn twice more
+            Invoke("SpawnEnemies", 4.5f);// spawn three more
+            Invoke("SpawnEnemies", 6.0f);// spawn four more
+            Invoke("SpawnEnemies", 7.5f);// spawn three more
         }
     }
 }

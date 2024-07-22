@@ -21,7 +21,7 @@ public class DataManager : MonoBehaviour
     private string specialWeapon;
     private int bulletCount;
     private float skillDamage;
-    private float swordLength;
+    public float swordLength;
     private float shurikenDamage;
     private float axeDamage;
     public float firstDamage;

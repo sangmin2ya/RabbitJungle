@@ -108,7 +108,7 @@ public class ItemController : MonoBehaviour
                 if (DataManager.Instance.Weapon == WeaponType.Gun.ToString())
                     DataManager.Instance.additionalAttackSpeed -= 0.05f;
                 else
-                    DataManager.Instance.additionalAttackSpeed += 10;
+                    DataManager.Instance.additionalAttackSpeed += 30;
                 break;
             case "card6":
                 Debug.Log("이동속도증가!");
@@ -169,9 +169,9 @@ public class ItemController : MonoBehaviour
             if (weapon == SpecialWeaponType.ShotGun.ToString())
                 effect = "스킬활성화\n[우클릭]<color=\"blue\">벅 샷";
             if (weapon == SpecialWeaponType.Rifle.ToString())
-                effect = "스킬활성화\n[우클릭]<color=\"blue\">강화 사격";
+                effect = "스킬활성화\n[우클릭](on/off)<color=\"blue\">\n강화 사격";
             if (weapon == SpecialWeaponType.Sniper.ToString())
-                effect = "스킬활성화\n[우클릭]<color=\"blue\">관통 사격";
+                effect = "스킬활성화\n[우클릭]<color=\"blue\">\n관통 사격";
 
             card = Instantiate(epicCard, CardSelectUI.transform);
             card.gameObject.name = "card1";
@@ -216,7 +216,7 @@ public class ItemController : MonoBehaviour
                 case 0:
                     card.gameObject.name = "card5";
                     card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text
-                         = DataManager.Instance.Weapon == WeaponType.Gun.ToString() ? "사격 속도 증가\n-0.05" : "칼 속도 증가\n+10";
+                         = DataManager.Instance.Weapon == WeaponType.Gun.ToString() ? "사격 속도 증가\n-0.05" : "칼 속도 증가\n+30";
                     card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "더 빠르게!";
                     break;
                 case 1:

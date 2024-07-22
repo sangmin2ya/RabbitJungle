@@ -66,6 +66,7 @@ public class SwingTheLargeSword : MonoBehaviour
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
                 Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                //if (!transform.GetComponent<Weapon_Rotation_Sword>().whileSwing)
                 transform.rotation = rotation;
 
                 deltaAngle = 0;
@@ -97,8 +98,10 @@ public class SwingTheLargeSword : MonoBehaviour
 
     IEnumerator Swing()
     {
+        swingSpeed = DataManager.Instance.firstAttackSpeed + DataManager.Instance.additionalAttackSpeed;
+        transform.parent.GetComponent<Weapon_Rotation_Sword>().whileSwing = true;
         float angle = DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.LongSword.ToString() && x.Item2 == false) ? swingAngle : 360;
-        float swing = DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.LongSword.ToString() && x.Item2 == false) ? swingSpeed : swingSpeed * 2;
+        float swing = DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.LongSword.ToString() && x.Item2 == false) ? swingSpeed : (swingSpeed * 2);
         while (deltaAngle < angle)
         {
             yield return null;
@@ -111,6 +114,7 @@ public class SwingTheLargeSword : MonoBehaviour
             if (deltaAngle >= angle)
             {
                 swordObject.SetActive(false);
+                transform.parent.GetComponent<Weapon_Rotation_Sword>().whileSwing = false;
             }
         }
     }

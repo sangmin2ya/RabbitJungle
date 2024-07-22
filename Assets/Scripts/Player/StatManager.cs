@@ -33,6 +33,24 @@ public class StatManager : MonoBehaviour
     }
     private void UpdateStage()
     {
-        stage.text = "[STAGE " + DataManager.Instance.StageLevel + " ]";
+        string map = "";
+        switch (DataManager.Instance.StageLevel)
+        {
+            case 1:
+                map = "숲 입구";
+                break;
+            case 2:
+                map = "깊은 숲";
+                break;
+            case 3:
+                map = "호숫가";
+                break;
+            case 4:
+                map = "화산 지대";
+                break;
+            default:
+                break;
+        }
+        stage.text = "[STAGE " + DataManager.Instance.StageLevel + " ]\n" + map;
     }
 }

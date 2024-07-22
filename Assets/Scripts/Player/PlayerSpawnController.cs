@@ -12,6 +12,7 @@ public class PlayerSpawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DataManager.Instance.isDead = false;
         GameObject go;
         GameObject map = GameObject.Find("Canvas").transform.Find("Map").gameObject;
         GameObject keyGuide = GameObject.Find("Canvas").transform.Find("KeyGuide").gameObject;
@@ -38,13 +39,13 @@ public class PlayerSpawnController : MonoBehaviour
         }
         characterCamera.GetComponent<CinemachineVirtualCamera>().Follow = go.transform;
 
-        
-        
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

@@ -65,12 +65,13 @@ public class EnemyHeat : MonoBehaviour
         // different damage according to weapon type ShortSword, LongSword, Axe, ShotGun, Rifle, Sniper
         if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Skill"))
         {
+            StartCoroutine(HitEffect());
             Vector2 heatDirection = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
             if (DataManager.Instance.Weapon == WeaponType.Sword.ToString())
             {
                 cutParticle.Play();
                 StartCoroutine(stopMove());
-                GetComponent<Rigidbody2D>().AddForce((transform.position - GameObject.FindGameObjectWithTag("Player").transform.position).normalized, ForceMode2D.Impulse);
+                GetComponent<Rigidbody2D>().AddForce((transform.position - GameObject.FindGameObjectWithTag("Player").transform.position).normalized * 2, ForceMode2D.Impulse);
             }
             else
             {
@@ -108,16 +109,16 @@ public class EnemyHeat : MonoBehaviour
                 if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Axe.ToString())
                 {
                     Debug.Log("도끼 스킬 맞음!");
-                    enemyHP -= DataManager.Instance.Damage * 2.5f;
+                    enemyHP -= DataManager.Instance.Damage + 2f;
                     GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
-                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage * 2.5f);
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage + 2f);
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.LongSword.ToString())
                 {
                     Debug.Log("대검 스킬 맞음!");
-                    enemyHP -= DataManager.Instance.Damage * 2.5f;
+                    enemyHP -= DataManager.Instance.Damage * 2f;
                     GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
-                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage * 2.5f);
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage * 2f);
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
                 {
@@ -129,9 +130,9 @@ public class EnemyHeat : MonoBehaviour
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
                 {
                     Debug.Log("저격 총알 맞음!");
-                    enemyHP -= DataManager.Instance.SkillDamage;
+                    enemyHP -= DataManager.Instance.SkillDamage * 1.5f;
                     GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
-                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage);
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.SkillDamage * 1.5f);
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
                 {
@@ -162,6 +163,20 @@ public class EnemyHeat : MonoBehaviour
 
             }
         }
+        IEnumerator HitEffect()
+        {
+            transform.GetChild(1).Find("Head").gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            transform.GetChild(1).Find("Body").gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            transform.GetChild(1).Find("Ear1").gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            transform.GetChild(1).Find("Ear2").gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+
+            yield return new WaitForSeconds(0.2f);
+
+            transform.GetChild(1).Find("Head").gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+            transform.GetChild(1).Find("Body").gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+            transform.GetChild(1).Find("Ear1").gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+            transform.GetChild(1).Find("Ear2").gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+        }
         // when enemy heated, compare enemyHP
         //GameObject hp1 = transform.Find("HP_1").gameObject;
         IEnumerator stopMove()
@@ -172,7 +187,7 @@ public class EnemyHeat : MonoBehaviour
                 yield return new WaitForSeconds(0.8f);
                 GetComponent<LongEnemyMovement>().justHeat = false;
             }
-            else
+            if (GetComponent<ShortEnemyMovement>() != null)
             {
                 GetComponent<ShortEnemyMovement>().justHeat = true;
                 yield return new WaitForSeconds(0.8f);

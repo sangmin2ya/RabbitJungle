@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BossClearController : MonoBehaviour
 {
     public GameObject Boss;
+    public TextMeshProUGUI clearMsg;
     private bool Cleared = false;
     private bool Fighting = true;
 
@@ -48,6 +50,7 @@ public class BossClearController : MonoBehaviour
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("BOSS");
             gameObject.transform.parent.GetComponent<RoomData>().RemainedEnemy = enemies.Length;
+            StartCoroutine(FadeText());
             if (enemies.Length <= 0)
             {
                 Cleared = true;
@@ -58,7 +61,37 @@ public class BossClearController : MonoBehaviour
         }
 
     }
+    IEnumerator FadeText()
+    {
+        // 텍스트 투명도 0에서 1로 서서히 증가
+        yield return StartCoroutine(FadeTo(1f, 0.5f));
+        // 텍스트 투명도 1로 유지
+        yield return new WaitForSeconds(1);
+        // 텍스트 투명도 1에서 0으로 서서히 감소
+        yield return StartCoroutine(FadeTo(0f, 0.5f));
+    }
 
+    IEnumerator FadeTo(float targetAlpha, float duration)
+    {
+        clearMsg.gameObject.SetActive(true);
+        Color color = clearMsg.color;
+        float startAlpha = color.a;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float newAlpha = Mathf.Lerp(startAlpha, targetAlpha, elapsedTime / duration);
+            color.a = newAlpha;
+            clearMsg.color = color;
+            yield return null;
+        }
+
+        // 최종 alpha 설정
+        color.a = targetAlpha;
+        clearMsg.color = color;
+        clearMsg.gameObject.SetActive(false);
+    }
     /*public void SpawnBoss()
     {
         GameObject player = GameObject.FindWithTag("Player");

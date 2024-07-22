@@ -48,15 +48,17 @@ public class SwingTheSword : MonoBehaviour
             {
                 swordObject.SetActive(true);
 
+
                 Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
                 Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                //if (!transform.GetComponent<Weapon_Rotation_Sword>().whileSwing)
                 transform.rotation = rotation;
 
                 deltaAngle = 0;
 
-                StartCoroutine("Swing");
+                StartCoroutine(Swing());
             }
         }
         if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.SpecialWeapon == null)
@@ -83,6 +85,8 @@ public class SwingTheSword : MonoBehaviour
 
     IEnumerator Swing()
     {
+        swingSpeed = DataManager.Instance.firstAttackSpeed + DataManager.Instance.additionalAttackSpeed;
+        transform.parent.GetComponent<Weapon_Rotation_Sword>().whileSwing = true;
         while (deltaAngle < swingAngle)
         {
             yield return null;
@@ -95,6 +99,7 @@ public class SwingTheSword : MonoBehaviour
             if (deltaAngle > swingAngle)
             {
                 swordObject.SetActive(false);
+                transform.parent.GetComponent<Weapon_Rotation_Sword>().whileSwing = false;
             }
         }
     }

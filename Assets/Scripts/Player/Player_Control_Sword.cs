@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class Player_Control_Sword : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class Player_Control_Sword : MonoBehaviour
     int dashCount = 2;
     float dashCoolTime = 0f;
     private List<Vector3> firstWeaponLength = new List<Vector3>();
-    private List<GameObject> swordList = new List<GameObject>();
+    public List<GameObject> swordList = new List<GameObject>();
     // UI
     public GameObject map;
     public GameObject keyGuide;
@@ -31,14 +32,22 @@ public class Player_Control_Sword : MonoBehaviour
         StartCoroutine("ChargeDash");
         StartCoroutine("HitDelay");
         dashCount = DataManager.Instance.DashCount;
+        DataManager.Instance.DashState = false;
         healthUIManager.SethealthCount(DataManager.Instance.Health);
-        swordList = GameObject.FindGameObjectsWithTag("Weapon").ToList();
         foreach (GameObject go in swordList)
         {
             firstWeaponLength.Add(go.transform.localScale);
         }
-    }
 
+        if (SceneManager.GetActiveScene().name == "BossScene")
+        {
+            StartCoroutine(Pause(3f));
+        }
+    }
+    IEnumerator Pause(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -89,6 +98,7 @@ public class Player_Control_Sword : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
+        ChangeWeapon();
         Block();
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -126,7 +136,7 @@ public class Player_Control_Sword : MonoBehaviour
     {
         for (int i = 0; i < swordList.Count; i++)
         {
-            swordList[i].transform.localScale = new Vector3(firstWeaponLength[i].x, firstWeaponLength[i].y * (1 + DataManager.Instance.SwordLength), firstWeaponLength[i].z);
+            swordList[i].transform.localScale = new Vector3(firstWeaponLength[i].x, firstWeaponLength[i].y * DataManager.Instance.SwordLength, firstWeaponLength[i].z);
         }
     }
     IEnumerator DashCutter()

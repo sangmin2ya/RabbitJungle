@@ -56,7 +56,7 @@ public class HitEffect : MonoBehaviour
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += Time.deltaTime;
-            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            color.a = Mathf.Lerp(0.7f, 0f, elapsedTime / fadeDuration);
             hitUIImage.color = color;
             yield return null;
         }

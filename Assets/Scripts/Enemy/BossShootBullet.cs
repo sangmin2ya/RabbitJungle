@@ -15,7 +15,6 @@ public class BossShootBullet : MonoBehaviour
         playerTransform = GameObject.FindWithTag("Player").transform;
         //플레이어 위치와 몬스터 위치 기반으로 방향 설정
         bulletDirection = (playerTransform.position - transform.position).normalized;
-
     }
 
     void Update()
