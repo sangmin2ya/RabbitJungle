@@ -18,8 +18,8 @@ public class BossHeat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bossHP = 100.0f * DataManager.Instance.StageLevel;
-        maxHP = 100.0f * DataManager.Instance.StageLevel;
+        bossHP = 150.0f * DataManager.Instance.StageLevel;
+        maxHP = 150.0f * DataManager.Instance.StageLevel;
     }
 
     // Update is called once per frame

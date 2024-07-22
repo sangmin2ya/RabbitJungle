@@ -46,7 +46,7 @@ public class SwingTheDagger : MonoBehaviour
         else
             coolTime = firstCoolTime - DataManager.Instance.additionalSkillCoolDown;
 
-        if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "ShortSword")
+        if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "ShortSword" && !DataManager.Instance.isFreeze)
         {
             //if(DataManager.Instance.firstClassChage)
             {
@@ -75,7 +75,7 @@ public class SwingTheDagger : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.SpecialWeapon == "ShortSword")
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.SpecialWeapon == "ShortSword" && !DataManager.Instance.isFreeze)
         {
             deltaTime = 0;
 

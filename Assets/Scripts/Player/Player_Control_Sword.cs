@@ -46,7 +46,9 @@ public class Player_Control_Sword : MonoBehaviour
     }
     IEnumerator Pause(float time)
     {
+        DataManager.Instance.isFreeze = true;
         yield return new WaitForSeconds(time);
+        DataManager.Instance.isFreeze = false;
     }
     // Update is called once per frame
     void Update()

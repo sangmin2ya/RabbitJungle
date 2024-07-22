@@ -49,6 +49,7 @@ public class StatManager : MonoBehaviour
                 map = "화산 지대";
                 break;
             default:
+                map = "훈련장";
                 break;
         }
         stage.text = "[STAGE " + DataManager.Instance.StageLevel + " ]\n" + map;

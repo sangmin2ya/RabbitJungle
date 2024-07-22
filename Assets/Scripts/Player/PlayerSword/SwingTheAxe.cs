@@ -46,7 +46,7 @@ public class SwingTheAxe : MonoBehaviour
         else
             coolTime = firstCoolTime - DataManager.Instance.additionalSkillCoolDown;
 
-        if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "Axe")
+        if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "Axe" && !DataManager.Instance.isFreeze)
         {
             //if (DataManager.Instance.firstClassChage)
             {
@@ -75,7 +75,7 @@ public class SwingTheAxe : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime >= coolTime) && DataManager.Instance.SpecialWeapon == "Axe")
+        if (Input.GetMouseButtonDown(1) && (deltaTime >= coolTime) && DataManager.Instance.SpecialWeapon == "Axe" && !DataManager.Instance.isFreeze)
         {
             deltaTime = 0;
 

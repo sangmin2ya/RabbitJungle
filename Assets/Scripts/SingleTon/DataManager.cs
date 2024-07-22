@@ -42,6 +42,9 @@ public class DataManager : MonoBehaviour
     public bool beHit = false;
     public bool isFreeze = false;
     public int bulletHp = 1;
+    public int killedEnemy = 0;
+    public float playTime = 0;
+    public bool whileGame = false;
 
     // getset 에 접근하게 해주는 프로퍼티
     public int StageLevel
@@ -138,6 +141,13 @@ public class DataManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+    void Update()
+    {
+        if (whileGame)
+        {
+            playTime += Time.unscaledDeltaTime;
         }
     }
 }

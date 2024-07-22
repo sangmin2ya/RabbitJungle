@@ -185,7 +185,7 @@ public class StageGenerator : MonoBehaviour
                         if (DataManager.Instance.Weapon == WeaponType.Gun.ToString())
                         {
                             Transform item = currentMap.transform.Find("Item");
-                            item.GetComponent<SpecialJobController>().jobButtons.Add(specialJobUI.transform.Find("Shotgun").GetComponent<UnityEngine.UI.Button>());
+                            item.GetComponent<SpecialJobController>().jobButtons.Add(specialJobUI.transform.Find("ShotGun").GetComponent<UnityEngine.UI.Button>());
                             item.GetComponent<SpecialJobController>().jobButtons.Add(specialJobUI.transform.Find("Rifle").GetComponent<UnityEngine.UI.Button>());
                             item.GetComponent<SpecialJobController>().jobButtons.Add(specialJobUI.transform.Find("Sniper").GetComponent<UnityEngine.UI.Button>());
 

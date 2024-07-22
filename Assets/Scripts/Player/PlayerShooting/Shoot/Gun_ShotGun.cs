@@ -43,7 +43,7 @@ public class Gun_ShotGun : MonoBehaviour
         {
             timeBetweenShots = 0.1f;
         }
-        if (Input.GetMouseButton(0) && ammo > 0 && !isReloading)
+        if (Input.GetMouseButton(0) && ammo > 0 && !isReloading && !DataManager.Instance.isFreeze)
         {
             if (Time.time > shotTime)
             {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossShootBullet : MonoBehaviour
 {
-    private float bulletSpeed = 10.0f;
+    private float bulletSpeed = 20.0f;
     private Transform playerTransform;
     private Vector2 bulletDirection;
 

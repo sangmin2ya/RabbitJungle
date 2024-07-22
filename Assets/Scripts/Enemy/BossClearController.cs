@@ -13,6 +13,7 @@ public class BossClearController : MonoBehaviour
     private Transform playerTransform;
     private GameObject portalObject;
     private GameObject secretDoor;
+    private GameObject EndPortal;
 
     //맵 상에서 적 생성 반경
     private float minX = -15.0f;
@@ -30,6 +31,7 @@ public class BossClearController : MonoBehaviour
         // Find the Portal object in the parent
         portalObject = transform.parent.Find("Portal")?.gameObject;
         secretDoor = transform.parent.Find("SecretDoorEnter")?.gameObject;
+        EndPortal = transform.parent.Find("EndingPortal")?.gameObject;
 
         if (portalObject == null)
         {
@@ -39,6 +41,7 @@ public class BossClearController : MonoBehaviour
         {
             portalObject.SetActive(false); // Ensure the portal is initially inactive
             secretDoor.SetActive(false);
+            EndPortal.SetActive(false);
         }
 
     }
@@ -50,25 +53,33 @@ public class BossClearController : MonoBehaviour
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("BOSS");
             gameObject.transform.parent.GetComponent<RoomData>().RemainedEnemy = enemies.Length;
-            StartCoroutine(FadeText());
             if (enemies.Length <= 0)
             {
+                StartCoroutine(FadeText());
                 Cleared = true;
-                portalObject.SetActive(true);
+
+                if (DataManager.Instance.StageLevel == 4)
+                {
+                    EndPortal.SetActive(true);
+                }
+                else
+                {
+                    portalObject.SetActive(true);
+                }
+
                 secretDoor.SetActive(true);
+
             }
-
         }
-
     }
     IEnumerator FadeText()
     {
         // 텍스트 투명도 0에서 1로 서서히 증가
-        yield return StartCoroutine(FadeTo(1f, 0.5f));
+        yield return StartCoroutine(FadeTo(1f, 1f));
         // 텍스트 투명도 1로 유지
         yield return new WaitForSeconds(1);
         // 텍스트 투명도 1에서 0으로 서서히 감소
-        yield return StartCoroutine(FadeTo(0f, 0.5f));
+        yield return StartCoroutine(FadeTo(0f, 1f));
     }
 
     IEnumerator FadeTo(float targetAlpha, float duration)

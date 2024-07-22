@@ -467,7 +467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &32782625
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1281,7 +1281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &261797128
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3568,7 +3568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBC14\uC774\uD0B9 \uB3C4\uB07C\n\uB3C4\uB07C \uCD94\uCC99 \uAC00\uB2A5"
+  m_text: "\uBC14\uC774\uD0B9 \uB3C4\uB07C\n\uB3C4\uB07C \uD22C\uCC99 \uAC00\uB2A5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bb8870cc1593553478db25e254c3bdb9, type: 2}
   m_sharedMaterial: {fileID: -6611518346718586148, guid: bb8870cc1593553478db25e254c3bdb9, type: 2}
@@ -5606,11 +5606,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 658564112}
   - {fileID: 434301760}
   - {fileID: 1272771210}
   - {fileID: 863648982}
   - {fileID: 261797128}
+  - {fileID: 658564112}
   - {fileID: 676943370}
   - {fileID: 32782625}
   - {fileID: 115942504}

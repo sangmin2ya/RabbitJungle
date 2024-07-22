@@ -206,6 +206,7 @@ public class EnemyHeat : MonoBehaviour
             case <= 0:
                 Debug.Log("Die!");
                 Instantiate(dieParticle, transform.position, Quaternion.identity);
+                DataManager.Instance.killedEnemy++;
                 Destroy(gameObject);
                 //Instantiate(deathEffectPrefab, transform.position, quaternion.identity); 사망 파티클
 

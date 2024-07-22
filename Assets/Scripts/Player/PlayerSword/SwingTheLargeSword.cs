@@ -44,7 +44,7 @@ public class SwingTheLargeSword : MonoBehaviour
         else
             coolTime = firstCoolTime - DataManager.Instance.additionalSkillCoolDown;
 
-        if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "LongSword")
+        if (Input.GetMouseButton(0) && DataManager.Instance.SpecialWeapon == "LongSword" && !DataManager.Instance.isFreeze)
         {
             //if (DataManager.Instance.firstClassChage)
             {
@@ -74,7 +74,7 @@ public class SwingTheLargeSword : MonoBehaviour
                 StartCoroutine("Swing");
             }
         }
-        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.SpecialWeapon == "LongSword")
+        if (Input.GetMouseButtonDown(1) && (deltaTime == 0 || deltaTime >= coolTime) && DataManager.Instance.SpecialWeapon == "LongSword" && !DataManager.Instance.isFreeze)
         {
             deltaTime = 0;
 

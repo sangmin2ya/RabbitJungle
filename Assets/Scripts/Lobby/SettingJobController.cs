@@ -34,6 +34,9 @@ public class SettingJobController : MonoBehaviour
     }
     public void SelectGun()
     {
+        DataManager.Instance.killedEnemy = 0;
+        DataManager.Instance.playTime = 0;
+
         DataManager.Instance.isDead = false;
         DataManager.Instance.StageLevel = 0;
         DataManager.Instance.MaxHealth = 4f;
@@ -65,6 +68,9 @@ public class SettingJobController : MonoBehaviour
     }
     public void SelectSword()
     {
+        DataManager.Instance.killedEnemy = 0;
+        DataManager.Instance.playTime = 0;
+
         DataManager.Instance.isDead = false;
         DataManager.Instance.StageLevel = 0;
         DataManager.Instance.MaxHealth = 5f;

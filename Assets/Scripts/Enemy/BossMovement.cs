@@ -8,6 +8,7 @@ public class BossMovement : MonoBehaviour
     public GameObject bossAroundBulletPrefab;
     private float moveSpeed = 4.0f;
     private float runspeed = 10.0f;
+    private float bulletSpeed = 20.0f;
     private Transform playerTransform;
 
     private float bossShootFireRate = 0.5f;
@@ -24,6 +25,8 @@ public class BossMovement : MonoBehaviour
         Shoot,
         Stop,
         Around,
+        Spread,
+        Circle
     }
 
     private BossState currentState;
@@ -128,7 +131,7 @@ public class BossMovement : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1.5f);
             CancelInvoke();
             BossShootState newState = (BossShootState)Random.Range(0, System.Enum.GetValues(typeof(BossShootState)).Length);
             currentShootState = newState;
@@ -144,16 +147,64 @@ public class BossMovement : MonoBehaviour
                     break;
                 case BossShootState.Stop:
                     break;
+                case BossShootState.Spread:
+                    StartCoroutine(SpreadShot());
+                    break;
+                case BossShootState.Circle:
+                    StartCoroutine(CircleShot());
+                    break;
+                default:
+                    break;
             }
         }
     }
+    IEnumerator CircleShot()
+    {
+        float angleStep = 360f / 20;
+        for (float angle = 0; angle < 360; angle += angleStep)
+        {
+            Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
+            ShootBullet(direction);
+        }
+        yield return null;
+    }
+    IEnumerator RotateShot()
+    {
+        float angleStep = 360f / 10;
+        for (float angle = 0; angle < 360; angle += angleStep)
+        {
+            Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
+            ShootBullet(direction);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    IEnumerator SpreadShot()
+    {
+        int numberOfBullets = 5;
+        float spreadAngle = 30f;
+        Vector3 directionToPlayer = (GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized;
+        float baseAngle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
 
+        for (int i = 0; i < numberOfBullets; i++)
+        {
+            float angle = baseAngle + (i - numberOfBullets / 2) * spreadAngle;
+            Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
+            ShootBullet(direction);
+        }
+        yield return null;
+    }
+    void ShootBullet(Vector3 direction)
+    {
+        GameObject bullet = Instantiate(bossAroundBulletPrefab, transform.position, Quaternion.identity);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.velocity = direction * bulletSpeed;
+    }
     IEnumerator StateControl()
     {
         //yield return new WaitForSeconds(3f); // Initial 3-second delay
         while (true)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1.5f);
             // Randomly select a new state
             BossState newState = (BossState)Random.Range(0, System.Enum.GetValues(typeof(BossState)).Length);
             // Set the current state to the new random state
