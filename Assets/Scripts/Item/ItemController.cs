@@ -216,7 +216,7 @@ public class ItemController : MonoBehaviour
                 case 0:
                     card.gameObject.name = "card5";
                     card.transform.Find("Effect").GetComponent<TextMeshProUGUI>().text
-                         = DataManager.Instance.Weapon == WeaponType.Gun.ToString() ? "사격 속도 증가\n-0.1" : "칼 속도 증가\n+10";
+                         = DataManager.Instance.Weapon == WeaponType.Gun.ToString() ? "사격 속도 증가\n-0.05" : "칼 속도 증가\n+10";
                     card.transform.Find("Explain").GetComponent<TextMeshProUGUI>().text = "더 빠르게!";
                     break;
                 case 1:

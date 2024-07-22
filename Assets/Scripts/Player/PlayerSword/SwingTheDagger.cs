@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -112,9 +113,9 @@ public class SwingTheDagger : MonoBehaviour
 
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
-        powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
-        powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
+        powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, quaternion.Euler(new Vector3(rotation.x, rotation.y, rotation.z - 45))));
+        powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, quaternion.Euler(new Vector3(rotation.x, rotation.y, rotation.z - 45))));
+        powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, quaternion.Euler(new Vector3(rotation.x, rotation.y, rotation.z - 45))));
         q.Enqueue(powerSlash);
 
         while (true)
@@ -137,11 +138,11 @@ public class SwingTheDagger : MonoBehaviour
                 }
                 if (i == 1)
                 {
-                    powerSlash[i].transform.position += (dir.normalized + new Vector3(0, 0, -45)) * Time.deltaTime * 50;
+                    powerSlash[i].transform.position += dir.normalized * Time.deltaTime * 50;
                 }
                 if (i == 2)
                 {
-                    powerSlash[i].transform.position += (dir.normalized + new Vector3(0, 0, +45)) * Time.deltaTime * 50;
+                    powerSlash[i].transform.position += dir.normalized * Time.deltaTime * 50;
                 }
                 deltaTime += Time.deltaTime;
                 t += Time.deltaTime;

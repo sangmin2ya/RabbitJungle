@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class EnemyHeat : MonoBehaviour
 
     public ParticleSystem dieParticle;
     public ParticleSystem cutParticle;
+    public TextMeshPro damageText;
 
 
     // Start is called before the first frame update
@@ -73,9 +75,8 @@ public class EnemyHeat : MonoBehaviour
             else
             {
                 StartCoroutine(stopMove());
-                GetComponent<Rigidbody2D>().AddForce(heatDirection, ForceMode2D.Impulse);
+                GetComponent<Rigidbody2D>().AddForce(heatDirection * 2, ForceMode2D.Impulse);
             }
-
 
             if (collision.gameObject.CompareTag("Weapon"))
             {
@@ -83,16 +84,22 @@ public class EnemyHeat : MonoBehaviour
                 {
                     Debug.Log("총 맞음!");
                     enemyHP -= DataManager.Instance.Damage;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage);
                 }
                 else if (DataManager.Instance.Weapon == WeaponType.Sword.ToString())
                 {
                     Debug.Log("칼 맞음!");
                     enemyHP -= DataManager.Instance.Damage;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage);
                 }
                 else
                 {
                     Debug.Log("총기 타입 없음!");
                     enemyHP -= DataManager.Instance.Damage;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage);
                 }
             }
             else if (collision.gameObject.CompareTag("Skill"))
@@ -102,36 +109,50 @@ public class EnemyHeat : MonoBehaviour
                 {
                     Debug.Log("도끼 스킬 맞음!");
                     enemyHP -= DataManager.Instance.Damage * 2.5f;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage * 2.5f);
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.LongSword.ToString())
                 {
                     Debug.Log("대검 스킬 맞음!");
                     enemyHP -= DataManager.Instance.Damage * 2.5f;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage * 2.5f);
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShortSword.ToString())
                 {
                     Debug.Log("단검 스킬 맞음!");
                     enemyHP -= DataManager.Instance.Damage + 1;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage + 1);
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Sniper.ToString())
                 {
-                    Debug.Log("저격 스킬 맞음!");
+                    Debug.Log("저격 총알 맞음!");
                     enemyHP -= DataManager.Instance.SkillDamage;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage);
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.ShotGun.ToString())
                 {
                     Debug.Log("샷건 스킬 맞음!");
                     enemyHP -= DataManager.Instance.SkillDamage;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.SkillDamage);
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
                 {
                     Debug.Log("라이플 스킬 맞음!");
                     enemyHP -= DataManager.Instance.SkillDamage;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.SkillDamage);
                 }
                 else
                 {
                     Debug.Log("칼 기본 스킬 맞음!");
                     enemyHP -= DataManager.Instance.Damage * 1.5f;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage * 1.5f);
                 }
             }
             else

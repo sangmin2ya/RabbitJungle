@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -91,9 +92,9 @@ public class SwingTheAxe : MonoBehaviour
             powerSlash.Clear();
             if (DataManager.Instance.weaponList.Any(x => x.Item1 == SpecialWeaponType.Axe.ToString() && x.Item2 == true))
             {
+                powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, quaternion.Euler(new Vector3(rotation.x, rotation.y, rotation.z - 45))));
                 powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
-                powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
-                powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, rotation));
+                powerSlash.Add(Instantiate(yeolpacham, new Vector2(transform.position.x, transform.position.y) + direction.normalized * 2, quaternion.Euler(new Vector3(rotation.x, rotation.y, rotation.z + 45))));
             }
             else
             {
@@ -161,12 +162,12 @@ public class SwingTheAxe : MonoBehaviour
                     }
                     if (i == 1)
                     {
-                        powerSlash[i].transform.position += (dir.normalized + new Vector3(0, 0, -45)) * Time.deltaTime * 50;
+                        powerSlash[i].transform.position += dir.normalized * Time.deltaTime * 50;
                         powerSlash[i].transform.Rotate(Vector3.forward * 1000 * Time.deltaTime);
                     }
                     if (i == 2)
                     {
-                        powerSlash[i].transform.position += (dir.normalized + new Vector3(0, 0, +45)) * Time.deltaTime * 50;
+                        powerSlash[i].transform.position += dir.normalized * Time.deltaTime * 50;
                         powerSlash[i].transform.Rotate(Vector3.forward * 1000 * Time.deltaTime);
                     }
 

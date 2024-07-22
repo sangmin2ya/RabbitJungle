@@ -773,6 +773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dieParticle: {fileID: 8388749066762742033, guid: 6229f3e1f7ccc664c95e20bd34b912ba, type: 3}
   cutParticle: {fileID: 859953622902440809}
+  damageText: {fileID: 2993479111354378823, guid: 2747d1f248161184aad6373bc50ea7d9, type: 3}
 --- !u!70 &8619221344113031705
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

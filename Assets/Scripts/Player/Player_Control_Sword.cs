@@ -14,7 +14,7 @@ public class Player_Control_Sword : MonoBehaviour
     int dashCount = 2;
     float dashCoolTime = 0f;
     private List<Vector3> firstWeaponLength = new List<Vector3>();
-    List<GameObject> swordList = new List<GameObject>();
+    private List<GameObject> swordList = new List<GameObject>();
     // UI
     public GameObject map;
     public GameObject keyGuide;

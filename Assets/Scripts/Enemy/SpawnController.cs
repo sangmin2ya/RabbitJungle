@@ -15,14 +15,14 @@ public class SpawnController : MonoBehaviour
 
 
     private Transform playerTransform;
-    private int numberOfEnemy = 5; // 몬스터 생성 개수
+    private int numberOfEnemy = 4; // 몬스터 생성 개수
 
     //맵 상에서 적 생성 반경
     private float minX = -15.0f;
     private float maxX = 15.0f;
     private float minY = -15.0f;
     private float maxY = 15.0f;
-    private float minDistanceFromPlayer = 10.0f; // 플레이어와 최소 거리
+    private float minDistanceFromPlayer = 15.0f; // 플레이어와 최소 거리
 
     // Start is called before the first frame update
     void Start()
@@ -91,9 +91,16 @@ public class SpawnController : MonoBehaviour
         {
             visited = true;// spawnEnemies
             SpawnEnemies();
-            Invoke("SpawnEnemies", 3.0f);// spawn once more
-            Invoke("SpawnEnemies", 6.0f);// spawn twice more
-
+            Invoke("SpawnEnemies", 2.0f);// spawn once more
+            Invoke("SpawnEnemies", 4.0f);// spawn twice more
+            if (DataManager.Instance.StageLevel >= 2)
+            {
+                Invoke("SpawnEnemies", 6.0f);// spawn three more
+            }
+            if (DataManager.Instance.StageLevel >= 3)
+            {
+                Invoke("SpawnEnemies", 8.0f);// spawn four more
+            }
         }
     }
 }

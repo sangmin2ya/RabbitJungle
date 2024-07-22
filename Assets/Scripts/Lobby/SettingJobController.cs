@@ -52,6 +52,7 @@ public class SettingJobController : MonoBehaviour
         DataManager.Instance.firstSpeed = DataManager.Instance.Speed;
         DataManager.Instance.firstDashCount = DataManager.Instance.DashCount;
         DataManager.Instance.firstAttackSpeed = DataManager.Instance.AttacSpeed;
+        DataManager.Instance.weaponList.Clear();
 
         DataManager.Instance.additionalDamage = 0;
         DataManager.Instance.additionalMaxHealth = 0;
@@ -84,6 +85,7 @@ public class SettingJobController : MonoBehaviour
         DataManager.Instance.firstSpeed = DataManager.Instance.Speed;
         DataManager.Instance.firstDashCount = DataManager.Instance.DashCount;
         DataManager.Instance.firstAttackSpeed = DataManager.Instance.AttacSpeed;
+        DataManager.Instance.weaponList.Clear();
 
         DataManager.Instance.additionalDamage = 0;
         DataManager.Instance.additionalMaxHealth = 0;
