@@ -7,8 +7,8 @@ public class BossMovement : MonoBehaviour
     public GameObject bossShootBulletPrefab;
     public GameObject bossAroundBulletPrefab;
     private float moveSpeed = 4.0f;
-    private float runspeed = 10.0f;
-    private float bulletSpeed = 20.0f;
+    private float runspeed = 8.0f;
+    private float bulletSpeed = 15.0f;
     private Transform playerTransform;
 
     private float bossShootFireRate = 0.5f;
@@ -46,9 +46,12 @@ public class BossMovement : MonoBehaviour
     {
         currentState = BossState.Rest; // 처음 3초는 Rest
         StartCoroutine(StateControl());
+        Invoke("startShoot", 2.5f);
+    }
+    void startShoot()
+    {
         StartCoroutine(BossShootControl());
     }
-
     // Update is called once per frame
     /*void Update()
     {
@@ -204,7 +207,7 @@ public class BossMovement : MonoBehaviour
         //yield return new WaitForSeconds(3f); // Initial 3-second delay
         while (true)
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2.5f);
             // Randomly select a new state
             BossState newState = (BossState)Random.Range(0, System.Enum.GetValues(typeof(BossState)).Length);
             // Set the current state to the new random state

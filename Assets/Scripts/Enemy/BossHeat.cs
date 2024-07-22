@@ -203,7 +203,7 @@ public class BossHeat : MonoBehaviour
                 {
                     Debug.Log("총 맞음!");
                     bossHP -= DataManager.Instance.Damage;
-                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity).gameObject;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1.5f, 0) + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0), Quaternion.identity).gameObject;
                     go.transform.localScale = new Vector3(2, 2, 2);
                     go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage);
                 }
@@ -263,7 +263,7 @@ public class BossHeat : MonoBehaviour
                 {
                     Debug.Log("단검 스킬 맞음!");
                     bossHP -= DataManager.Instance.SkillDamage;
-                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity).gameObject;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1.5f, 0) + new Vector3(UnityEngine.Random.Range(-1.5f, 1.5f), UnityEngine.Random.Range(-1.5f, 1.5f), 0), Quaternion.identity).gameObject;
                     go.transform.localScale = new Vector3(2, 2, 2);
                     go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.SkillDamage);
                 }

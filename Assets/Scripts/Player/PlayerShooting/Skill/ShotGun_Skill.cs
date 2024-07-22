@@ -51,7 +51,7 @@ public class ShotGun_Skill : MonoBehaviour
                     for (int j = 0; j < ShootBulletCount; j++)
                     {
                         int count = ShootBulletCount / 2;
-                        Quaternion rotate = Quaternion.Euler(0, 0, (j - count) * 2);
+                        Quaternion rotate = Quaternion.Euler(0, 0, (j - count) * 4f);
                         Instantiate(bigBullet, spawnPos.position, rotation.transform.rotation * rotate);
                     }
 

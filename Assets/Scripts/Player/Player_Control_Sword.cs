@@ -41,7 +41,7 @@ public class Player_Control_Sword : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "BossScene")
         {
-            StartCoroutine(Pause(3f));
+            StartCoroutine(Pause(2.5f));
         }
     }
     IEnumerator Pause(float time)

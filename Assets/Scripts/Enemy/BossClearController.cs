@@ -101,7 +101,6 @@ public class BossClearController : MonoBehaviour
         // 최종 alpha 설정
         color.a = targetAlpha;
         clearMsg.color = color;
-        clearMsg.gameObject.SetActive(false);
     }
     /*public void SpawnBoss()
     {

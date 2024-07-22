@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6598517729033223344}
   - component: {fileID: 4721313311936245694}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: -8844587201953022227}
   - component: {fileID: -7230270872033109698}
   - component: {fileID: 2088863251377931234}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: BossAroundBullet
   m_TagString: BOSS
   m_Icon: {fileID: 0}

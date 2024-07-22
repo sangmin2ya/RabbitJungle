@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EndingController : MonoBehaviour
 {
-    TextMeshProUGUI resultText;
+    public TextMeshProUGUI resultText;
     // Start is called before the first frame update
     void Start()
     {

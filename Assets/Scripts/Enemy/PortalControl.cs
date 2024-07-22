@@ -23,7 +23,7 @@ public class PortalControl : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             DataManager.Instance.StageLevel++;
-            if (DataManager.Instance.StageLevel == 5)
+            if (DataManager.Instance.StageLevel >= 5)
             {
                 SceneManager.LoadScene("EndScene");
             }

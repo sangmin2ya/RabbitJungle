@@ -142,6 +142,7 @@ public class ItemController : MonoBehaviour
         DataManager.Instance.AttacSpeed = DataManager.Instance.firstAttackSpeed + DataManager.Instance.additionalAttackSpeed;
         DataManager.Instance.MaxHealth = DataManager.Instance.firstMaxHealth + DataManager.Instance.additionalMaxHealth;
         DataManager.Instance.DashCount = DataManager.Instance.firstDashCount + DataManager.Instance.additionalDashCount;
+        DataManager.Instance.SkillDamage = DataManager.Instance.Damage + 1f;
     }
     private GameObject RandcomCard()
     {
@@ -169,7 +170,7 @@ public class ItemController : MonoBehaviour
             if (weapon == SpecialWeaponType.ShotGun.ToString())
                 effect = "스킬활성화\n[우클릭]<color=\"blue\">벅 샷";
             if (weapon == SpecialWeaponType.Rifle.ToString())
-                effect = "스킬활성화\n[우클릭](on/off)<color=\"blue\">\n강화 사격";
+                effect = "스킬활성화\n[우클릭]<color=\"blue\">\n강화 사격\n(on/off)";
             if (weapon == SpecialWeaponType.Sniper.ToString())
                 effect = "스킬활성화\n[우클릭]<color=\"blue\">\n관통 사격";
 

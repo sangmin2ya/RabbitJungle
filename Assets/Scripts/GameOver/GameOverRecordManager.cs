@@ -11,7 +11,8 @@ public class GameOverRecordManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         DataManager.Instance.isDead = false;
-        gameObject.transform.GetComponent<TextMeshProUGUI>().text = "최고 기록 :  <color=\"red\">STAGE " + DataManager.Instance.StageLevel + " </color>\n";
+        gameObject.transform.GetComponent<TextMeshProUGUI>().text = "최고 스테이지 :  <color=\"red\">STAGE " + DataManager.Instance.StageLevel + " </color>\n" +
+            "처치한 악한 토끼 : <color=\"red\">" + DataManager.Instance.killedEnemy + "</color>\n";
     }
 
     // Update is called once per frame

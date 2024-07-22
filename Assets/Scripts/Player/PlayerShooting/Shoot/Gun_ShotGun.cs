@@ -49,7 +49,7 @@ public class Gun_ShotGun : MonoBehaviour
             {
                 for (int i = -1; i < ShootBulletCount - 1; i++)
                 {
-                    Quaternion rotate = Quaternion.Euler(0, 0, i * 2);
+                    Quaternion rotate = Quaternion.Euler(0, 0, i * 3);
                     Instantiate(bullet, spawnPos.position, rotation.transform.rotation * rotate);
 
                 }

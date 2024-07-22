@@ -1,9 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using TMPro;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -85,21 +84,21 @@ public class EnemyHeat : MonoBehaviour
                 {
                     Debug.Log("총 맞음!");
                     enemyHP -= DataManager.Instance.Damage;
-                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0) + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0), Quaternion.identity).gameObject;
                     go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage);
                 }
                 else if (DataManager.Instance.Weapon == WeaponType.Sword.ToString())
                 {
                     Debug.Log("칼 맞음!");
                     enemyHP -= DataManager.Instance.Damage;
-                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0) + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0), Quaternion.identity).gameObject;
                     go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage);
                 }
                 else
                 {
                     Debug.Log("총기 타입 없음!");
                     enemyHP -= DataManager.Instance.Damage;
-                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0) + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0), Quaternion.identity).gameObject;
                     go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.Damage);
                 }
             }
@@ -138,14 +137,14 @@ public class EnemyHeat : MonoBehaviour
                 {
                     Debug.Log("샷건 스킬 맞음!");
                     enemyHP -= DataManager.Instance.SkillDamage;
-                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0) + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0), Quaternion.identity).gameObject;
                     go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.SkillDamage);
                 }
                 else if (DataManager.Instance.SpecialWeapon == SpecialWeaponType.Rifle.ToString())
                 {
                     Debug.Log("라이플 스킬 맞음!");
                     enemyHP -= DataManager.Instance.SkillDamage;
-                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0), Quaternion.identity).gameObject;
+                    GameObject go = Instantiate(damageText, transform.position + new Vector3(0, 1, 0) + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0), Quaternion.identity).gameObject;
                     go.gameObject.GetComponent<DamageViewer>().ShowDamage(DataManager.Instance.SkillDamage);
                 }
                 else

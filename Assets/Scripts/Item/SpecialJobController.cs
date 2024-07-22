@@ -20,7 +20,7 @@ public class SpecialJobController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && DataManager.Instance.weaponList.Count < 3)
         {
             JobSelect();
         }
@@ -63,7 +63,7 @@ public class SpecialJobController : MonoBehaviour
     {
         switch (jobName)
         {
-            case "Shotgun":
+            case "ShotGun":
                 DataManager.Instance.SpecialWeapon = SpecialWeaponType.ShotGun.ToString();
                 DataManager.Instance.weaponList.Add(new System.Tuple<string, bool>(SpecialWeaponType.ShotGun.ToString(), false));
                 break;

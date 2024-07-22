@@ -21,7 +21,7 @@ public class Player_Control : MonoBehaviour
     public HealthUIManager healthUIManager;
 
     // Dash
-    private bool dashState = false;
+    private bool dashState = true;
     private bool isDashing = false;
     private float dashDuration = 0.1f;
     private float dashTimer = 0f;
@@ -54,7 +54,7 @@ public class Player_Control : MonoBehaviour
         DataManager.Instance.DashState = false;
         if (SceneManager.GetActiveScene().name == "BossScene")
         {
-            StartCoroutine(Pause(3f));
+            StartCoroutine(Pause(2.5f));
         }
     }
     IEnumerator Pause(float time)
@@ -79,6 +79,7 @@ public class Player_Control : MonoBehaviour
             SpecialWeaponGet();
             DataManager.Instance.classChage = false;
         }
+
         WeaponChange();
         GameObject.Find("Battle_Ui").transform.Find("SkillCoolDown").gameObject.SetActive(DataManager.Instance.weaponList.Any(x => x.Item1 == DataManager.Instance.SpecialWeapon && x.Item2 == true));
         // Check Player Life
@@ -188,14 +189,16 @@ public class Player_Control : MonoBehaviour
     // player movement skill
     public void baseSkill()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isDashing && !DataManager.Instance.DashState)
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashing && !DataManager.Instance.DashState && dashState)
         {
+            dashState = false;
             BaseSkill();
             //DataManager.Instance.DashCount--;
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             DataManager.Instance.Speed = 10.0f;
+            dashState = true;
         }
 
         if (isDashing)
